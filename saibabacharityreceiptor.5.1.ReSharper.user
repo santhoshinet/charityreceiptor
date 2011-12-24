@@ -10,13 +10,19 @@
     <RecentFiles>
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="258" fromTop="13" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="949" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="173" fromTop="8" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="0" fromTop="0" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="558" fromTop="16" />
     </RecentFiles>
     <RecentEdits>
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="253" fromTop="12" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="203" fromTop="9" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="173" fromTop="8" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="678" fromTop="22" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="678" fromTop="9" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="679" fromTop="21" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="583" fromTop="17" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="209" fromTop="10" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -30,4 +36,23 @@
     </NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="text" priority="0" />
+      <Item value="api" priority="0" />
+      <Item value="html" priority="0" />
+      <Item value="pdf" priority="0" />
+      <Item value="PdfDocument`0" priority="3" />
+      <Item value="document" priority="2" />
+      <Item value="new" priority="4" />
+      <Item value="PdfDocument" priority="0" />
+      <Item value="var" priority="0" />
+      <Item value="Chunks" priority="0" />
+      <Item value="List&lt;Chunk&gt;" priority="0" />
+      <Item value="PdfWriter" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:iTextSharp.text.pdf.PdfDocument">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>
