@@ -1,0 +1,49 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="798" fromTop="21" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="423" fromTop="18" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:DonationReceivers.cs" caret="170" fromTop="7" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="821" fromTop="11" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="933" fromTop="4" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="2581" fromTop="4" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:DonationReceivers.cs" caret="154" fromTop="7" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="630" fromTop="34" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="736" fromTop="30" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="215" fromTop="9" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="public" priority="3" />
+      <Item value="string" priority="1" />
+      <Item value="Receiptor`0" priority="1" />
+      <Item value="Receiptors" priority="0" />
+      <Item value="new" priority="0" />
+      <Item value="Receiptor" priority="0" />
+      <Item value="DonationReceivers`0" priority="1" />
+      <Item value="DonationReceivers" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

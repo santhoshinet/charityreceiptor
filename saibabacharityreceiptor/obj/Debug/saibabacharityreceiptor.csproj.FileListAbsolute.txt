@@ -5,3 +5,7 @@ C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceipt
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.dll
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.pdb
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptorDL.dll
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\Telerik.OpenAccess.Query.dll
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptorDL.pdb
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\Telerik.OpenAccess.Query.xml

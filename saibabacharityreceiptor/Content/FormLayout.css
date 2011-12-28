@@ -1,0 +1,334 @@
+﻿BODY
+{
+    padding: 0px;
+    margin: 0px;
+    font: 62.5%/1.6 Arial, sans-serif;
+    width: 100%;
+    background-color: #F6F6F6;
+    color: #777;
+}
+.Container
+{
+    width: 600px;
+    margin: 20px auto;
+    padding-bottom: 20px;
+}
+FORM
+{
+    padding: 0px 0px 0px 108px;
+    margin: 0px;
+    border: 1px solid #CCC;
+    background-color: #F5F5F5;
+    width: 550px;
+    -moz-border-radius: 12px;
+    -khtml-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+}
+.h1
+{
+    font-size: 2em;
+    border-bottom: 1px dotted #CCCCCC;
+    margin-right: 15px;
+    margin: 0px;
+}
+.ul
+{
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    padding: 10px;
+    padding-top: 5px;
+}
+UL LI
+{
+    margin: 0px;
+    padding-bottom: 10px;
+}
+.h2
+{
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.label
+{
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.label_small
+{
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.text
+{
+    padding: 3px;
+    font-size: 1.4em;
+    width: 400px;
+    border: 1px solid #AAA;
+    background-color: #F8FEFC;
+}
+.areacode, .telno
+{
+    padding: 3px;
+    font-size: 1.4em;
+    width: 100px;
+    border: 1px solid #AAA;
+    background-color: #F8FEFC;
+}
+.date
+{
+    padding: 3px;
+    font-size: 1.4em;
+    width: 30px;
+    border: 1px solid #AAA;
+    margin-right: 3px;
+    background-color: #F8FEFC;
+}
+.standard
+{
+    padding: 3px;
+    font-size: 1.4em;
+    width: 80px;
+    border: 1px solid #AAA;
+    margin-right: 3px;
+    background-color: #F8FEFC;
+}
+.text:focus, .date:focus, .standard:focus, .Textarea:focus, SELECT:focus, INPUT[type="submit"]:focus, .areacode:focus, .telno:focus
+{
+    background-color: #FFFDD8;
+}
+INPUT[type="submit"]:hover
+{
+    background-color: #FFFDD8;
+}
+.text, .date, .standard, .Textarea, SELECT, INPUT[type="submit"], .areacode, .telno
+{
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.TelerikTextBox
+{
+    padding: 5px;
+    font-size: 1.4em; /*ToDo: Find out why Telerik is automatically filling out the width field in the properties section for the telerik rad control. For now the width and height section are controlled using the properties section for this control*/
+}
+.instruction
+{
+    font-weight: normal;
+    font-style: italic;
+    color: #333333;
+}
+.Textarea
+{
+    padding: 0px;
+    margin: 0px;
+    width: 405px;
+    height: 80px;
+    border: 1px solid #AAA;
+    background-color: #F8FEFC;
+}
+.radio
+{
+    font-size: 1.2em;
+    margin-left: -5px;
+}
+LABEL.inline
+{
+    display: inline;
+    font-weight: normal;
+    margin-right: 15px;
+}
+SELECT
+{
+    font: 1.2em sans-serif;
+    border: 1px solid #000000;
+    width: 400px;
+    border: 1px solid #AAA;
+    background-color: #F8FEFC;
+    padding: 3px;
+}
+INPUT[type="submit"]
+{
+    border: 1px solid #AAA;
+    background-color: #F8FEFC;
+    padding: 8px;
+    cursor: pointer;
+}
+.checkbox
+{
+    margin-left: -4px;
+}
+/*Tabs*/
+#tabcontainer
+{
+    background: #FFFFFF;
+    color: #333333;
+    font-size: 1.2em;
+    clear: both;
+    margin-left: -40px;
+}
+#tabcontainer LI
+{
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 5px;
+    padding-top: 5px;
+}
+#tabcontainer LI A
+{
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-bottom: none;
+    color: #333333;
+    background: #EAEAEA;
+}
+#tabcontainer LI A:hover
+{
+    background: #CCCCCC;
+    color: #333333;
+}
+#tabcontainer LI A.selected
+{
+    color: #000000;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-bottom: none;
+    outline: none;
+}
+.tabpage
+{
+    background: #F4F4F4;
+    clear: both;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    width: 575px;
+}
+.tabpage P
+{
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+.star
+{
+    color: #FF0000;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.date_slash
+{
+    font-size: 1.2em;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.space
+{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.read_only
+{
+    background-color: #EEE;
+}
+.errorinfo
+{
+    border-color: #FF0000;
+    border-style: solid;
+    border-width: 1px;
+}
+.txtmobile
+{
+    width: 335px;
+}
+#personPopupContainer
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 20000;
+}
+.personPopupPopup
+{
+}
+#personPopupContent
+{
+    font: 1.2em Calibri, Arial;
+    background-color: #FFF;
+    min-height: 50px;
+    width: 220px;
+}
+.personPopupPopup .personPopupImage
+{
+    margin: 5px;
+    margin-right: 15px;
+}
+.personPopupPopup .corner
+{
+    width: 19px;
+    height: 15px;
+}
+.personPopupPopup .topLeft
+{
+    background: url(../images/popup/balloon_topLeft.png) no-repeat;
+}
+.personPopupPopup .bottomLeft
+{
+    background: url(../images/popup/balloon_bottomLeft.png) no-repeat;
+}
+.personPopupPopup .left
+{
+    background: url(../images/popup/balloon_left.png) repeat-y;
+}
+.personPopupPopup .right
+{
+    background: url(../images/popup/balloon_right.png) repeat-y;
+}
+.personPopupPopup .topRight
+{
+    background: url(../images/popup/balloon_topRight.png) no-repeat;
+}
+.personPopupPopup .bottomRight
+{
+    background: url(../images/popup/balloon_bottomRight.png) no-repeat;
+}
+.personPopupPopup .top
+{
+    background: url(../images/popup/balloon_top.png) repeat-x;
+}
+.personPopupPopup .bottom
+{
+    background: url(../images/popup/balloon_bottom.png) repeat-x;
+    text-align: center;
+}
+.ul_small
+{
+    list-style-type: none;
+    margin: 0px;
+    margin-left: 0px;
+    padding: 0px;
+    padding-left: 10px;
+}
+.ul_small LI
+{
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 5px;
+}
+
+.ul_small LI .text
+{
+    width: 390px;
+}
+
+.long_space
+{
+    margin-left: 45px;
+}
