@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+</head>
+<body>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd.">
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="title" content="Shirdi Saibaba Temple Arizona" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta http-equiv="content-language" content="en" />
+        <meta name="copyright" content="Shirdi Saibaba Temple Arizona" />
+        <title>Shirdi Saibaba Temple Arizona</title>
+        <link rel="stylesheet" media="all" href="/Content/style.css" />
+        <script language="JavaScript" type="text/JavaScript">
+<!--
+
+            function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+                if (init == true) with (navigator) {
+                    if ((appName == "Netscape") && (parseInt(appVersion) == 4)) {
+                        document.MM_pgW = innerWidth; document.MM_pgH = innerHeight; onresize = MM_reloadPage;
+                    }
+                }
+                else if (innerWidth != document.MM_pgW || innerHeight != document.MM_pgH) location.reload();
+            }
+            MM_reloadPage(true);
+//-->
+        </script>
+        <style type="text/css">
+<!--
+.style2 {
+	color: #990033;
+	font-weight: bold;
+}
+.style5 {
+	font-size: 14px;
+	color: #990033;
+	font-weight: bold;
+-->
+</style>
+        <link href="/Content/FormLayout.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!-- start-->
+        <div id="mainContainer">
+            <!-- start Top Header Section -->
+            <div id="headerTop">
+                <div id="headerTopLeft">
+                </div>
+                <div id="headerTopRight">
+                    <div id="dateTime">
+                    </div>
+                </div>
+            </div>
+            <!-- end Top Header Section -->
+            <!-- start Top Header Section -->
+            <div id="headerImage">
+            </div>
+            <!-- end Top Header Section -->
+            <!-- start Header Bottom Section -->
+            <div id="headerBottom">
+            </div>
+            <!-- end Header Bottom Section -->
+            <!-- start Header Top NavigationBottom Section -->
+            <div id="navigationTop">
+                <div class="navigationTopLeftBg">
+                </div>
+                <div id="navigationContainer">
+                </div>
+                <div class="navigationTopRytBg">
+                </div>
+            </div>
+            <div id="navigationBottom">
+                <div class="navigationBottomLeftBg">
+                </div>
+                <div class="navigationContainer">
+                </div>
+                <div class="navigationBottomRytBg">
+                </div>
+            </div>
+            <!-- start Header Top NavigationBottom Section -->
+            <!-- start Page Layer -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <!-- end Page Layer -->
+            <div id="footContainer">
+                <div class="leftImg">
+                </div>
+                <div class="footContent">
+                    Shirdi Saibaba Temple Arizona &copy; 2011. All rights reserved.</div>
+                <div class="rightImg">
+                </div>
+            </div>
+        </div>
+        <!-- end-->
+    </body>
+    </html>
+</body>
+</html>

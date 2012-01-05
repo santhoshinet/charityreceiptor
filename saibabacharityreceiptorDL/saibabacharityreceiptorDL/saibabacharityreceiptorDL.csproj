@@ -47,10 +47,11 @@
     <Reference Include="Telerik.OpenAccess.Query, Version=2009.1.405.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonationReceivers.cs" />
     <Compile Include="ObjectScopeProvider1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiptor.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.config" />

@@ -17,31 +17,10 @@
                 $('.cmbModeOfPayment').focus();
                 return false;
             }
-            if ($('.cmbdonationreceivedby')[0].selectedIndex == 0) {
+            if ($('.CmbDonationReceivedBy')[0].selectedIndex == 0) {
                 alert("Please select donation received by member");
-                $('.cmbdonationreceivedby').addClass('errorinfo');
-                $('.cmbdonationreceivedby').focus();
-                return false;
-            }
-            var value = parseInt($('.txtdate').val());
-            if (value > 31) {
-                alert("Please input valid Date.");
-                $('.txtdate').addClass('errorinfo');
-                $('.txtdate').focus();
-                return false;
-            }
-            value = parseInt($('.txtmonth').val());
-            if (value > 12) {
-                alert("Please input valid Date.");
-                $('.txtmonth').addClass('errorinfo');
-                $('.txtmonth').focus();
-                return false;
-            }
-            value = parseInt($('.txtyear').val());
-            if (value < 1960 || value > 2005) {
-                alert("Please input valid year.");
-                $('.txtyear').addClass('errorinfo');
-                $('.txtyear').focus();
+                $('.CmbDonationReceivedBy').addClass('errorinfo');
+                $('.CmbDonationReceivedBy').focus();
                 return false;
             }
         }
@@ -49,8 +28,8 @@
             return false;
         return true;
     });
-    $('.txtmobile,.date').bind('keypress', function (e) {
-        if (e.which > 47 && e.which < 58)
+    $('.txtdonationinwords,.date,.txtdonationamount,.txtcontact,.txtdate').bind('keypress', function (e) {
+        if (e.which > 44 && e.which < 58)
             return true;
         return false;
     });

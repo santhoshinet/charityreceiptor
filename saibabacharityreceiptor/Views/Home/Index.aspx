@@ -1,12 +1,9 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<saibabacharityreceiptor.Models.ReceiptModels>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<saibabacharityreceiptor.Models.ReceiptModels>" %>
 
-<!DOCTYPE html>
-<html>
-<head runat="server">
-    <title>Index</title>
-    <link href="/Content/FormLayout.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    Receipt
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="Container">
         <% using (Html.BeginForm())
            {%>
@@ -22,7 +19,7 @@
                 <label class="label">
                     <span class="instruction">auto generated receipt id</span>
                 </label>
-                <%: Html.TextBoxFor(m => m.ReceiptNumber, new { @id = "TxtReceiptNumber", @class = "text txtreceiptno" })%>
+                <%: Html.TextBoxFor(m => m.ReceiptNumber, new { @id = "TxtReceiptNumber", @class = "text txtreceiptno" , @maxlength="10", @readonly="readonly" })%>
             </li>
             <li>
                 <label class="label">
@@ -31,7 +28,7 @@
                 <label class="label">
                     <span class="instruction">Your date should be in the format of [ DD / MM / YYYY ]</span>
                 </label>
-                <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text" })%>
+                <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text txtdate", @maxlength = "10" })%>
                 <label class="star">
                     *</label>
             </li>
@@ -59,7 +56,7 @@
             <li>
                 <label class="label">
                     Contact</label>
-                <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact" })%>
+                <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact", @maxlength="15" })%>
                 <label class="star">
                     *</label>
             </li>
@@ -120,9 +117,8 @@
         <%
            }%>
     </div>
-</body>
-</html>
-<!-- Loading script at end for fast render -->
-<script src="/Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
-<script src="/Scripts/JQValidation.js" type="text/javascript"></script>
-<script src="/Scripts/receiptor.js" type="text/javascript"></script>
+    <!-- Loading script at end for fast render -->
+    <script src="/Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/JQValidation.js" type="text/javascript"></script>
+    <script src="/Scripts/receiptor.js" type="text/javascript"></script>
+</asp:Content>

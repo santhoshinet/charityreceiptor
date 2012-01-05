@@ -9,48 +9,67 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="949" fromTop="25" />
-      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="558" fromTop="16" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="1095" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Content/f:Site.css" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:index.html" caret="40501" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2013" fromTop="36" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:jquery.validate.min.js" caret="583" fromTop="1" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:jquery.validate.unobtrusive.min.js" caret="140" fromTop="4" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:common.js" caret="1305" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Default.aspx" caret="343" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Account/f:ChangePassword.aspx" caret="1922" fromTop="41" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Account/f:ChangePasswordSuccess.aspx" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="1324" fromTop="30" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Account/f:LogOn.aspx" caret="1106" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:User.cs" caret="264" fromTop="11" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="653" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:Home.aspx" caret="449" fromTop="10" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Content/f:FormLayout.css" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:JQValidation.js" caret="397" fromTop="12" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:receiptor.js" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="826" fromTop="19" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="1332" fromTop="27" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Content/f:controlpanel.css" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Default.aspx.cs" caret="414" fromTop="12" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Site.Master" caret="3172" fromTop="40" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:EditUser_control.ascx" caret="1018" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:CreateUser.ascx" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:AccountModels.cs" caret="2028" fromTop="25" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="7661" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:AddUser.aspx" caret="233" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="1402" fromTop="8" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:EditUser.aspx" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="726" fromTop="4" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:Users.aspx" caret="4602" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Status.aspx" caret="362" fromTop="12" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="1852" fromTop="30" />
     </RecentFiles>
     <RecentEdits>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="1895" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="2180" fromTop="18" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="2795" fromTop="15" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="3141" fromTop="10" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="11" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="28" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="28" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="2473" fromTop="7" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="8" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="7" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="1339" fromTop="32" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="1339" fromTop="33" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="1334" fromTop="19" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="24" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="15" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="215" fromTop="6" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="422" fromTop="13" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="786" fromTop="17" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="31" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="24" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="17" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="11" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="12" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="14" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="5376" fromTop="20" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:Index.aspx" caret="4396" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:EditUser.aspx" caret="210" fromTop="5" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:EditUser_control.ascx" caret="1018" fromTop="15" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="5207" fromTop="27" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="5965" fromTop="11" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="4804" fromTop="19" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="7036" fromTop="28" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="1520" fromTop="14" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="1889" fromTop="31" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="2113" fromTop="34" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="7775" fromTop="14" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="9109" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:Users.aspx" caret="5332" fromTop="23" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:Users.aspx" caret="4602" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3786" fromTop="7" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="1542" fromTop="14" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="2150" fromTop="37" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="462" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="623" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="11573" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="7663" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="13818" fromTop="123" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="1402" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:AddUser.aspx" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:AddUser.aspx" caret="233" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="847" fromTop="9" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="726" fromTop="4" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Status.aspx" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Status.aspx" caret="417" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Status.aspx" caret="164" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="1808" fromTop="29" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -72,29 +91,86 @@
       <Item value="pdf" priority="0" />
       <Item value="PdfDocument`0" priority="3" />
       <Item value="document" priority="2" />
-      <Item value="new" priority="9" />
+      <Item value="new" priority="15" />
       <Item value="PdfDocument" priority="0" />
-      <Item value="var" priority="4" />
+      <Item value="var" priority="6" />
       <Item value="Chunks" priority="0" />
       <Item value="List&lt;Chunk&gt;" priority="0" />
       <Item value="PdfWriter" priority="0" />
-      <Item value="Html" priority="6" />
+      <Item value="Html" priority="9" />
       <Item value="Dictionary&lt;string,object&gt;" priority="2" />
       <Item value="ID" priority="2" />
-      <Item value="m" priority="7" />
+      <Item value="m" priority="8" />
       <Item value="ICollection" priority="0" />
       <Item value="IEnumerable" priority="0" />
       <Item value="List&lt;string&gt;" priority="0" />
       <Item value="modeofpayments" priority="1" />
-      <Item value="ViewData" priority="1" />
-      <Item value="List" priority="1" />
-      <Item value="foreach" priority="1" />
+      <Item value="ViewData" priority="3" />
+      <Item value="List" priority="4" />
+      <Item value="foreach" priority="4" />
       <Item value="payment" priority="2" />
-      <Item value="from" priority="0" />
-      <Item value="scope" priority="0" />
-      <Item value="select" priority="0" />
+      <Item value="from" priority="3" />
+      <Item value="scope" priority="19" />
+      <Item value="select" priority="3" />
       <Item value="receiver" priority="4" />
       <Item value="donationReceivers" priority="0" />
+      <Item value="string" priority="3" />
+      <Item value="MultiSelectList`0" priority="0" />
+      <Item value="logOnFailures" priority="2" />
+      <Item value="where" priority="3" />
+      <Item value="model" priority="14" />
+      <Item value="if" priority="4" />
+      <Item value="else" priority="5" />
+      <Item value="UserLogOnFailure`0" priority="0" />
+      <Item value="failure" priority="2" />
+      <Item value="UserLogOnFailure" priority="0" />
+      <Item value="Failcount" priority="1" />
+      <Item value="Lasttriedtime" priority="1" />
+      <Item value="DateTime`0" priority="3" />
+      <Item value="Username" priority="2" />
+      <Item value="logOnFailure" priority="6" />
+      <Item value="return" priority="6" />
+      <Item value="userLogOnFailure" priority="0" />
+      <Item value="Response" priority="0" />
+      <Item value="null" priority="0" />
+      <Item value="HandleError" priority="0" />
+      <Item value="false" priority="0" />
+      <Item value="HttpGet" priority="5" />
+      <Item value="User`0" priority="9" />
+      <Item value="c" priority="0" />
+      <Item value="User" priority="1" />
+      <Item value="IsheAdmin" priority="1" />
+      <Item value="IsheDonationReceiver" priority="1" />
+      <Item value="user" priority="10" />
+      <Item value="public" priority="3" />
+      <Item value="ActionResult`0" priority="2" />
+      <Item value="Email" priority="2" />
+      <Item value="CreateUser" priority="0" />
+      <Item value="users" priority="12" />
+      <Item value="Action`0" priority="0" />
+      <Item value="Edituser" priority="0" />
+      <Item value="HttpPost" priority="0" />
+      <Item value="RedirectToAction`0" priority="0" />
+      <Item value="View`0" priority="3" />
+      <Item value="RegisterModel`0" priority="0" />
+      <Item value="registerModel" priority="0" />
+      <Item value="userid" priority="1" />
+      <Item value="output" priority="2" />
+      <Item value="out" priority="0" />
+      <Item value="saibabacharityreceiptorDL" priority="4" />
+      <Item value="OpenAccess" priority="0" />
+      <Item value="Import" priority="0" />
+      <Item value="saibabacharityreceiptor" priority="0" />
+      <Item value="List&lt;User&gt;" priority="0" />
+      <Item value="localUsers" priority="0" />
+      <Item value="Id" priority="0" />
+      <Item value="UrlParameter`0" priority="0" />
+      <Item value="EditUser_control" priority="1" />
+      <Item value="Admin" priority="0" />
+      <Item value="DonationReceiver" priority="0" />
+      <Item value="UserId" priority="0" />
+      <Item value="UserName" priority="0" />
+      <Item value="ModelState" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:iTextSharp.text.pdf.PdfDocument">
       <Item value="Add`0" priority="0" />
@@ -114,6 +190,8 @@
       <Item value="TextBoxFor`2" priority="5" />
       <Item value="TextAreaFor`2" priority="0" />
       <Item value="DropDownListFor`2" priority="1" />
+      <Item value="RenderPartial`0" priority="2" />
+      <Item value="HiddenFor`2" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:saibabacharityreceiptor.Models.ReceiptModels">
       <Item value="ReceiptNumber" priority="0" />
@@ -127,22 +205,98 @@
       <Item value="ModeofPayment" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="1" />
+      <Item value="Add`0" priority="3" />
+      <Item value="Count" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@saibabacharityreceiptorDL.ObjectScopeProvider1">
       <Item value="ObjectScope`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
-      <Item value="GetOqlQuery`0" priority="0" />
+      <Item value="GetOqlQuery`0" priority="3" />
+      <Item value="Tracking" priority="0" />
+      <Item value="Transaction" priority="9" />
+      <Item value="Add`0" priority="3" />
+      <Item value="Remove`0" priority="1" />
+      <Item value="FetchPlan" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
-      <Item value="ExecuteEnumerable`0" priority="0" />
+      <Item value="ExecuteEnumerable`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="ToList`1" priority="0" />
+      <Item value="ToList`1" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:saibabacharityreceiptorDL.DonationReceivers">
       <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptorDL.UserLogOnFailure">
+      <Item value="Username" priority="0" />
+      <Item value="Failcount" priority="1" />
+      <Item value="Lasttriedtime" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="ToLower`0" priority="1" />
+      <Item value="Equals`0" priority="2" />
+      <Item value="Trim`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptor.Models.LogOnModel">
+      <Item value="UserName" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
+      <Item value="Begin`0" priority="3" />
+      <Item value="Commit`0" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime">
+      <Item value="Now" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DateTime">
+      <Item value="Subtract`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.TimeSpan">
+      <Item value="Minutes" priority="0" />
+      <Item value="TotalMinutes" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpResponseBase">
+      <Item value="Redirect`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptorDL.User">
+      <Item value="IsheDonationReceiver" priority="4" />
+      <Item value="Username" priority="7" />
+      <Item value="Failcount" priority="0" />
+      <Item value="Lasttriedtime" priority="0" />
+      <Item value="Email" priority="4" />
+      <Item value="Id" priority="4" />
+      <Item value="IsheAdmin" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Boolean">
+      <Item value="Equals`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptor.Models.RegisterModel">
+      <Item value="DonationReceiver" priority="3" />
+      <Item value="Admin" priority="3" />
+      <Item value="ConfirmPassword" priority="0" />
+      <Item value="UserName" priority="2" />
+      <Item value="Email" priority="2" />
+      <Item value="UserId" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Security.Membership">
+      <Item value="DeleteUser`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptor.User">
+      <Item value="Email" priority="0" />
+      <Item value="Id" priority="0" />
+      <Item value="IsheAdmin" priority="0" />
+      <Item value="IsheDonationReceiver" priority="0" />
+      <Item value="Username" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Mvc.UrlParameter">
+      <Item value="Optional" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="IsNullOrEmpty`0" priority="2" />
+      <Item value="Intern`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.ModelStateDictionary">
+      <Item value="Remove`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

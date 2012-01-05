@@ -7,7 +7,7 @@ namespace saibabacharityreceiptorDL
     {
         public Receiptor()
         {
-            DonationReceiver = new DonationReceivers();
+            UserLog = new UserLog();
         }
 
         public string ReceiptNumber { get; set; }
@@ -26,8 +26,17 @@ namespace saibabacharityreceiptorDL
 
         public string DonationAmountinWords { get; set; }
 
-        public string ModeOfPayment { get; set; }
+        public ModeOfPayment ModeOfPayment { get; set; }
 
-        public DonationReceivers DonationReceiver { get; set; }
+        public UserLog UserLog { get; set; }
+    }
+
+    public enum ModeOfPayment
+    {
+        Cash,
+        Cheque,
+        Online,
+        Mobile,
+        Goods
     }
 }

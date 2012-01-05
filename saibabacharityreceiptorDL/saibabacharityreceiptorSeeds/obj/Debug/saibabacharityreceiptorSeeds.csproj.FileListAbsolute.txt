@@ -1,0 +1,10 @@
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\saibabacharityreceiptorSeeds.exe
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\saibabacharityreceiptorSeeds.pdb
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\saibabacharityreceiptorDL.dll
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\saibabacharityreceiptorDL.pdb
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\obj\Debug\saibabacharityreceiptorSeeds.exe
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\obj\Debug\saibabacharityreceiptorSeeds.pdb
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\Telerik.OpenAccess.Query.dll
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\Telerik.OpenAccess.Query.xml
+C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptorDL\saibabacharityreceiptorSeeds\bin\Debug\saibabacharityreceiptorSeeds.exe.config

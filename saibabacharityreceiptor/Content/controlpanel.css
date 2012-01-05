@@ -1,0 +1,137 @@
+﻿.loginContent
+{
+    text-align: left;
+    background-color: #FFF;
+    font-size: 0.75em;
+    font-family: Arial, Helvetica, Sans-Serif;
+    padding: 15px;
+    color: #555555;
+    border: 2px solid #0C6500;
+    margin: 0px;
+    min-height: 400px;
+}
+.loginContent P, UL
+{
+    line-height: 1.6em;
+    margin: 0px;
+    padding: 0px;
+}
+.loginContent FIELDSET
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+.loginContent FIELDSET P
+{
+    margin: 2px 0 10px;
+}
+.loginContent LEGEND
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px;
+}
+.loginContent INPUT[type="text"], INPUT[type="password"], TEXTAREA, INPUT[type="file"]
+{
+    width: 385px;
+    padding: 5px;
+    margin: 0px;
+    background-color: #EBF8F2;
+    border: 1px solid #A8E1C7;
+}
+.loginContent SELECT
+{
+    width: 400px;
+    padding: 3px;
+    margin: 0px;
+}
+.loginContent TABLE
+{
+    border: 1px solid #E8EEF4;
+    border-collapse: collapse;
+}
+.loginContent TABLE TD
+{
+    padding: 5px;
+    border: 1px solid #E8EEF4;
+}
+.loginContent TABLE TH
+{
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #EBF8F2;
+    border: 1px solid #E8EEF4;
+}
+.loginContent #menucontainer
+{
+    margin-top: 40px;
+}
+.loginContent DIV#title
+{
+    display: block;
+    float: left;
+    text-align: left;
+}
+.error
+{
+    color: #FF0000;
+}
+.loginContent .text-box
+{
+    width: 30em;
+}
+.loginContent .text-box.multi-line
+{
+    height: 6.5em;
+}
+.loginContent .tri-state
+{
+    width: 6em;
+}
+.loginContent .rightbox
+{
+    text-align: right;
+    margin: 0px;
+    padding: 5px;
+}
+INPUT[type="button"], INPUT[type="submit"]
+{
+    border: 2px solid #A8E1C7;
+    padding: 5px;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 10px;
+    background: #EBF8F2;
+}
+.loginContent UL
+{
+    list-style: none;
+    margin-left: 10px;
+}
+.loginContent UL LI
+{
+    margin-top: 10px;
+}
+.Cart_Table_Sub INPUT
+{
+    width: 60px;
+}
+.Cart_Table_Sub SELECT
+{
+    width: 85px;
+}
+.Cart_Table TR:even
+{
+    background-color: #777;
+}
+.searchbox
+{
+    text-align: right;
+    margin-bottom: 5px;
+}
+.empty-row TD
+{
+    text-align: center;
+    height: 30px;
+}
