@@ -19,8 +19,6 @@ namespace saibabacharityreceiptor.Controllers
             var scope = ObjectScopeProvider1.ObjectScope();
             if (Checkauthorization(scope, User.Identity.Name))
             {
-                var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile", "Goods" };
-                ViewData["modeOfPayment"] = modeofpayments;
                 LoadReceiptValuesFromDb(scope);
                 return View(new RegularReceiptModels
                                       {
@@ -48,7 +46,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = DateTime.Now.ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
@@ -59,7 +57,8 @@ namespace saibabacharityreceiptor.Controllers
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
                                           OnDateTime = receivedTime,
-                                          Name = model.Name
+                                          Name = model.Name,
+                                          ReceiptType = ReceiptType.GeneralReceipt
                                       };
                     switch (Request.Form["cmbModeOfPayment"])
                     {
@@ -96,7 +95,8 @@ namespace saibabacharityreceiptor.Controllers
             return View("Status");
         }
 
-        [HttpPost]
+        [Authorize]
+        [HttpGet]
         public ActionResult MerchandiseReceipt()
         {
             if (!User.Identity.IsAuthenticated)
@@ -104,16 +104,215 @@ namespace saibabacharityreceiptor.Controllers
             var scope = ObjectScopeProvider1.ObjectScope();
             if (Checkauthorization(scope, User.Identity.Name))
             {
-                var receivers = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                                 where c.IsheDonationReceiver.Equals(true)
-                                 select c).ToList();
-                var donationReceivers = receivers.Select(receiver => receiver.Username).ToList();
-                ViewData["donationReceivers"] = donationReceivers;
+                LoadReceiptValuesFromDb(scope);
                 var receiptModel = new MerchandiseReceipt
                                       {
                                           ReceiptNumber = GenerateReceiptId()
                                       };
                 return View(receiptModel);
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult MerchandiseReceipt(MerchandiseReceipt model)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                        where
+                                            c.IsheDonationReceiver.Equals(true) &&
+                                            c.Username.Equals(Request.Form["CmbDonationReceivedBy"])
+                                        select c).ToList();
+                if (donationReceiver.Count > 0)
+                {
+                    scope.Transaction.Begin();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receipt = new Receipt
+                                      {
+                                          Address = model.Address,
+                                          Contact = model.Contact,
+                                          ReceiptNumber = model.ReceiptNumber,
+                                          MerchandiseItem = model.MerchandiseItem,
+                                          Value = model.Value,
+                                          DonationReceiver = donationReceiver[0],
+                                          Email = model.Email,
+                                          OnDateTime = receivedTime,
+                                          Name = model.Name,
+                                          ReceiptType = ReceiptType.MerchandiseReceipt
+                                      };
+                    scope.Add(receipt);
+                    scope.Transaction.Commit();
+                    ViewData["ReceiptID"] = receipt.ReceiptNumber;
+                    return View("Printoptions");
+                }
+                ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
+                return View();
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ServicesReceipt()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                LoadReceiptValuesFromDb(scope);
+                var receiptModel = new ServicesReceipt
+                                       {
+                                           ReceiptNumber = GenerateReceiptId()
+                                       };
+                return View(receiptModel);
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ServicesReceipt(ServicesReceipt model)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                        where
+                                            c.IsheDonationReceiver.Equals(true) &&
+                                            c.Username.Equals(Request.Form["CmbDonationReceivedBy"])
+                                        select c).ToList();
+                if (donationReceiver.Count > 0)
+                {
+                    scope.Transaction.Begin();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receipt = new Receipt
+                                      {
+                                          Address = model.Address,
+                                          Contact = model.Contact,
+                                          ReceiptNumber = model.ReceiptNumber,
+                                          MerchandiseItem = model.MerchandiseItem,
+                                          HoursServed = Convert.ToInt32(model.HoursServed),
+                                          DonationReceiver = donationReceiver[0],
+                                          Email = model.Email,
+                                          OnDateTime = receivedTime,
+                                          Name = model.Name,
+                                          ReceiptType = ReceiptType.ServicesReceipt
+                                      };
+                    scope.Add(receipt);
+                    scope.Transaction.Commit();
+                    ViewData["ReceiptID"] = receipt.ReceiptNumber;
+                    return View("Printoptions");
+                }
+                ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
+                return View();
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult RecurringReceipt()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                LoadReceiptValuesFromDb(scope);
+                var receiptModel = new RecurringReceipt
+                                       {
+                                           ReceiptNumber = GenerateReceiptId()
+                                       };
+                return View(receiptModel);
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult RecurringReceipt(RecurringReceipt model)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                        where
+                                            c.IsheDonationReceiver.Equals(true) &&
+                                            c.Username.Equals(Request.Form["CmbDonationReceivedBy"])
+                                        select c).ToList();
+                if (donationReceiver.Count > 0)
+                {
+                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receipt = new Receipt
+                                      {
+                                          Address = model.Address,
+                                          Contact = model.Contact,
+                                          ReceiptNumber = model.ReceiptNumber,
+                                          DonationAmount = model.DonationAmount,
+                                          DonationAmountinWords = model.DonationAmountinWords,
+                                          DonationReceiver = donationReceiver[0],
+                                          Email = model.Email,
+                                          OnDateTime = receivedTime,
+                                          Name = model.Name,
+                                          ReceiptType = ReceiptType.RecurringReceipt
+                                      };
+                    switch (Request.Form["cmbModeOfPayment"])
+                    {
+                        case "Cash":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cash;
+                                break;
+                            }
+                        case "Cheque":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cheque;
+                                break;
+                            }
+                        case "Mobile":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cheque;
+                                break;
+                            }
+                        case "Goods":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Goods;
+                                break;
+                            }
+                    }
+                    receipt.ReceiptType = ReceiptType.GeneralReceipt;
+                    foreach (string date in model.RecurrenceDates.Split(','))
+                    {
+                        try
+                        {
+                            receipt.RecurringDates.Add(Convert.ToDateTime(date));
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                    }
+                    scope.Add(receipt);
+                    scope.Transaction.Commit();
+                    ViewData["ReceiptID"] = receipt.ReceiptNumber;
+                    return View("Printoptions");
+                }
+                ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
+                return View();
             }
             ViewData["Status"] = "You are not authorized to do this operation";
             return View("Status");
@@ -175,6 +374,8 @@ namespace saibabacharityreceiptor.Controllers
 
         private void LoadReceiptValuesFromDb(IObjectScope scope)
         {
+            var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile", "Goods" };
+            ViewData["modeOfPayment"] = modeofpayments;
             var receivers = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                              where c.IsheDonationReceiver.Equals(true)
                              select c).ToList();

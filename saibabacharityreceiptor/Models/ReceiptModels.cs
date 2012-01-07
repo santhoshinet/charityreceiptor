@@ -60,4 +60,35 @@ namespace saibabacharityreceiptor.Models
         [Display(Name = "Value")]
         public string Value { get; set; }
     }
+
+    public class ServicesReceipt : BasicInfo
+    {
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Merchandise Item")]
+        public string MerchandiseItem { get; set; }
+
+        [Required]
+        [DataType(DataType.Duration)]
+        [Display(Name = "Hours Served")]
+        public int HoursServed { get; set; }
+    }
+
+    public class RecurringReceipt : BasicInfo
+    {
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Donation_Amount")]
+        public string DonationAmount { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Donation_Amount_inWords")]
+        public string DonationAmountinWords { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "RecurrenceDates")]
+        public string RecurrenceDates { get; set; }
+    }
 }

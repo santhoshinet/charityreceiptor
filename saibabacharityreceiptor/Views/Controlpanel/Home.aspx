@@ -15,7 +15,7 @@
             <a href="/RegularReceipt">Regular Receipt </a>
         </div>
         <div class="right">
-            <a href="/ReccuringReceipt">Reccuring Receipt</a></div>
+            <a href="/RecurringReceipt">Reccuring Receipt</a></div>
         <div class="right">
             <a href="/MerchandiseReceipt">Merchandise Receipt</a></div>
         <div class="right">

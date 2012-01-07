@@ -10,8 +10,17 @@
             && $('.txtemail').validateEmail({ cssclass: "errorinfo", alert: true })
             && $('.txtcontact').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtdonationamount').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txtdonationinwords').validateText({ cssclass: "errorinfo", alert: true })) {
-            if ($('.cmbModeOfPayment')[0].selectedIndex == 0) {
+            && $('.txtdonationinwords').validateText({ cssclass: "errorinfo", alert: true })
+            && $('.txtmerchandiseItem').validateText({ cssclass: "errorinfo", alert: true })
+            && $('.txtvalue').validateText({ cssclass: "errorinfo", alert: true })
+            && $('.txthoursserved').validateText({ cssclass: "errorinfo", alert: true })) {
+            if ($('.txthoursserved').size() > 0 && $('.txthoursserved').val() != "" && parseInt($('.txthoursserved').val()) < 1) {
+                alert("Please Input no of hours");
+                $('.txthoursserved').addClass('errorinfo');
+                $('.txthoursserved').focus();
+                return false;
+            }
+            if ($('.cmbModeOfPayment').size() > 0 && $('.cmbModeOfPayment')[0].selectedIndex == 0) {
                 alert("Please select mode of payment");
                 $('.cmbModeOfPayment').addClass('errorinfo');
                 $('.cmbModeOfPayment').focus();

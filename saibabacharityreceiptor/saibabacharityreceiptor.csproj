@@ -414,6 +414,8 @@
     <Content Include="Views\Home\MerchandiseReceipt.aspx" />
     <Content Include="Views\Home\Printoptions.aspx" />
     <Content Include="Views\Home\PrintReceipt.aspx" />
+    <Content Include="Views\Home\RecurringReceipt.aspx" />
+    <Content Include="Views\Home\ServicesReceipt.aspx" />
     <Content Include="Views\Shared\CreateUser.ascx" />
     <Content Include="Views\Shared\EditUser_control.ascx" />
     <Content Include="Views\Home\RegularReceipt.aspx" />

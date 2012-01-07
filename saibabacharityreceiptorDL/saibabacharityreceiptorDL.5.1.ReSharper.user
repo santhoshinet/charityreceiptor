@@ -10,19 +10,18 @@
   <RecentFiles>
     <RecentFiles>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="798" fromTop="21" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="477" fromTop="9" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="935" fromTop="20" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="371" fromTop="16" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="133" fromTop="7" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="373" fromTop="17" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="765" fromTop="20" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="821" fromTop="11" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="933" fromTop="4" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="2581" fromTop="4" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="776" fromTop="30" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="704" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1108" fromTop="25" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="517" fromTop="10" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="622" fromTop="16" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="402" fromTop="10" />
@@ -34,10 +33,12 @@
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1117" fromTop="27" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="315" fromTop="11" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1563" fromTop="39" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="126" fromTop="5" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="648" fromTop="33" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="135" fromTop="8" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="546" fromTop="24" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="161" fromTop="5" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="996" fromTop="33" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1331" fromTop="27" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1050" fromTop="10" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="240" fromTop="11" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="765" fromTop="20" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -53,20 +54,20 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="public" priority="9" />
-      <Item value="string" priority="6" />
+      <Item value="public" priority="15" />
+      <Item value="string" priority="7" />
       <Item value="Receiptor`0" priority="1" />
       <Item value="Receiptors" priority="0" />
-      <Item value="new" priority="1" />
+      <Item value="new" priority="2" />
       <Item value="Receiptor" priority="0" />
       <Item value="DonationReceivers`0" priority="1" />
       <Item value="DonationReceivers" priority="0" />
-      <Item value="enum" priority="0" />
-      <Item value="iterator" priority="0" />
-      <Item value="int" priority="0" />
+      <Item value="enum" priority="1" />
+      <Item value="iterator" priority="1" />
+      <Item value="int" priority="2" />
       <Item value="User`0" priority="5" />
       <Item value="bool" priority="0" />
-      <Item value="DateTime`0" priority="1" />
+      <Item value="DateTime`0" priority="4" />
       <Item value="var" priority="1" />
       <Item value="saibabacharityreceiptorDL" priority="0" />
       <Item value="ObjectScopeProvider1`0" priority="0" />
@@ -92,6 +93,12 @@
       <Item value="else" priority="0" />
       <Item value="foreach" priority="0" />
       <Item value="user" priority="2" />
+      <Item value="ReceiptType`0" priority="0" />
+      <Item value="ReceiptType" priority="0" />
+      <Item value="QueryResultBindingList" priority="0" />
+      <Item value="Receipt`0" priority="0" />
+      <Item value="List&lt;DateTime&gt;" priority="0" />
+      <Item value="RecurringDetails`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.DateTime">
       <Item value="Now" priority="1" />

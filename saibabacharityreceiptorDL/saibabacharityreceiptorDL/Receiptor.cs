@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Telerik.OpenAccess;
 
 namespace saibabacharityreceiptorDL
@@ -6,6 +7,11 @@ namespace saibabacharityreceiptorDL
     [Persistent]
     public class Receipt
     {
+        public Receipt()
+        {
+            RecurringDates = new List<DateTime>();
+        }
+
         public string ReceiptNumber { get; set; }
 
         public string Name { get; set; }
@@ -20,11 +26,21 @@ namespace saibabacharityreceiptorDL
 
         public string DonationAmountinWords { get; set; }
 
+        public string MerchandiseItem { get; set; }
+
+        public string Value { get; set; }
+
+        public int HoursServed { get; set; }
+
+        public IList<DateTime> RecurringDates { get; set; }
+
         public ModeOfPayment ModeOfPayment { get; set; }
 
         public User DonationReceiver { get; set; }
 
         public DateTime OnDateTime { get; set; }
+
+        public ReceiptType ReceiptType { get; set; }
     }
 
     public enum ModeOfPayment
@@ -34,5 +50,13 @@ namespace saibabacharityreceiptorDL
         Online,
         Mobile,
         Goods
+    }
+
+    public enum ReceiptType
+    {
+        GeneralReceipt,
+        RecurringReceipt,
+        MerchandiseReceipt,
+        ServicesReceipt
     }
 }

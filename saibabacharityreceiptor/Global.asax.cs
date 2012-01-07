@@ -60,6 +60,24 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "MerchandiseReceipt", // Route name
+                "MerchandiseReceipt", // URL with parameters
+                new { controller = "Home", action = "MerchandiseReceipt" }
+            );
+
+            routes.MapRoute(
+                "RecurringReceipt", // Route name
+                "RecurringReceipt", // URL with parameters
+                new { controller = "Home", action = "RecurringReceipt" }
+            );
+
+            routes.MapRoute(
+                "ServicesReceipt", // Route name
+                "ServicesReceipt", // URL with parameters
+                new { controller = "Home", action = "ServicesReceipt" }
+            );
+
+            routes.MapRoute(
                 "Userinfo", // Route name
                 "controlpanel/Viewuserinfo/{userid}", // URL with parameters
                 new { controller = "Controlpanel", action = "Viewuserinfo", userid = UrlParameter.Optional }
