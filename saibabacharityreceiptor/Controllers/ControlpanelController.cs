@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
@@ -218,6 +220,52 @@ namespace saibabacharityreceiptor.Controllers
             {
                 return "";
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ImportfromExcel()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                    return View();
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("Status");
+            }
+            return RedirectToAction("LogOn", "Account");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ImportfromExcel(ExcelModels model, HttpPostedFileBase ExcelFile)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                {
+                    if (ModelState.IsValid)
+                    {
+                        try
+                        {
+                            ExcelFile.SaveAs(Path.Combine(Server.MapPath("App_Data"), ExcelFile.FileName));
+                            ViewData["Status"] = "User added successfully.";
+                            return View("Status");
+                        }
+                        catch (Exception ex)
+                        {
+                            ModelState.AddModelError("", "Unable to import from excel due to " + ex.Message);
+                        }
+                    }
+                    // If we got this far, something failed, redisplay form
+                    return View(model);
+                }
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("Status");
+            }
+            return RedirectToAction("Logon", "Account");
         }
 
         private bool Checkauthorization(IObjectScope scope, string username)

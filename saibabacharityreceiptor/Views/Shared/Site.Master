@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-<head runat="server">
+<head id="Head1" runat="server">
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
@@ -86,16 +86,18 @@
                 <div class="navigationBottomRytBg">
                 </div>
             </div>
+            <div class="clear">
+            </div>
             <!-- start Header Top NavigationBottom Section -->
             <!-- start Page Layer -->
             <div class="Container">
-                <div class="loginContent">
-                    <div class="menu">
-                        <a href="/controlpanel">Home </a>
-                    </div>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
+                <div class="menu">
+                    <a href="/controlpanel">Home</a> | <a href="/logout">Logout</a>
                 </div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="gap">
             </div>
             <!-- end Page Layer -->
             <div id="footContainer">

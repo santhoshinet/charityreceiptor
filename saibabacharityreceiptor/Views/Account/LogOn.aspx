@@ -3,8 +3,7 @@
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Log On</asp:Content>
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="Container">
-        <% using (Html.BeginForm())
+            <% using (Html.BeginForm())
            { %>
         <ul class="ul">
             <li>
@@ -35,5 +34,5 @@
             </li>
         </ul>
         <% } %>
-    </div>
+   
 </asp:Content>

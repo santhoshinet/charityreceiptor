@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="changePasswordSuccessContent" ContentPlaceHolderID="MainContent"
     runat="server">
-    <div class="Container">
+    
         <ul class="ul">
             <li>
                 <h2>
@@ -16,5 +16,5 @@
             </li>
             <li><a href="/controlpanel">go home</a> </li>
         </ul>
-    </div>
+    
 </asp:Content>

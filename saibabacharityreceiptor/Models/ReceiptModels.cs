@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace saibabacharityreceiptor.Models
 {
@@ -32,7 +33,7 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "ReceiptReceived")]
-        public string DateReceived { get; set; }
+        public DateTime DateReceived { get; set; }
     }
 
     public class RegularReceiptModels : BasicInfo

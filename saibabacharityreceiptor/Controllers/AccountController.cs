@@ -65,7 +65,7 @@ namespace saibabacharityreceiptor.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("home", "Controlpanel");
                 }
                 if (logOnFailures.Count > 0)
                 {

@@ -4,7 +4,7 @@
     Change Password
 </asp:Content>
 <asp:Content ID="changePasswordContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="Container">
+    
         <% using (Html.BeginForm())
            { %>
         <ul class="ul">
@@ -39,5 +39,5 @@
             </li>
         </ul>
         <% } %>
-    </div>
+    
 </asp:Content>
