@@ -4,3 +4,9 @@ C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\pdf_test_app\bin\Debu
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\pdf_test_app\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\pdf_test_app\obj\x86\Debug\pdf_test_app.exe
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\pdf_test_app\obj\x86\Debug\pdf_test_app.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\bin\Debug\pdf_test_app.exe
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\bin\Debug\pdf_test_app.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\bin\Debug\itextsharp.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\obj\x86\Debug\pdf_test_app.exe
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\pdf_test_app\obj\x86\Debug\pdf_test_app.pdb

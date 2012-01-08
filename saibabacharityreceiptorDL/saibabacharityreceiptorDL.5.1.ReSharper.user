@@ -3,41 +3,41 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="798" fromTop="21" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:UserLog.cs" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="313" fromTop="9" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="477" fromTop="9" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="353" fromTop="12" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="622" fromTop="26" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="935" fromTop="20" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="371" fromTop="16" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="133" fromTop="7" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="821" fromTop="11" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="933" fromTop="4" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="2581" fromTop="4" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="847" fromTop="30" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="775" fromTop="25" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:UserLog.cs" caret="290" fromTop="12" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:UserLog.cs" caret="154" fromTop="8" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="776" fromTop="30" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="704" fromTop="25" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="517" fromTop="10" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="174" fromTop="9" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="702" fromTop="30" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="622" fromTop="16" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="402" fromTop="10" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="480" fromTop="9" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="270" fromTop="11" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1230" fromTop="31" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="692" fromTop="16" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="932" fromTop="23" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1115" fromTop="27" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="314" fromTop="11" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="694" fromTop="16" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="934" fromTop="23" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1117" fromTop="27" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="315" fromTop="11" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1563" fromTop="39" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="126" fromTop="5" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="648" fromTop="33" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="135" fromTop="8" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="546" fromTop="24" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -71,7 +71,7 @@
       <Item value="saibabacharityreceiptorDL" priority="0" />
       <Item value="ObjectScopeProvider1`0" priority="0" />
       <Item value="from" priority="0" />
-      <Item value="scope" priority="3" />
+      <Item value="scope" priority="6" />
       <Item value="select" priority="0" />
       <Item value="where" priority="0" />
       <Item value="c" priority="0" />
@@ -80,7 +80,7 @@
       <Item value="Failcount" priority="0" />
       <Item value="Id" priority="0" />
       <Item value="IsheAdmin" priority="0" />
-      <Item value="true" priority="1" />
+      <Item value="true" priority="3" />
       <Item value="IsheDonationReceiver" priority="0" />
       <Item value="Username" priority="0" />
       <Item value="private" priority="0" />
@@ -89,6 +89,9 @@
       <Item value="username" priority="1" />
       <Item value="email" priority="0" />
       <Item value="CreateUser`0" priority="0" />
+      <Item value="else" priority="0" />
+      <Item value="foreach" priority="0" />
+      <Item value="user" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.DateTime">
       <Item value="Now" priority="1" />
@@ -101,8 +104,8 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
       <Item value="GetOqlQuery`0" priority="0" />
-      <Item value="Transaction" priority="1" />
-      <Item value="Add`0" priority="0" />
+      <Item value="Transaction" priority="3" />
+      <Item value="Add`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
       <Item value="ExecuteEnumerable`0" priority="0" />
@@ -112,6 +115,8 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:saibabacharityreceiptorDL.User">
       <Item value="Username" priority="0" />
+      <Item value="IsheDonationReceiver" priority="0" />
+      <Item value="IsheAdmin" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.String">
       <Item value="Equals`0" priority="0" />
@@ -122,8 +127,8 @@
       <Item value="Count" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
-      <Item value="Begin`0" priority="0" />
-      <Item value="Commit`0" priority="0" />
+      <Item value="Begin`0" priority="1" />
+      <Item value="Commit`0" priority="1" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

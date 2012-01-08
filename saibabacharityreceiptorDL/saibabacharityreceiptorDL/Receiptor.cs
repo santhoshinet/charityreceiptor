@@ -1,18 +1,12 @@
-﻿using Telerik.OpenAccess;
+﻿using System;
+using Telerik.OpenAccess;
 
 namespace saibabacharityreceiptorDL
 {
     [Persistent]
-    public class Receiptor
+    public class Receipt
     {
-        public Receiptor()
-        {
-            UserLog = new UserLog();
-        }
-
         public string ReceiptNumber { get; set; }
-
-        public string DateReceived { get; set; }
 
         public string Name { get; set; }
 
@@ -28,7 +22,9 @@ namespace saibabacharityreceiptorDL
 
         public ModeOfPayment ModeOfPayment { get; set; }
 
-        public UserLog UserLog { get; set; }
+        public User DonationReceiver { get; set; }
+
+        public DateTime OnDateTime { get; set; }
     }
 
     public enum ModeOfPayment

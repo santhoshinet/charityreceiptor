@@ -12,7 +12,7 @@
             <label class="label">
                 Username
             </label>
-            <%= Html.TextBoxFor(m => m.UserName, new { @id = "TxtUsername", @class = "text txtusername", @maxlength = "50" })%>
+            <%= Html.TextBoxFor(m => m.UserName, new { @id = "TxtUsername", @class = "text txtusername", @maxlength = "50", @readOnly = "readOnly" })%>
             <%= Html.ValidationMessageFor(m => m.UserName) %>
         </li>
         <li>

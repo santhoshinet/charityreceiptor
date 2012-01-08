@@ -1,19 +1,5 @@
 ﻿$(function () {
     edit_delete();
-    // for Search operations
-    $("#txtsearchcriteria").quicksearch("#Cart_Table tbody tr", {
-        noResults: '#noresultsrow',
-        stripeRows: ['odd', 'even'],
-        loader: 'span.loading',
-        onBefore: function () {
-            $('#Cart_Table tbody tr').removeHighlight();
-        },
-        onAfter: function () {
-            if ($('#txtsearchcriteria').val() != null && $('#txtsearchcriteria').val() != "") {
-                $('#Cart_Table tbody tr').highlight($('#txtsearchcriteria').val());
-            }
-        }
-    });
     $('.LnkAddnewuser').fancybox({
         'transitionIn': 'elastic',
         'transitionOut': 'elastic',
@@ -21,7 +7,10 @@
         'autoScale': 'true',
         'height': 435,
         'width': 470,
-        'autoDimensions': 'false'
+        'autoDimensions': 'false',
+        'onClosed': function () {
+            window.location = window.location;
+        }
     });
     function edit_delete() {
         $('.edit_button').fancybox({
@@ -63,7 +52,7 @@
         }
         );
         $('.delete_button').css({ 'cursor': 'pointer' }).click(function () {
-            if (confirm("It remove the product permanently from this category. Are you sure?")) {
+            if (confirm("Are you sure to remove this user?")) {
                 var This = $(this);
                 $.ajax({
                     type: 'POST',

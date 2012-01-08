@@ -46,6 +46,7 @@
 -->
 </style>
         <link href="/Content/FormLayout.css" rel="stylesheet" type="text/css" />
+        <link href="/Content/stylesheet.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- start-->
@@ -87,8 +88,15 @@
             </div>
             <!-- start Header Top NavigationBottom Section -->
             <!-- start Page Layer -->
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="Container">
+                <div class="loginContent">
+                    <div class="menu">
+                        <a href="/controlpanel">Home </a>
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
             <!-- end Page Layer -->
             <div id="footContainer">
                 <div class="leftImg">

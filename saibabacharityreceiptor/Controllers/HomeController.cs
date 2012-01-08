@@ -1,25 +1,190 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using saibabacharityreceiptor.Models;
 using saibabacharityreceiptorDL;
+using Telerik.OpenAccess;
 
 namespace saibabacharityreceiptor.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        [Authorize]
+        [HttpGet]
+        public ActionResult RegularReceipt()
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOn", "Account");
-            var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile", "Goods" };
-            ViewData["modeOfPayment"] = modeofpayments;
             var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile", "Goods" };
+                ViewData["modeOfPayment"] = modeofpayments;
+                LoadReceiptValuesFromDb(scope);
+                return View(new RegularReceiptModels
+                                      {
+                                          ReceiptNumber = GenerateReceiptId()
+                                      });
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult RegularReceipt(RegularReceiptModels model)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                        where
+                                            c.IsheDonationReceiver.Equals(true) &&
+                                            c.Username.Equals(Request.Form["CmbDonationReceivedBy"])
+                                        select c).ToList();
+                if (donationReceiver.Count > 0)
+                {
+                    scope.Transaction.Begin();
+                    var receivedTime = DateTime.Now.ToUniversalTime();
+                    var receipt = new Receipt
+                                      {
+                                          Address = model.Address,
+                                          Contact = model.Contact,
+                                          ReceiptNumber = model.ReceiptNumber,
+                                          DonationAmount = model.DonationAmount,
+                                          DonationAmountinWords = model.DonationAmountinWords,
+                                          DonationReceiver = donationReceiver[0],
+                                          Email = model.Email,
+                                          OnDateTime = receivedTime,
+                                          Name = model.Name
+                                      };
+                    switch (Request.Form["cmbModeOfPayment"])
+                    {
+                        case "Cash":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cash;
+                                break;
+                            }
+                        case "Cheque":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cheque;
+                                break;
+                            }
+                        case "Mobile":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Cheque;
+                                break;
+                            }
+                        case "Goods":
+                            {
+                                receipt.ModeOfPayment = ModeOfPayment.Goods;
+                                break;
+                            }
+                    }
+                    scope.Add(receipt);
+                    scope.Transaction.Commit();
+                    ViewData["ReceiptID"] = receipt.ReceiptNumber;
+                    return View("Printoptions");
+                }
+                ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
+                return View();
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [HttpPost]
+        public ActionResult MerchandiseReceipt()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                var receivers = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                 where c.IsheDonationReceiver.Equals(true)
+                                 select c).ToList();
+                var donationReceivers = receivers.Select(receiver => receiver.Username).ToList();
+                ViewData["donationReceivers"] = donationReceivers;
+                var receiptModel = new MerchandiseReceipt
+                                      {
+                                          ReceiptNumber = GenerateReceiptId()
+                                      };
+                return View(receiptModel);
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [HttpGet]
+        public ActionResult PrintReceipt(string recpId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.ObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                          where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
+                                          select c).ToList();
+                if (receipts.Count > 0)
+                {
+                    var receiptData = new ReceiptData { Name = receipts[0].Name };
+                    ViewData["Receipt_Data"] = receiptData;
+                    return View();
+                }
+                ViewData["Status"] = "The receipt not found for the given id.";
+                return View("Status");
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
+        }
+
+        [HttpGet]
+        public string DownloadReceipt(string recpId)
+        {
+            return "this feature is under construction.";
+        }
+
+        private static bool Checkauthorization(IObjectScope scope, string username)
+        {
+            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                where c.Username.ToLower().Equals(username.ToLower())
+                                select c).ToList();
+            if (users.Count > 0 && users[0].IsheDonationReceiver)
+                return true;
+            return false;
+        }
+
+        private static string GenerateReceiptId()
+        {
+            var currentUtcTime = DateTime.Now.ToUniversalTime();
+            return "SAI" + currentUtcTime.ToString("yyyy") +
+                   string.Concat(Enumerable.Repeat('0', 3 - currentUtcTime.DayOfYear.ToString().Length)) +
+                   currentUtcTime.DayOfYear +
+                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Hour.ToString().Length)) +
+                   currentUtcTime.Hour +
+                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Minute.ToString().Length)) +
+                   currentUtcTime.Minute +
+                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Second.ToString().Length)) +
+                   currentUtcTime.Second;
+        }
+
+        private void LoadReceiptValuesFromDb(IObjectScope scope)
+        {
             var receivers = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                              where c.IsheDonationReceiver.Equals(true)
                              select c).ToList();
             var donationReceivers = receivers.Select(receiver => receiver.Username).ToList();
             ViewData["donationReceivers"] = donationReceivers;
-            return View();
         }
+    }
+
+    public struct ReceiptData
+    {
+        public string Name;
     }
 }

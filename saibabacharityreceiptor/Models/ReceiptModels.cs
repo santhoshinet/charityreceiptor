@@ -2,17 +2,12 @@
 
 namespace saibabacharityreceiptor.Models
 {
-    public class ReceiptModels
+    public class BasicInfo
     {
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ReceiptNumber")]
         public string ReceiptNumber { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "ReceiptReceived")]
-        public string DateReceived { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -35,6 +30,14 @@ namespace saibabacharityreceiptor.Models
         public string Contact { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "ReceiptReceived")]
+        public string DateReceived { get; set; }
+    }
+
+    public class RegularReceiptModels : BasicInfo
+    {
+        [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Donation_Amount")]
         public string DonationAmount { get; set; }
@@ -43,5 +46,18 @@ namespace saibabacharityreceiptor.Models
         [DataType(DataType.Currency)]
         [Display(Name = "Donation_Amount_inWords")]
         public string DonationAmountinWords { get; set; }
+    }
+
+    public class MerchandiseReceipt : BasicInfo
+    {
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Merchandise Item")]
+        public string MerchandiseItem { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Value")]
+        public string Value { get; set; }
     }
 }

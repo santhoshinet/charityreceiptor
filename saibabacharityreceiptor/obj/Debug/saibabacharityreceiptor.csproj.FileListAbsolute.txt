@@ -9,3 +9,14 @@ C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceipt
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.dll
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptor.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptor.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\EntityFramework.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptorDL.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\Telerik.OpenAccess.Query.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\EntityFramework.xml
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptorDL.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\Telerik.OpenAccess.Query.xml
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.pdb

@@ -12,52 +12,61 @@ namespace saibabacharityreceiptor.Controllers
 {
     public class ControlpanelController : Controller
     {
-        //
-        // GET: /Account/Register
+        [Authorize]
         [HttpGet]
         public ActionResult AddUser()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return View();
+            return RedirectToAction("Logon", "Account");
         }
 
-        //
-        // POST: /Account/Register
-
+        [Authorize]
         [HttpPost]
         public ActionResult AddUser(RegisterModel model)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-                if (createStatus == MembershipCreateStatus.Success)
+                var scope = ObjectScopeProvider1.ObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
                 {
-                    var scope = ObjectScopeProvider1.ObjectScope();
-                    scope.Transaction.Begin();
-                    var user = new User
+                    if (ModelState.IsValid)
                     {
-                        Failcount = 0,
-                        IsheAdmin = model.Admin,
-                        IsheDonationReceiver = model.DonationReceiver,
-                        Lasttriedtime = DateTime.Now,
-                        Username = model.UserName,
-                        Email = model.Email
-                    };
-                    scope.Add(user);
-                    scope.Transaction.Commit();
-                    FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
-                    ViewData["Status"] = "User added successfully.";
-                    return View("Status");
-                    //return RedirectToAction("Index", "Home");
+                        // Attempt to register the user
+                        MembershipCreateStatus createStatus;
+                        Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null,
+                                              out createStatus);
+                        if (createStatus == MembershipCreateStatus.Success)
+                        {
+                            scope.Transaction.Begin();
+                            var user = new User
+                                           {
+                                               Failcount = 0,
+                                               IsheAdmin = model.Admin,
+                                               IsheDonationReceiver = model.DonationReceiver,
+                                               Lasttriedtime = DateTime.Now,
+                                               Username = model.UserName,
+                                               Email = model.Email
+                                           };
+                            scope.Add(user);
+                            scope.Transaction.Commit();
+                            FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
+                            ViewData["Status"] = "User added successfully.";
+                            return View("Status");
+                            //return RedirectToAction("Index", "Home");
+                        }
+                        ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                    }
+                    // If we got this far, something failed, redisplay form
+                    return View(model);
                 }
-                ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("Status");
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Logon", "Account");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Home()
         {
@@ -65,15 +74,14 @@ namespace saibabacharityreceiptor.Controllers
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
-                {
                     return View();
-                }
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("Status");
             }
             return RedirectToAction("LogOn", "Account");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Users()
         {
@@ -101,6 +109,7 @@ namespace saibabacharityreceiptor.Controllers
             return RedirectToAction("LogOn", "Account");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Edituser(string uid)
         {
@@ -130,6 +139,7 @@ namespace saibabacharityreceiptor.Controllers
             return RedirectToAction("LogOn", "Account");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edituser(RegisterModel model)
         {
@@ -147,7 +157,7 @@ namespace saibabacharityreceiptor.Controllers
                         foreach (User user in users)
                         {
                             scope.Transaction.Begin();
-                            user.Username = model.UserName;
+                            //user.Username = model.UserName;
                             user.Email = model.Email;
                             user.IsheDonationReceiver = model.DonationReceiver;
                             user.IsheAdmin = model.Admin;
@@ -165,16 +175,6 @@ namespace saibabacharityreceiptor.Controllers
                 return View("Status");
             }
             return RedirectToAction("LogOn", "Account");
-        }
-
-        private static bool Checkauthorization(IObjectScope scope, string username)
-        {
-            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                                where c.Username.ToLower().Equals(username.ToLower())
-                                select c).ToList();
-            if (users.Count > 0 && users[0].IsheAdmin)
-                return true;
-            return false;
         }
 
         [HttpPost]
@@ -212,12 +212,26 @@ namespace saibabacharityreceiptor.Controllers
                     }
                     return "You are not authorized to do this operation";
                 }
+                return "You session has been ended, please login again to continue.";
             }
             catch (Exception)
             {
                 return "";
             }
-            return "";
+        }
+
+        private bool Checkauthorization(IObjectScope scope, string username)
+        {
+            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                where c.Username.ToLower().Equals(username.ToLower())
+                                select c).ToList();
+            if (users.Count > 0 && users[0].IsheAdmin)
+            {
+                ViewData["IsheAdmin"] = users[0].IsheAdmin;
+                ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
+                return true;
+            }
+            return false;
         }
 
         public string Deleteuser(string userid)
@@ -244,8 +258,9 @@ namespace saibabacharityreceiptor.Controllers
                         }
                         return "removed";
                     }
+                    return "You are not authorized to do this operation";
                 }
-                return "You are not authorized to do this operation";
+                return "You session has been ended, please login again to continue.";
             }
             catch (Exception)
             {
