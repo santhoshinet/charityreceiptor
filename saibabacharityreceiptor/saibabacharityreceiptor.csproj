@@ -416,7 +416,7 @@
     <Content Include="Views\Controlpanel\ImportfromExcel.aspx" />
     <Content Include="Views\Controlpanel\Users.aspx" />
     <Content Include="Views\Home\MerchandiseReceipt.aspx" />
-    <Content Include="Views\Home\Printoptions.aspx" />
+    <Content Include="Views\Shared\Printoptions.aspx" />
     <Content Include="Views\Home\PrintReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt.aspx" />
     <Content Include="Views\Home\ServicesReceipt.aspx" />
@@ -475,7 +475,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1438</DevelopmentServerPort>
+          <DevelopmentServerPort>8970</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

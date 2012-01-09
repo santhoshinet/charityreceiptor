@@ -5,8 +5,8 @@
         'transitionOut': 'elastic',
         'type': 'iframe',
         'autoScale': 'true',
-        'height': 435,
-        'width': 470,
+        'height': 440,
+        'width': 490,
         'autoDimensions': 'false',
         'onClosed': function () {
             window.location = window.location;
@@ -18,8 +18,8 @@
             'transitionOut': 'elastic',
             'type': 'iframe',
             'autoScale': 'true',
-            'height': 435,
-            'width': 470,
+            'height': 440,
+            'width': 490,
             'autoDimensions': 'false',
             'onClosed': function () {
                 var self = $(this)[0].orig;

@@ -235,6 +235,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
+                ViewData["Status"] = string.Empty;
                 if (Checkauthorization(scope, User.Identity.Name))
                     return View();
                 ViewData["Status"] = "You are not authorized to do this operation";
@@ -249,6 +250,7 @@ namespace saibabacharityreceiptor.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                ViewData["Status"] = string.Empty;
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
@@ -269,6 +271,8 @@ namespace saibabacharityreceiptor.Controllers
                                 connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
                             else if (Path.GetExtension(filePath) == ".xlsx")
                                 connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
+                            bool isReceptsGenerated = false;
+                            var groupId = DateTime.Now.ToString("%s%MM%mm%yy%dd%HH");
                             if (!string.IsNullOrEmpty(connectionString))
                             {
                                 connection = new OleDbConnection(connectionString);
@@ -284,7 +288,7 @@ namespace saibabacharityreceiptor.Controllers
                                     dAdapter.SelectCommand = cmd;
                                     dAdapter.Fill(dtExcelRecords);
 
-                                    // Started to create recepts now
+                                    // Started to create recepts now)
                                     foreach (DataRow dataRow in dtExcelRecords.Rows)
                                     {
                                         string receiptType = string.Empty,
@@ -342,7 +346,8 @@ namespace saibabacharityreceiptor.Controllers
                                                                       Email = email,
                                                                       OnDateTime = DateTime.Now,
                                                                       Contact = contact,
-                                                                      DonationReceiver = receiver[0]
+                                                                      DonationReceiver = receiver[0],
+                                                                      GroupId = groupId
                                                                   };
                                                 switch (receiptType.ToLower().Trim())
                                                 {
@@ -442,6 +447,7 @@ namespace saibabacharityreceiptor.Controllers
                                                 scope.Transaction.Begin();
                                                 scope.Add(receipt);
                                                 scope.Transaction.Commit();
+                                                isReceptsGenerated = true;
                                                 Thread.Sleep(500);
                                             }
                                         }
@@ -449,11 +455,20 @@ namespace saibabacharityreceiptor.Controllers
                                 }
                                 connection.Close();
                             }
-                            ViewData["Status"] = "Excel import process completed successfully.";
-                            return View("PartialViewStatus");
+                            if (isReceptsGenerated)
+                            {
+                                ViewData["ReceiptID"] = groupId;
+                                return View("Printoptions");
+                            }
+                            else
+                            {
+                                ViewData["Status"] = "Excel import process completed successfully. There is no valid entry found to create receipt.";
+                                return View();
+                            }
                         }
                         catch (Exception ex)
                         {
+                            ViewData["Status"] = "Unable to read data from file, please input your data with the specified format.";
                             ModelState.AddModelError("", "Unable to import from excel due to " + ex.Message);
                         }
                         finally

@@ -318,6 +318,7 @@ namespace saibabacharityreceiptor.Controllers
             return View("PartialViewStatus");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult PrintReceipt(string recpId)
         {
@@ -342,6 +343,7 @@ namespace saibabacharityreceiptor.Controllers
             return View("PartialViewStatus");
         }
 
+        [Authorize]
         [HttpGet]
         public string DownloadReceipt(string recpId)
         {
