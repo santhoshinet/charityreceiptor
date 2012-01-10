@@ -40,7 +40,7 @@ namespace saibabacharityreceiptor.Controllers
         {
             if (ModelState.IsValid)
             {
-                var scope = ObjectScopeProvider1.ObjectScope();
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
                 List<User> logOnFailures = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                             where c.Username.ToLower().Trim().Equals(model.UserName.ToLower().Trim())
                                             select c).ToList();

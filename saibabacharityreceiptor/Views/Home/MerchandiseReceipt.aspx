@@ -4,7 +4,7 @@
     Generate Merchandise Receipt
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% using (Html.BeginForm())
+    <% using (Html.BeginForm(ViewData["PostAction"].ToString()))
        {%>
     <ul class="ul">
         <li>

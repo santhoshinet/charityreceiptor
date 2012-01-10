@@ -32,7 +32,7 @@ namespace saibabacharityreceiptor.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var scope = ObjectScopeProvider1.ObjectScope();
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
                     if (ModelState.IsValid)
