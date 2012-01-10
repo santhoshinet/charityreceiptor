@@ -305,3 +305,13 @@ SELECT
 {
 	height: 20px;
 }
+.ul A
+{
+	text-decoration: none;
+	color: #7D7F15;
+	font: 1em Arial;
+}
+.ul A:hover
+{
+	color: #060601;
+}

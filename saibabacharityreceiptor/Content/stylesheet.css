@@ -100,16 +100,11 @@ IMG
 	margin: 0px;
 	padding: 5px;
 }
-.empty-row TD
-{
-	text-align: center;
-	height: 30px;
-}
 .edit_confirm_button, .delete_button, .edit_button, .edit_cancel_button, .restore_button
 {
 	cursor: pointer;
 }
-INPUT[type="button"], INPUT[type="submit"]
+INPUT[type="button"], INPUT[type="submit"], INPUT[type="file"]
 {
 	padding: 5px;
 	cursor: pointer;
@@ -246,4 +241,35 @@ INPUT[type="button"], INPUT[type="submit"]
 {
 	text-decoration: none;
 	color: #221E1F;
+}
+.status
+{
+	width: 400px;
+	padding: 10px;
+}
+#mainContainer
+{
+	background: #EBECB3;
+}
+#navigationBottom
+{
+	background: #EBECB3;
+}
+#Cart_Table
+{
+	width: 810px;
+	text-align: left;
+	border-top: 1px solid #D8DAB5;
+	border-left: 1px solid #D8DAB5;
+	background: #F9F9E9;
+}
+#Cart_Table TD
+{
+	padding: 5px;
+	border-bottom: 1px solid #DCDDBD;
+	border-right: 1px solid #D8DAB5;
+}
+#Cart_Table .header
+{
+	font: bold 0.9em sans-serif;
 }

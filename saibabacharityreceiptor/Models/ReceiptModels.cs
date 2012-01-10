@@ -49,6 +49,24 @@ namespace saibabacharityreceiptor.Models
         public string DonationAmountinWords { get; set; }
     }
 
+    public class RecurringReceipt : BasicInfo
+    {
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Donation_Amount")]
+        public string DonationAmount { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Donation_Amount_inWords")]
+        public string DonationAmountinWords { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "RecurrenceDates")]
+        public string RecurrenceDates { get; set; }
+    }
+
     public class MerchandiseReceipt : BasicInfo
     {
         [Required]
@@ -73,23 +91,5 @@ namespace saibabacharityreceiptor.Models
         [DataType(DataType.Duration)]
         [Display(Name = "Hours Served")]
         public int HoursServed { get; set; }
-    }
-
-    public class RecurringReceipt : BasicInfo
-    {
-        [Required]
-        [DataType(DataType.Currency)]
-        [Display(Name = "Donation_Amount")]
-        public string DonationAmount { get; set; }
-
-        [Required]
-        [DataType(DataType.Currency)]
-        [Display(Name = "Donation_Amount_inWords")]
-        public string DonationAmountinWords { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "RecurrenceDates")]
-        public string RecurrenceDates { get; set; }
     }
 }

@@ -22,11 +22,11 @@ namespace saibabacharityreceiptor.Controllers
                 LoadReceiptValuesFromDb(scope);
                 return View(new RegularReceiptModels
                                       {
-                                          ReceiptNumber = GenerateReceiptId()
+                                          ReceiptNumber = Utilities.GenerateReceiptId()
                                       });
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -92,7 +92,7 @@ namespace saibabacharityreceiptor.Controllers
                 return View();
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -107,12 +107,12 @@ namespace saibabacharityreceiptor.Controllers
                 LoadReceiptValuesFromDb(scope);
                 var receiptModel = new MerchandiseReceipt
                                       {
-                                          ReceiptNumber = GenerateReceiptId()
+                                          ReceiptNumber = Utilities.GenerateReceiptId()
                                       };
                 return View(receiptModel);
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -155,7 +155,7 @@ namespace saibabacharityreceiptor.Controllers
                 return View();
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -170,12 +170,12 @@ namespace saibabacharityreceiptor.Controllers
                 LoadReceiptValuesFromDb(scope);
                 var receiptModel = new ServicesReceipt
                                        {
-                                           ReceiptNumber = GenerateReceiptId()
+                                           ReceiptNumber = Utilities.GenerateReceiptId()
                                        };
                 return View(receiptModel);
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -218,7 +218,7 @@ namespace saibabacharityreceiptor.Controllers
                 return View();
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -233,12 +233,12 @@ namespace saibabacharityreceiptor.Controllers
                 LoadReceiptValuesFromDb(scope);
                 var receiptModel = new RecurringReceipt
                                        {
-                                           ReceiptNumber = GenerateReceiptId()
+                                           ReceiptNumber = Utilities.GenerateReceiptId()
                                        };
                 return View(receiptModel);
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [Authorize]
@@ -315,7 +315,7 @@ namespace saibabacharityreceiptor.Controllers
                 return View();
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [HttpGet]
@@ -339,7 +339,7 @@ namespace saibabacharityreceiptor.Controllers
                 return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("Status");
+            return View("PartialViewStatus");
         }
 
         [HttpGet]
@@ -356,20 +356,6 @@ namespace saibabacharityreceiptor.Controllers
             if (users.Count > 0 && users[0].IsheDonationReceiver)
                 return true;
             return false;
-        }
-
-        private static string GenerateReceiptId()
-        {
-            var currentUtcTime = DateTime.Now.ToUniversalTime();
-            return "SAI" + currentUtcTime.ToString("yyyy") +
-                   string.Concat(Enumerable.Repeat('0', 3 - currentUtcTime.DayOfYear.ToString().Length)) +
-                   currentUtcTime.DayOfYear +
-                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Hour.ToString().Length)) +
-                   currentUtcTime.Hour +
-                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Minute.ToString().Length)) +
-                   currentUtcTime.Minute +
-                   string.Concat(Enumerable.Repeat('0', 2 - currentUtcTime.Second.ToString().Length)) +
-                   currentUtcTime.Second;
         }
 
         private void LoadReceiptValuesFromDb(IObjectScope scope)

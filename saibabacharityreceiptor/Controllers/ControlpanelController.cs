@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -65,7 +68,8 @@ namespace saibabacharityreceiptor.Controllers
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("Status");
             }
-            return RedirectToAction("Logon", "Account");
+            ViewData["Status"] = "Your session has been expired, please login again and try.";
+            return View("Status");
         }
 
         [Authorize]
@@ -78,7 +82,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (Checkauthorization(scope, User.Identity.Name))
                     return View();
                 ViewData["Status"] = "You are not authorized to do this operation";
-                return View("Status");
+                return View("PartialViewStatus");
             }
             return RedirectToAction("LogOn", "Account");
         }
@@ -106,7 +110,7 @@ namespace saibabacharityreceiptor.Controllers
                     return View();
                 }
                 ViewData["Status"] = "You are not authorized to do this operation";
-                return View("Status");
+                return View("PartialViewStatus");
             }
             return RedirectToAction("LogOn", "Account");
         }
@@ -138,7 +142,8 @@ namespace saibabacharityreceiptor.Controllers
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("Status");
             }
-            return RedirectToAction("LogOn", "Account");
+            ViewData["Status"] = "Your session has been expired, please login again and try.";
+            return View("Status");
         }
 
         [Authorize]
@@ -176,7 +181,8 @@ namespace saibabacharityreceiptor.Controllers
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("Status");
             }
-            return RedirectToAction("LogOn", "Account");
+            ViewData["Status"] = "Your session has been expired, please login again and try.";
+            return View("Status");
         }
 
         [HttpPost]
@@ -232,14 +238,14 @@ namespace saibabacharityreceiptor.Controllers
                 if (Checkauthorization(scope, User.Identity.Name))
                     return View();
                 ViewData["Status"] = "You are not authorized to do this operation";
-                return View("Status");
+                return View("PartialViewStatus");
             }
             return RedirectToAction("LogOn", "Account");
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ImportfromExcel(ExcelModels model, HttpPostedFileBase ExcelFile)
+        public ActionResult ImportfromExcel(ExcelModels model, HttpPostedFileBase excelFile)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -248,24 +254,231 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     if (ModelState.IsValid)
                     {
+                        OleDbConnection connection = null;
                         try
                         {
-                            ExcelFile.SaveAs(Path.Combine(Server.MapPath("App_Data"), ExcelFile.FileName));
-                            ViewData["Status"] = "User added successfully.";
-                            return View("Status");
+                            string directory = Server.MapPath("/App_Data");
+                            if (Directory.Exists(directory))
+                                Directory.CreateDirectory(directory);
+                            string filePath = Path.Combine(directory, excelFile.FileName);
+                            if (System.IO.File.Exists(filePath))
+                                System.IO.File.Delete(filePath);
+                            excelFile.SaveAs(filePath);
+                            string connectionString = string.Empty;
+                            if (Path.GetExtension(filePath) == ".xls")
+                                connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+                            else if (Path.GetExtension(filePath) == ".xlsx")
+                                connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
+                            if (!string.IsNullOrEmpty(connectionString))
+                            {
+                                connection = new OleDbConnection(connectionString);
+                                var cmd = new OleDbCommand { CommandType = CommandType.Text, Connection = connection };
+                                var dAdapter = new OleDbDataAdapter(cmd);
+                                var dtExcelRecords = new DataTable();
+                                connection.Open();
+                                DataTable dtExcelSheetName = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                                if (dtExcelSheetName != null && dtExcelSheetName.Rows.Count > 0)
+                                {
+                                    string getExcelSheetName = dtExcelSheetName.Rows[0]["Table_Name"].ToString();
+                                    cmd.CommandText = "SELECT * FROM [" + getExcelSheetName + "]";
+                                    dAdapter.SelectCommand = cmd;
+                                    dAdapter.Fill(dtExcelRecords);
+
+                                    // Started to create recepts now
+                                    foreach (DataRow dataRow in dtExcelRecords.Rows)
+                                    {
+                                        string receiptType = string.Empty,
+                                               name = string.Empty,
+                                               address = string.Empty,
+                                               email = string.Empty,
+                                               contact = string.Empty,
+                                               donationamount = string.Empty,
+                                               donationAmountinwords = string.Empty,
+                                               merchandiseItem = string.Empty,
+                                               value = string.Empty,
+                                               hoursServed = string.Empty,
+                                               recurringDates = string.Empty,
+                                               modeOfPayment = string.Empty,
+                                               receivedBy = string.Empty;
+                                        if (dataRow[0] != null && !string.IsNullOrEmpty(dataRow[0].ToString()))
+                                            receiptType = dataRow[0].ToString();
+                                        if (dataRow[1] != null && !string.IsNullOrEmpty(dataRow[1].ToString()))
+                                            name = dataRow[1].ToString();
+                                        if (dataRow[2] != null && !string.IsNullOrEmpty(dataRow[2].ToString()))
+                                            address = dataRow[2].ToString();
+                                        if (dataRow[3] != null && !string.IsNullOrEmpty(dataRow[3].ToString()))
+                                            email = dataRow[3].ToString();
+                                        if (dataRow[4] != null && !string.IsNullOrEmpty(dataRow[4].ToString()))
+                                            contact = dataRow[4].ToString();
+                                        if (dataRow[5] != null && !string.IsNullOrEmpty(dataRow[5].ToString()))
+                                            donationamount = dataRow[5].ToString();
+                                        if (dataRow[6] != null && !string.IsNullOrEmpty(dataRow[6].ToString()))
+                                            donationAmountinwords = dataRow[6].ToString();
+                                        if (dataRow[7] != null && !string.IsNullOrEmpty(dataRow[7].ToString()))
+                                            merchandiseItem = dataRow[7].ToString();
+                                        if (dataRow[8] != null && !string.IsNullOrEmpty(dataRow[8].ToString()))
+                                            value = dataRow[8].ToString();
+                                        if (dataRow[9] != null && !string.IsNullOrEmpty(dataRow[9].ToString()))
+                                            hoursServed = dataRow[9].ToString();
+                                        if (dataRow[10] != null && !string.IsNullOrEmpty(dataRow[10].ToString()))
+                                            recurringDates = dataRow[10].ToString();
+                                        if (dataRow[11] != null && !string.IsNullOrEmpty(dataRow[11].ToString()))
+                                            modeOfPayment = dataRow[11].ToString();
+                                        if (dataRow[12] != null && !string.IsNullOrEmpty(dataRow[12].ToString()))
+                                            receivedBy = dataRow[12].ToString();
+                                        if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(receivedBy))
+                                        {
+                                            List<User> receiver =
+                                                (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                                 where c.Username.ToLower().Equals(receivedBy.ToLower().Trim())
+                                                 select c).ToList();
+                                            if (receiver.Count > 0)
+                                            {
+                                                var receipt = new Receipt
+                                                                  {
+                                                                      ReceiptNumber = Utilities.GenerateReceiptId(),
+                                                                      Name = name,
+                                                                      Address = address,
+                                                                      Email = email,
+                                                                      OnDateTime = DateTime.Now,
+                                                                      Contact = contact,
+                                                                      DonationReceiver = receiver[0]
+                                                                  };
+                                                switch (receiptType.ToLower().Trim())
+                                                {
+                                                    case "regular receipt":
+                                                    case "recurring payment receipt":
+                                                        {
+                                                            if (string.IsNullOrEmpty(modeOfPayment) || string.IsNullOrEmpty(donationamount) || string.IsNullOrEmpty(donationAmountinwords))
+                                                                continue;
+                                                            receipt.DonationAmount = donationamount;
+                                                            receipt.DonationAmountinWords = donationAmountinwords;
+                                                            switch (modeOfPayment.ToLower().Trim())
+                                                            {
+                                                                case "cash":
+                                                                    {
+                                                                        receipt.ModeOfPayment =
+                                                                            ModeOfPayment.Cash;
+                                                                        break;
+                                                                    }
+                                                                case "cheque":
+                                                                    {
+                                                                        receipt.ModeOfPayment =
+                                                                            ModeOfPayment.
+                                                                                Cheque;
+                                                                        break;
+                                                                    }
+                                                                case "goods":
+                                                                    {
+                                                                        receipt.ModeOfPayment =
+                                                                            ModeOfPayment.
+                                                                                Goods;
+                                                                        break;
+                                                                    }
+                                                                case "online":
+                                                                    {
+                                                                        receipt.ModeOfPayment =
+                                                                            ModeOfPayment.
+                                                                                Online;
+                                                                        break;
+                                                                    }
+                                                                case "mobile":
+                                                                    {
+                                                                        receipt.ModeOfPayment =
+                                                                            ModeOfPayment.
+                                                                                Mobile;
+                                                                        break;
+                                                                    }
+                                                            }
+                                                            break;
+                                                        }
+                                                }
+                                                switch (receiptType.ToLower().Trim())
+                                                {
+                                                    case "recurring payment receipt":
+                                                        {
+                                                            string[] dates = recurringDates.Split(',');
+                                                            foreach (string date in dates)
+                                                            {
+                                                                try
+                                                                {
+                                                                    receipt.RecurringDates.Add(Convert.ToDateTime(date));
+                                                                }
+                                                                catch (Exception)
+                                                                {
+                                                                    continue;
+                                                                }
+                                                            }
+                                                            break;
+                                                        }
+                                                    case "merchandise receipt":
+                                                        {
+                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(value))
+                                                                continue;
+                                                            receipt.MerchandiseItem = merchandiseItem;
+                                                            receipt.Value = value;
+                                                            break;
+                                                        }
+                                                    case "services receipt":
+                                                        {
+                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(hoursServed))
+                                                                continue;
+                                                            receipt.MerchandiseItem = merchandiseItem;
+                                                            try
+                                                            {
+                                                                receipt.HoursServed = Convert.ToInt32(hoursServed);
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                continue;
+                                                            }
+                                                            break;
+                                                        }
+                                                    default:
+                                                        {
+                                                            continue;
+                                                        }
+                                                }
+                                                scope.Transaction.Begin();
+                                                scope.Add(receipt);
+                                                scope.Transaction.Commit();
+                                                Thread.Sleep(500);
+                                            }
+                                        }
+                                    }
+                                }
+                                connection.Close();
+                            }
+                            ViewData["Status"] = "Excel import process completed successfully.";
+                            return View("PartialViewStatus");
                         }
                         catch (Exception ex)
                         {
                             ModelState.AddModelError("", "Unable to import from excel due to " + ex.Message);
+                        }
+                        finally
+                        {
+                            try
+                            {
+                                if (connection != null)
+                                {
+                                    connection.Close();
+                                    connection.Dispose();
+                                }
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                     }
                     // If we got this far, something failed, redisplay form
                     return View(model);
                 }
                 ViewData["Status"] = "You are not authorized to do this operation";
-                return View("Status");
+                return View("PartialViewStatus");
             }
-            return RedirectToAction("Logon", "Account");
+            ViewData["Status"] = "Your session has been expired, please login again and try.";
+            return View("PartialViewStatus");
         }
 
         private bool Checkauthorization(IObjectScope scope, string username)

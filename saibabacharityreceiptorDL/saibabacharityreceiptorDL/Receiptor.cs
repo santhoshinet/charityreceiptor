@@ -41,6 +41,8 @@ namespace saibabacharityreceiptorDL
         public DateTime OnDateTime { get; set; }
 
         public ReceiptType ReceiptType { get; set; }
+
+        public string GroupId { get; set; }
     }
 
     public enum ModeOfPayment

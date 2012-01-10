@@ -7,11 +7,7 @@
     <link href="/Content/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="loginContent">
-        <div class="container">
-            <div class="middle">
-                <%= ViewData["Status"] %></div>
-        </div>
-    </div>
+    <%
+        Html.RenderPartial("Status_Ctrl");%>
 </body>
 </html>

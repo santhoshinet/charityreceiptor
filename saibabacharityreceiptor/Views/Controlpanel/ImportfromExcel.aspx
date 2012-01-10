@@ -20,7 +20,7 @@
             <%=Html.ValidationMessageFor(m => m.ExcelFile)%>
         </li>
         <li>
-            <input type="submit" value="Upload" />
+            <input type="submit" value="Upload" accept="*.xls|*.xlsx" accept="application/excel" />
         </li>
         <li>
             <div class="clear">
@@ -29,4 +29,6 @@
     </ul>
     <%
        }%>
+    <script src="/Scripts/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/excelImport.js" type="text/javascript"></script>
 </asp:Content>

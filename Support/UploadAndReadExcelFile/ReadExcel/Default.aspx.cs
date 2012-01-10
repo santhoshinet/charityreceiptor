@@ -11,7 +11,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-        string connectionString ="";
+        string connectionString = "";
         if (FileUpload1.HasFile)
         {
             string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
@@ -41,7 +41,7 @@ public partial class _Default : System.Web.UI.Page
             con.Open();
             DataTable dtExcelSheetName = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
             string getExcelSheetName = dtExcelSheetName.Rows[0]["Table_Name"].ToString();
-            cmd.CommandText = "SELECT * FROM [" + getExcelSheetName +"]";
+            cmd.CommandText = "SELECT * FROM [" + getExcelSheetName + "]";
             dAdapter.SelectCommand = cmd;
             dAdapter.Fill(dtExcelRecords);
             con.Close();
