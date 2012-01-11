@@ -18,6 +18,10 @@
     padding: 0px;
     margin: 0px;
 }
+.low_height
+{
+    height: 300px;
+}
 .h1
 {
     font-size: 2em;

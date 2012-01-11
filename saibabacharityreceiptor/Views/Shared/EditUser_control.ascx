@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<saibabacharityreceiptor.Models.RegisterModel>" %>
-<div class="Container small">
+<div class="Container small low_height">
     <% using (Html.BeginForm())
        { %>
     <ul class="ul">

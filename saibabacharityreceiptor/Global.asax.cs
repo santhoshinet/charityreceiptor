@@ -96,6 +96,12 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "Reports", // Route name
+                "{controller}/{action}/{pageIndex}", // URL with parameters
+                new { controller = "controlpanel", action = "home", pageIndex = 0 } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "controlpanel", action = "home", id = UrlParameter.Optional } // Parameter defaults

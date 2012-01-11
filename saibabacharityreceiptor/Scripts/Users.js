@@ -5,8 +5,8 @@
         'transitionOut': 'elastic',
         'type': 'iframe',
         'autoScale': 'true',
-        'height': 440,
-        'width': 490,
+        'height': 445,
+        'width': 495,
         'autoDimensions': 'false',
         'onClosed': function () {
             window.location = window.location;
@@ -18,7 +18,7 @@
             'transitionOut': 'elastic',
             'type': 'iframe',
             'autoScale': 'true',
-            'height': 440,
+            'height': 320,
             'width': 490,
             'autoDimensions': 'false',
             'onClosed': function () {

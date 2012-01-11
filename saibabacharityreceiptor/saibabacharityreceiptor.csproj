@@ -75,6 +75,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlpanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,8 +415,13 @@
     <Content Include="Views\Controlpanel\EditUser.aspx" />
     <Content Include="Views\Controlpanel\Home.aspx" />
     <Content Include="Views\Controlpanel\ImportfromExcel.aspx" />
+    <Content Include="Views\Reports\MerchandiseReceipts.aspx" />
+    <Content Include="Views\Reports\RecurringReceipts.aspx" />
+    <Content Include="Views\Reports\RegularReceipts.aspx" />
     <Content Include="Views\Controlpanel\Users.aspx" />
     <Content Include="Views\Home\MerchandiseReceipt.aspx" />
+    <Content Include="Views\Controlpanel\Reports.aspx" />
+    <Content Include="Views\Reports\ServicesReceipts.aspx" />
     <Content Include="Views\Shared\Printoptions.aspx" />
     <Content Include="Views\Home\PrintReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt.aspx" />

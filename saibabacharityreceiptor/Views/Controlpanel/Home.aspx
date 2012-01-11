@@ -39,7 +39,7 @@
                 <div class="right">
                     <a href="/Controlpanel/users">Manage Users</a></div>
                 <div class="right">
-                    <a href="/Controlpanel/Reports">Transaction history</a></div>
+                    <a href="/Controlpanel/Reports">Reports</a></div>
                 <div class="right">
                     <a href="/Controlpanel/ImportfromExcel">Import from Excel</a></div>
                 <div class="right">

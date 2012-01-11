@@ -496,18 +496,19 @@ namespace saibabacharityreceiptor.Controllers
             return View("PartialViewStatus");
         }
 
-        private bool Checkauthorization(IObjectScope scope, string username)
+        [Authorize]
+        [HttpGet]
+        public ActionResult Reports()
         {
-            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                                where c.Username.ToLower().Equals(username.ToLower())
-                                select c).ToList();
-            if (users.Count > 0 && users[0].IsheAdmin)
+            if (User.Identity.IsAuthenticated)
             {
-                ViewData["IsheAdmin"] = users[0].IsheAdmin;
-                ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
-                return true;
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                    return View();
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("PartialViewStatus");
             }
-            return false;
+            return RedirectToAction("LogOn", "Account");
         }
 
         public string Deleteuser(string userid)
@@ -554,6 +555,20 @@ namespace saibabacharityreceiptor.Controllers
             if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
 
             base.Initialize(requestContext);
+        }
+
+        private bool Checkauthorization(IObjectScope scope, string username)
+        {
+            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                where c.Username.ToLower().Equals(username.ToLower())
+                                select c).ToList();
+            if (users.Count > 0 && users[0].IsheAdmin)
+            {
+                ViewData["IsheAdmin"] = users[0].IsheAdmin;
+                ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
+                return true;
+            }
+            return false;
         }
 
         #region Status Codes
