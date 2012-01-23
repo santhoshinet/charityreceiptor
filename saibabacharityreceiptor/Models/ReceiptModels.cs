@@ -12,13 +12,38 @@ namespace saibabacharityreceiptor.Models
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        [Display(Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "MI")]
+        public string Mi { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Address")]
         public string Address { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "ZipCode")]
+        public string ZipCode { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -76,6 +101,11 @@ namespace saibabacharityreceiptor.Models
 
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "Quantity")]
+        public string Quanity { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
         [Display(Name = "Value")]
         public string Value { get; set; }
     }
@@ -84,12 +114,22 @@ namespace saibabacharityreceiptor.Models
     {
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Merchandise Item")]
-        public string MerchandiseItem { get; set; }
+        [Display(Name = "Service Type")]
+        public string ServiceType { get; set; }
 
         [Required]
         [DataType(DataType.Duration)]
         [Display(Name = "Hours Served")]
         public int HoursServed { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Rate per Hr / Day")]
+        public int RateperHour { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "FMv Value")]
+        public int FmvValue { get; set; }
     }
 }

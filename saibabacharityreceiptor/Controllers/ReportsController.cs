@@ -32,7 +32,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
                                                                                   ModeOfPayment = receipt.ModeOfPayment,
-                                                                                  Name = receipt.Name,
+                                                                                  Name = receipt.FirstName,
                                                                                   OnDateTime = receipt.OnDateTime,
                                                                                   ReceiptNumber = receipt.ReceiptNumber
                                                                               }).ToList();
@@ -82,7 +82,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
                                                                                   ModeOfPayment = receipt.ModeOfPayment,
-                                                                                  Name = receipt.Name,
+                                                                                  Name = receipt.FirstName,
                                                                                   OnDateTime = receipt.OnDateTime,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
                                                                                   RecurringDates = receipt.RecurringDates
@@ -130,11 +130,11 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   Contact = receipt.Contact,
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
-                                                                                  Name = receipt.Name,
+                                                                                  Name = receipt.FirstName,
                                                                                   OnDateTime = receipt.OnDateTime,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
                                                                                   MerchandiseItem = receipt.MerchandiseItem,
-                                                                                  Value = receipt.Value
+                                                                                  Value = receipt.FmvValue
                                                                               }).ToList();
                     ViewData["pageIndex"] = pageIndex;
                     if (pageIndex <= 0)
@@ -179,7 +179,7 @@ namespace saibabacharityreceiptor.Controllers
                         Contact = receipt.Contact,
                         DonationReceiverName = receipt.DonationReceiver.Username,
                         Email = receipt.Email,
-                        Name = receipt.Name,
+                        Name = receipt.FirstName,
                         OnDateTime = receipt.OnDateTime,
                         ReceiptNumber = receipt.ReceiptNumber,
                         HoursServed = receipt.HoursServed

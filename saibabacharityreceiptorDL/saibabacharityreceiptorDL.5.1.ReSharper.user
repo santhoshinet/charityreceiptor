@@ -11,17 +11,17 @@
     <RecentFiles>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="798" fromTop="21" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="418" fromTop="19" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="412" fromTop="6" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="986" fromTop="9" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="821" fromTop="11" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="933" fromTop="4" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="2581" fromTop="4" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1155" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1542" fromTop="25" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="517" fromTop="10" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="622" fromTop="16" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="402" fromTop="10" />
@@ -34,11 +34,13 @@
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="315" fromTop="11" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1563" fromTop="39" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="161" fromTop="5" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="996" fromTop="33" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1378" fromTop="27" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1383" fromTop="33" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1765" fromTop="27" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="240" fromTop="11" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="765" fromTop="20" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1097" fromTop="32" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1484" fromTop="32" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="629" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="956" fromTop="10" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1140" fromTop="18" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -54,8 +56,8 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="public" priority="16" />
-      <Item value="string" priority="8" />
+      <Item value="public" priority="18" />
+      <Item value="string" priority="10" />
       <Item value="Receiptor`0" priority="1" />
       <Item value="Receiptors" priority="0" />
       <Item value="new" priority="2" />
@@ -64,7 +66,7 @@
       <Item value="DonationReceivers" priority="0" />
       <Item value="enum" priority="1" />
       <Item value="iterator" priority="1" />
-      <Item value="int" priority="2" />
+      <Item value="int" priority="3" />
       <Item value="User`0" priority="5" />
       <Item value="bool" priority="0" />
       <Item value="DateTime`0" priority="4" />

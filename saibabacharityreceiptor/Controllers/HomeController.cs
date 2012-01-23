@@ -58,8 +58,13 @@ namespace saibabacharityreceiptor.Controllers
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
                                           OnDateTime = receivedTime,
-                                          Name = model.Name,
-                                          ReceiptType = ReceiptType.GeneralReceipt
+                                          FirstName = model.FirstName,
+                                          ReceiptType = ReceiptType.GeneralReceipt,
+                                          City = model.City,
+                                          LastName = model.LastName,
+                                          Mi = model.Mi,
+                                          State = model.State,
+                                          ZipCode = model.ZipCode
                                       };
                     switch (Request.Form["cmbModeOfPayment"])
                     {
@@ -128,7 +133,12 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.OnDateTime = receivedTime;
-                        receipt.Name = model.Name;
+                        receipt.FirstName = model.FirstName;
+                        receipt.LastName = model.LastName;
+                        receipt.City = model.City;
+                        receipt.State = model.State;
+                        receipt.City = model.City;
+                        receipt.ZipCode = model.ZipCode;
                         receipt.ReceiptType = ReceiptType.GeneralReceipt;
                         switch (Request.Form["cmbModeOfPayment"])
                         {
@@ -211,11 +221,17 @@ namespace saibabacharityreceiptor.Controllers
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           MerchandiseItem = model.MerchandiseItem,
-                                          Value = model.Value,
+                                          FmvValue = model.Value,
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
                                           OnDateTime = receivedTime,
-                                          Name = model.Name,
+                                          FirstName = model.FirstName,
+                                          City = model.City,
+                                          LastName = model.LastName,
+                                          Mi = model.Mi,
+                                          Quantity = model.Quanity,
+                                          State = model.State,
+                                          ZipCode = model.ZipCode,
                                           ReceiptType = ReceiptType.MerchandiseReceipt
                                       };
                     scope.Add(receipt);
@@ -258,11 +274,17 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.MerchandiseItem = model.MerchandiseItem;
-                        receipt.Value = model.Value;
+                        receipt.FmvValue = model.Value;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.OnDateTime = receivedTime;
-                        receipt.Name = model.Name;
+                        receipt.FirstName = model.FirstName;
+                        receipt.Mi = model.Mi;
+                        receipt.LastName = model.LastName;
+                        receipt.City = model.City;
+                        receipt.State = model.State;
+                        receipt.ZipCode = model.ZipCode;
+                        receipt.Quantity = model.Quanity;
                         receipt.ReceiptType = ReceiptType.MerchandiseReceipt;
                         scope.Add(receipt);
                         scope.Transaction.Commit();
@@ -321,13 +343,20 @@ namespace saibabacharityreceiptor.Controllers
                                           Address = model.Address,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
-                                          MerchandiseItem = model.MerchandiseItem,
+                                          ServiceType = model.ServiceType,
                                           HoursServed = Convert.ToInt32(model.HoursServed),
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
                                           OnDateTime = receivedTime,
-                                          Name = model.Name,
-                                          ReceiptType = ReceiptType.ServicesReceipt
+                                          FirstName = model.FirstName,
+                                          Mi = model.Mi,
+                                          City = model.City,
+                                          LastName = model.LastName,
+                                          State = model.State,
+                                          ZipCode = model.ZipCode,
+                                          ReceiptType = ReceiptType.ServicesReceipt,
+                                          FmvValue = model.FmvValue.ToString(),
+                                          RatePerHrOrDay = model.RateperHour.ToString(),
                                       };
                     scope.Add(receipt);
                     scope.Transaction.Commit();
@@ -368,13 +397,21 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.Address = model.Address;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
-                        receipt.MerchandiseItem = model.MerchandiseItem;
                         receipt.HoursServed = Convert.ToInt32(model.HoursServed);
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.OnDateTime = receivedTime;
-                        receipt.Name = model.Name;
                         receipt.ReceiptType = ReceiptType.ServicesReceipt;
+                        receipt.City = model.City;
+                        receipt.FirstName = model.FirstName;
+                        receipt.FmvValue = model.FmvValue.ToString();
+                        receipt.HoursServed = model.HoursServed;
+                        receipt.LastName = model.LastName;
+                        receipt.Mi = model.Mi;
+                        receipt.RatePerHrOrDay = model.RateperHour.ToString();
+                        receipt.ServiceType = model.ServiceType;
+                        receipt.ZipCode = model.ZipCode;
+                        receipt.State = model.State;
                         scope.Add(receipt);
                         scope.Transaction.Commit();
                         ViewData["Status"] = "Updated successfully.";
@@ -437,7 +474,12 @@ namespace saibabacharityreceiptor.Controllers
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
                                           OnDateTime = receivedTime,
-                                          Name = model.Name,
+                                          FirstName = model.FirstName,
+                                          City = model.City,
+                                          LastName = model.LastName,
+                                          Mi = model.Mi,
+                                          State = model.State,
+                                          ZipCode = model.ZipCode,
                                           ReceiptType = ReceiptType.RecurringReceipt
                                       };
                     switch (Request.Form["cmbModeOfPayment"])
@@ -518,7 +560,12 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.OnDateTime = receivedTime;
-                        receipt.Name = model.Name;
+                        receipt.FirstName = model.FirstName;
+                        receipt.Mi = model.Mi;
+                        receipt.LastName = model.LastName;
+                        receipt.City = model.City;
+                        receipt.State = model.State;
+                        receipt.ZipCode = model.ZipCode;
                         receipt.ReceiptType = ReceiptType.RecurringReceipt;
                         switch (Request.Form["cmbModeOfPayment"])
                         {
@@ -581,7 +628,7 @@ namespace saibabacharityreceiptor.Controllers
                                           select c).ToList();
                 if (receipts.Count > 0)
                 {
-                    var receiptData = new ReceiptData { Name = receipts[0].Name };
+                    var receiptData = new ReceiptData { Name = receipts[0].FirstName };
                     ViewData["Receipt_Data"] = receiptData;
                     return View();
                 }
@@ -642,8 +689,13 @@ namespace saibabacharityreceiptor.Controllers
                                                     DonationAmount = receipt.DonationAmount,
                                                     DonationAmountinWords = receipt.DonationAmountinWords,
                                                     Email = receipt.Email,
-                                                    Name = receipt.Name,
-                                                    ReceiptNumber = receipt.ReceiptNumber
+                                                    City = receipt.City,
+                                                    FirstName = receipt.FirstName,
+                                                    LastName = receipt.LastName,
+                                                    Mi = receipt.Mi,
+                                                    ReceiptNumber = receipt.ReceiptNumber,
+                                                    State = receipt.State,
+                                                    ZipCode = receipt.ZipCode
                                                 };
                                 ViewData["PostAction"] = "UpdateRegularReceipt";
                                 return View("RegularReceipt", model);
@@ -659,8 +711,13 @@ namespace saibabacharityreceiptor.Controllers
                                                     DonationAmount = receipt.DonationAmount,
                                                     DonationAmountinWords = receipt.DonationAmountinWords,
                                                     Email = receipt.Email,
-                                                    Name = receipt.Name,
-                                                    ReceiptNumber = receipt.ReceiptNumber
+                                                    ReceiptNumber = receipt.ReceiptNumber,
+                                                    City = receipt.City,
+                                                    FirstName = receipt.FirstName,
+                                                    LastName = receipt.LastName,
+                                                    Mi = receipt.Mi,
+                                                    State = receipt.State,
+                                                    ZipCode = receipt.ZipCode
                                                 };
                                 recurrenceDates = receipt.RecurringDates.Aggregate(recurrenceDates, (current, date) => current + (date.ToString("dd/MM/yy") + ","));
                                 model.RecurrenceDates = recurrenceDates.Substring(0, recurrenceDates.Length - 1);
@@ -669,32 +726,42 @@ namespace saibabacharityreceiptor.Controllers
                             }
                         case ReceiptType.MerchandiseReceipt:
                             {
-                                var model = new MerchandiseReceipt()
+                                var model = new MerchandiseReceipt
                                 {
                                     Address = receipt.Address,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.OnDateTime,
                                     Email = receipt.Email,
-                                    Name = receipt.Name,
                                     ReceiptNumber = receipt.ReceiptNumber,
                                     MerchandiseItem = receipt.MerchandiseItem,
-                                    Value = receipt.Value
+                                    Value = receipt.FmvValue,
+                                    City = receipt.City,
+                                    FirstName = receipt.FirstName,
+                                    LastName = receipt.LastName,
+                                    Mi = receipt.Mi,
+                                    Quanity = receipt.Quantity,
+                                    State = receipt.State,
+                                    ZipCode = receipt.ZipCode
                                 };
                                 ViewData["PostAction"] = "UpdateMerchandiseReceipt";
                                 return View("MerchandiseReceipt", model);
                             }
                         case ReceiptType.ServicesReceipt:
                             {
-                                var model = new ServicesReceipt()
+                                var model = new ServicesReceipt
                                 {
                                     Address = receipt.Address,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.OnDateTime,
                                     Email = receipt.Email,
-                                    Name = receipt.Name,
                                     ReceiptNumber = receipt.ReceiptNumber,
-                                    MerchandiseItem = receipt.MerchandiseItem,
-                                    HoursServed = receipt.HoursServed
+                                    HoursServed = receipt.HoursServed,
+                                    City = receipt.City,
+                                    FirstName = receipt.FirstName,
+                                    FmvValue = Convert.ToInt32(receipt.FmvValue),
+                                    LastName = receipt.LastName,
+                                    Mi = receipt.Mi,
+                                    RateperHour = Convert.ToInt32(receipt.RatePerHrOrDay),
                                 };
                                 ViewData["PostAction"] = "UpdateServicesReceipt";
                                 return View("ServicesReceipt", model);

@@ -341,7 +341,7 @@ namespace saibabacharityreceiptor.Controllers
                                                 var receipt = new Receipt
                                                                   {
                                                                       ReceiptNumber = Utilities.GenerateReceiptId(),
-                                                                      Name = name,
+                                                                      FirstName = name,
                                                                       Address = address,
                                                                       Email = email,
                                                                       OnDateTime = DateTime.Now,
@@ -421,7 +421,7 @@ namespace saibabacharityreceiptor.Controllers
                                                             if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(value))
                                                                 continue;
                                                             receipt.MerchandiseItem = merchandiseItem;
-                                                            receipt.Value = value;
+                                                            receipt.FmvValue = value;
                                                             break;
                                                         }
                                                     case "services receipt":
