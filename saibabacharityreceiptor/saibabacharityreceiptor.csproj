@@ -72,6 +72,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\add.jpg" />
+    <Content Include="Images\remove.jpg" />
     <Content Include="Scripts\Reports.js" />
     <Content Include="todo.txt" />
     <Compile Include="Controllers\AccountController.cs" />

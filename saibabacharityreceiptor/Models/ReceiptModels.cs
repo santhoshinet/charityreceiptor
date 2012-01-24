@@ -59,6 +59,11 @@ namespace saibabacharityreceiptor.Models
         [DataType(DataType.Date)]
         [Display(Name = "ReceiptReceived")]
         public DateTime DateReceived { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "IssuedDate")]
+        public DateTime IssuedDate { get; set; }
     }
 
     public class RegularReceiptModels : BasicInfo
@@ -89,7 +94,7 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "RecurrenceDates")]
-        public string RecurrenceDates { get; set; }
+        public string[] RecurrenceDates { get; set; }
     }
 
     public class MerchandiseReceipt : BasicInfo

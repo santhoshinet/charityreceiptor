@@ -1,4 +1,5 @@
 <Modules>
   <Module PersistentId="DD7BB239-9AC2-4526-8275-0CB61D97247C" ModuleId="saibabacharityreceiptor" />
   <Module PersistentId="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A" ModuleId="pdf_test_app" />
+  <Module PersistentId="saibabacharityreceiptorDL, Version=1.0.0.0, Culture=neutral" ModuleId="saibabacharityreceiptorDL" />
 </Modules>

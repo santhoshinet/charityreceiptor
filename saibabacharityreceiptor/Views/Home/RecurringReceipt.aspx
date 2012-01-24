@@ -25,7 +25,7 @@
                 Date Received
             </label>
             <label class="label">
-                <span class="instruction">Your date should be in the format of [ DD / MM / YYYY ]</span>
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
             </label>
             <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
@@ -111,9 +111,13 @@
         <li>
             <label class="label">
                 Recurrence dates</label>
-            <%: Html.TextBoxFor(m => m.RecurrenceDates, new { @id = "TxtRecurrenceDates", @class = "text txtrecurrencedates" })%>
-            <label class="star">
-                *</label>
+            <ul class="ul">
+                <li>
+                    <input type="text" name="RecurrenceDates" id="TxtRecurrenceDates" class="text txtrecurrencedates smallbox" />
+                    <label class="star">
+                        *</label>
+                    <span class="btnaction">+</span> </li>
+            </ul>
         </li>
         <li>
             <label class="label">
@@ -147,6 +151,17 @@
                 </option>
                 <% } %>
             </select>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Issued Date
+            </label>
+            <label class="label">
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
+            </label>
+            <%: Html.TextBoxFor(m => m.IssuedDate, new { @id = "TxtIssuedDate", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
                 *</label>
         </li>

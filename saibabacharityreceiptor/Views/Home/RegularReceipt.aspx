@@ -25,7 +25,7 @@
                 Date Received
             </label>
             <label class="label">
-                <span class="instruction">Your date should be in the format of [ DD / MM / YYYY ]</span>
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
             </label>
             <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
@@ -62,21 +62,21 @@
         <li>
             <label class="label">
                 City</label>
-            <%: Html.TextAreaFor(m => m.City, new { @id = "TxtCity", @class = "text txtcity", @maxlength = "15" })%>
+            <%: Html.TextBoxFor(m => m.City, new { @id = "TxtCity", @class = "text txtcity", @maxlength = "15" })%>
             <label class="star">
                 *</label>
         </li>
         <li>
             <label class="label">
                 State</label>
-            <%: Html.TextAreaFor(m => m.State, new { @id = "TxtState", @class = "text txtstate", @maxlength = "15" })%>
+            <%: Html.TextBoxFor(m => m.State, new { @id = "TxtState", @class = "text txtstate", @maxlength = "15" })%>
             <label class="star">
                 *</label>
         </li>
         <li>
             <label class="label">
                 Zip Code</label>
-            <%: Html.TextAreaFor(m => m.ZipCode, new { @id = "TxtZipCode", @class = "text txtzipcode", @maxlength = "10" })%>
+            <%: Html.TextBoxFor(m => m.ZipCode, new { @id = "TxtZipCode", @class = "text txtzipcode", @maxlength = "10" })%>
             <label class="star">
                 *</label>
         </li>
@@ -140,6 +140,17 @@
                 </option>
                 <% } %>
             </select>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Issued Date
+            </label>
+            <label class="label">
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
+            </label>
+            <%: Html.TextBoxFor(m => m.IssuedDate, new { @id = "TxtIssuedDate", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
                 *</label>
         </li>

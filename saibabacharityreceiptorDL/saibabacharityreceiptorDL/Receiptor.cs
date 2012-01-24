@@ -10,6 +10,8 @@ namespace saibabacharityreceiptorDL
         public Receipt()
         {
             RecurringDates = new List<DateTime>();
+            OnDateTime = DateTime.Now;
+            IssuedDate = DateTime.Now;
         }
 
         public string ReceiptNumber { get; set; }
@@ -59,6 +61,8 @@ namespace saibabacharityreceiptorDL
         public ReceiptType ReceiptType { get; set; }
 
         public string GroupId { get; set; }
+
+        public DateTime IssuedDate { get; set; }
     }
 
     public enum ModeOfPayment

@@ -54,10 +54,15 @@
     });
     $('.txtdate').datepicker({
         onSelect: function (input, inst) {
-            $('.txtdate').datepicker("option", "dateFormat", "dd/mm/yy");
+            $('.txtdate').datepicker("option", "dateFormat", "mm/dd/yy");
         }
     });
-    $('.txtdate').val(getdate());
+    $('.txtrecurrencedates').datepicker({
+        onSelect: function (input, inst) {
+            $('.txtrecurrencedates').datepicker("option", "dateFormat", "mm/dd/yy");
+        }
+    });
+    $('.txtdate,.txtrecurrencedates').val(getdate());
     function getdate() {
         var d = new Date();
         var curr_date = d.getDate();
@@ -81,4 +86,23 @@
             retVal += curr_year;
         return retVal;
     }
+    var Index = 1;
+    $('.btnaction').live('click', function () {
+        var reccurence = $(this).parents('li').eq(0);
+        var clone = reccurence.clone();
+        reccurence.after(clone);
+        clone.find('.btnactionremove').remove();
+        clone.append("<span class='btnactionremove'>-</span>");
+        Index++;
+        var recclass = "reccurenceDates" + Index.toString();
+        clone.find('input[type="text"]').attr('class', recclass + " " + "text" + " " + "smallbox").attr('id', '');
+        $('.' + recclass).datepicker({
+            onSelect: function (input, inst) {
+                $('.' + recclass).datepicker("option", "dateFormat", "mm/dd/yy");
+            }
+        });
+    });
+    $('.btnactionremove').live('click', function () {
+        $(this).parents('li').eq(0).remove();
+    });
 });
