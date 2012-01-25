@@ -11,7 +11,7 @@
             <h2>
                 Import from Excel</h2>
             <p>
-                Download the excel file <a href="/template.xlsx">here</a></p>
+                Download the excel template file <a href="/template.xlsx">here</a></p>
             <p class="error">
                 <%= ViewData["Status"].ToString()%>
             </p>

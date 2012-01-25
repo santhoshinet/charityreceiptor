@@ -20,7 +20,7 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
-                ViewData["PostAction"] = string.Empty;
+                ViewData["PostAction"] = "RegularReceipt";
                 ViewData["selectedModeOfPayment"] = string.Empty;
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
                 return View(new RegularReceiptModels
@@ -102,6 +102,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["PostAction"] = "RegularReceipt";
                 ViewData["selectedModeOfPayment"] = Request.Form["cmbModeOfPayment"];
                 ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
@@ -202,7 +203,7 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
-                ViewData["PostAction"] = string.Empty;
+                ViewData["PostAction"] = "RecurringReceipt";
                 ViewData["selectedModeOfPayment"] = string.Empty;
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new RecurringReceipt
@@ -296,6 +297,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["PostAction"] = "RecurringReceipt";
                 ViewData["selectedModeOfPayment"] = Request.Form["cmbModeOfPayment"];
                 ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
@@ -409,7 +411,7 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
-                ViewData["PostAction"] = string.Empty;
+                ViewData["PostAction"] = "MerchandiseReceipt";
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new MerchandiseReceipt
                                       {
@@ -464,6 +466,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["PostAction"] = "MerchandiseReceipt";
                 ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
@@ -536,7 +539,7 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
-                ViewData["PostAction"] = string.Empty;
+                ViewData["PostAction"] = "ServicesReceipt";
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new ServicesReceipt
                                        {
@@ -592,6 +595,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["PostAction"] = "ServicesReceipt";
                 ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
@@ -864,9 +868,54 @@ namespace saibabacharityreceiptor.Controllers
                                           select c).ToList();
                 if (receipts.Count > 0)
                 {
-                    var receiptData = new ReceiptData { Name = receipts[0].FirstName };
+                    var receiptData = new ReceiptData
+                                          {
+                                              FirstName = receipts[0].FirstName,
+                                              Address = receipts[0].Address,
+                                              City = receipts[0].City,
+                                              Contact = receipts[0].Contact,
+                                              DateReceived = receipts[0].DateReceived,
+                                              DonationAmount = receipts[0].DonationAmount,
+                                              DonationAmountinWords = receipts[0].DonationAmountinWords,
+                                              DonationReceiverName = receipts[0].DonationReceiver.Username,
+                                              Email = receipts[0].Email,
+                                              FmvValue = receipts[0].FmvValue,
+                                              GroupId = receipts[0].GroupId,
+                                              HoursServed = receipts[0].HoursServed,
+                                              IssuedDate = receipts[0].IssuedDate,
+                                              LastName = receipts[0].LastName,
+                                              MerchandiseItem = receipts[0].MerchandiseItem,
+                                              Mi = receipts[0].Mi,
+                                              ModeOfPayment = receipts[0].ModeOfPayment.ToString(),
+                                              Quantity = receipts[0].Quantity,
+                                              RatePerHrOrDay = receipts[0].RatePerHrOrDay,
+                                              ReceiptNumber = receipts[0].ReceiptNumber,
+                                              ReceiptType = receipts[0].ReceiptType.ToString(),
+                                              RecurringDates = receipts[0].RecurringDates,
+                                              ServiceType = receipts[0].ServiceType,
+                                              State = receipts[0].State,
+                                              ZipCode = receipts[0].ZipCode
+                                          };
                     ViewData["Receipt_Data"] = receiptData;
-                    return View();
+                    switch (receipts[0].ReceiptType)
+                    {
+                        case ReceiptType.GeneralReceipt:
+                            {
+                                return View("PrintRegularReceipt");
+                            }
+                        case ReceiptType.RecurringReceipt:
+                            {
+                                return View("PrintRecurringReceipt");
+                            }
+                        case ReceiptType.MerchandiseReceipt:
+                            {
+                                return View("PrintMerchandiseReport");
+                            }
+                        case ReceiptType.ServicesReceipt:
+                            {
+                                return View("PrintServicesReceipt");
+                            }
+                    }
                 }
                 ViewData["Status"] = "The receipt not found for the given id.";
                 return View("Status");
@@ -885,6 +934,54 @@ namespace saibabacharityreceiptor.Controllers
 
     public struct ReceiptData
     {
-        public string Name;
+        public string ReceiptNumber { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string Mi { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string ZipCode { get; set; }
+
+        public string Email { get; set; }
+
+        public string Contact { get; set; }
+
+        public string DonationAmount { get; set; }
+
+        public string DonationAmountinWords { get; set; }
+
+        public string MerchandiseItem { get; set; }
+
+        public string ServiceType { get; set; }
+
+        public string Quantity { get; set; }
+
+        public string FmvValue { get; set; }
+
+        public int HoursServed { get; set; }
+
+        public string RatePerHrOrDay { get; set; }
+
+        public IList<DateTime> RecurringDates { get; set; }
+
+        public string ModeOfPayment { get; set; }
+
+        public string DonationReceiverName { get; set; }
+
+        public DateTime DateReceived { get; set; }
+
+        public string ReceiptType { get; set; }
+
+        public string GroupId { get; set; }
+
+        public DateTime IssuedDate { get; set; }
     }
 }
