@@ -21,22 +21,22 @@
                     <td style="width: 40px">
                         Sno
                     </td>
-                    <td style="width: 320px;">
+                    <td style="width: 18%;">
                         Name
                     </td>
-                    <td style="width: 260px">
+                    <td style="width: 140px">
                         Date
                     </td>
-                    <td style="width: 100px">
+                    <td style="width: 50px">
                         Amount
                     </td>
-                    <td style="width: 80px">
+                    <td style="width: 60px">
                         Mode of payment
                     </td>
-                    <td style="width: 320px">
+                    <td style="width: 18%">
                         Received By
                     </td>
-                    <td colspan="3" class="lastcol">
+                    <td colspan="4" class="lastcol">
                         Actions
                     </td>
                 </tr>
@@ -66,19 +66,23 @@
                     <td>
                         <%= localRegularReceipt.DonationReceiverName %>
                     </td>
-                    <td style="width: 110px">
+                    <td style="width: 60px">
                         <span class="delete_button" href="<%="/Reports/EditRegularReceipt/" + localRegularReceipt.ReceiptNumber%>">
                             <img src="/Images/ico-delete.gif" />
                             delete</span>
                     </td>
-                    <td style="width: 100px">
+                    <td style="width: 50px">
                         <span class="edit_button" href="<%="/Reports/EditRegularReceipt/" + localRegularReceipt.ReceiptNumber%>">
                             <img src="/Images/edit.gif" />
                             edit</span>
                     </td>
-                    <td style="width: 100px">
+                    <td style="width: 30px">
                         <a href="<%="/PrintReceipt/" + localRegularReceipt.ReceiptNumber%>" target="_blank">
                             Print</a>
+                    </td>
+                    <td style="width: 20px">
+                        <a href="<%="/DownloadReceipt/" + localRegularReceipt.ReceiptNumber%>" target="_blank">
+                            Pdf</a>
                     </td>
                 </tr>
                 <%
@@ -86,7 +90,7 @@
                 <%
             }%>
                 <tr id="noresultsrow">
-                    <td colspan="6">
+                    <td colspan="10">
                         There is no result found your query.
                     </td>
                 </tr>
@@ -112,7 +116,7 @@
                     </td>
                     <%
                 }%>
-                    <td colspan="7">
+                    <td colspan="8">
                     </td>
                     <%
                 if (hasNext)
@@ -150,6 +154,5 @@
     <script src="/Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.highlight-3.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.quicksearch.js" type="text/javascript"></script>
+    <script src="/Scripts/Reports.js" type="text/javascript"></script>
 </asp:Content>

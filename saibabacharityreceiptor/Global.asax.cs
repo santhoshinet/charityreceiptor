@@ -90,6 +90,12 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "PrintOptions", // Route name
+                "PrintOptions/{recpId}", // URL with parameters
+                new { controller = "Home", action = "PrintOptions", recpId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 "DownloadReceipt", // Route name
                 "DownloadReceipt/{recpId}", // URL with parameters
                 new { controller = "Home", action = "DownloadReceipt", recpId = UrlParameter.Optional }
@@ -99,6 +105,18 @@ namespace saibabacharityreceiptor
                 "Reports", // Route name
                 "{controller}/{action}/{pageIndex}", // URL with parameters
                 new { controller = "controlpanel", action = "home", pageIndex = 0 } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "delete_user", // Route name
+                "{controller}/{action}/{userid}", // URL with parameters
+                new { controller = "controlpanel", action = "home", userid = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "delete_report", // Route name
+                "{controller}/{action}/{recpId}", // URL with parameters
+                new { controller = "controlpanel", action = "home", recpId = UrlParameter.Optional } // Parameter defaults
             );
 
             routes.MapRoute(

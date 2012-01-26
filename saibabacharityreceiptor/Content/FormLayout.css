@@ -338,3 +338,15 @@ INPUT[type="file"]
 {
     width: 400px;
 }
+
+.btnaction, .btnactionremove
+{
+    font: 1.3em Arial Bold;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+.smallbox
+{
+    width: 375px;
+}

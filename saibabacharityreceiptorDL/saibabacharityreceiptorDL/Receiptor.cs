@@ -10,13 +10,25 @@ namespace saibabacharityreceiptorDL
         public Receipt()
         {
             RecurringDates = new List<DateTime>();
+            OnDateTime = DateTime.Now;
+            IssuedDate = DateTime.Now;
         }
 
         public string ReceiptNumber { get; set; }
 
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        public string Mi { get; set; }
+
+        public string LastName { get; set; }
 
         public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string ZipCode { get; set; }
 
         public string Email { get; set; }
 
@@ -28,9 +40,15 @@ namespace saibabacharityreceiptorDL
 
         public string MerchandiseItem { get; set; }
 
-        public string Value { get; set; }
+        public string ServiceType { get; set; }
+
+        public string Quantity { get; set; }
+
+        public string FmvValue { get; set; }
 
         public int HoursServed { get; set; }
+
+        public string RatePerHrOrDay { get; set; }
 
         public IList<DateTime> RecurringDates { get; set; }
 
@@ -43,6 +61,8 @@ namespace saibabacharityreceiptorDL
         public ReceiptType ReceiptType { get; set; }
 
         public string GroupId { get; set; }
+
+        public DateTime IssuedDate { get; set; }
     }
 
     public enum ModeOfPayment

@@ -4,7 +4,7 @@
     Generate Merchandise Receipt
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% using (Html.BeginForm())
+    <% using (Html.BeginForm(ViewData["PostAction"].ToString()))
        {%>
     <ul class="ul">
         <li>
@@ -25,7 +25,7 @@
                 Date Received
             </label>
             <label class="label">
-                <span class="instruction">Your date should be in the format of [ DD / MM / YYYY ]</span>
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
             </label>
             <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
@@ -33,8 +33,22 @@
         </li>
         <li>
             <label class="label">
-                Name</label>
-            <%: Html.TextBoxFor(m => m.Name, new { @id = "TxtName", @class = "text txtname" })%>
+                First Name</label>
+            <%: Html.TextBoxFor(m => m.FirstName, new { @id = "TxtName", @class = "text txtname", @maxlength = "16" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                MI</label>
+            <%: Html.TextBoxFor(m => m.Mi, new { @id = "TxtMi", @class = "text txtmi", @maxlength = "8" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Last Name</label>
+            <%: Html.TextBoxFor(m => m.LastName, new { @id = "TxtLastName", @class = "text txtlastname", @maxlength = "16" })%>
             <label class="star">
                 *</label>
         </li>
@@ -47,29 +61,57 @@
         </li>
         <li>
             <label class="label">
+                City</label>
+            <%: Html.TextBoxFor(m => m.City, new { @id = "TxtCity", @class = "text txtcity", @maxlength = "15" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                State</label>
+            <%: Html.TextBoxFor(m => m.State, new { @id = "TxtState", @class = "text txtstate", @maxlength = "15" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Zip Code</label>
+            <%: Html.TextBoxFor(m => m.ZipCode, new { @id = "TxtZipCode", @class = "text txtxipcode", @maxlength = "10" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
                 Email</label>
-            <%: Html.TextBoxFor(m => m.Email, new { @id = "TxtEmail", @class = "text txtemail" })%>
+            <%: Html.TextBoxFor(m => m.Email, new { @id = "TxtEmail", @class = "text txtemail", @maxlength = "30" })%>
             <label class="star">
                 *</label>
         </li>
         <li>
             <label class="label">
                 Contact</label>
-            <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact", @maxlength="15" })%>
+            <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact", @maxlength="12" })%>
             <label class="star">
                 *</label>
         </li>
         <li>
             <label class="label">
-                Merchandise Item</label>
-            <%: Html.TextBoxFor(m => m.MerchandiseItem, new { @id = "TxtMerchandiseItem", @class = "text txtmerchandiseItem" })%>
+                Goods Received</label>
+            <%: Html.TextBoxFor(m => m.MerchandiseItem, new { @id = "TxtMerchandiseItem", @class = "text txtmerchandiseItem", @maxlength = "42" })%>
             <label class="star">
                 *</label>
         </li>
         <li>
             <label class="label">
-                Value</label>
-            <%: Html.TextBoxFor(m => m.Value, new { @id = "TxtValue", @class = "text txtvalue" })%>
+                Quantity</label>
+            <%: Html.TextBoxFor(m => m.Quanity, new { @id = "TxtQuanity", @class = "text txtquantity", @maxlength = "15" })%>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Goods FMV Value</label>
+            <%: Html.TextBoxFor(m => m.Value, new { @id = "TxtValue", @class = "text txtvalue", @maxlength = "15" })%>
             <label class="star">
                 *</label>
         </li>
@@ -87,6 +129,17 @@
                 </option>
                 <% } %>
             </select>
+            <label class="star">
+                *</label>
+        </li>
+        <li>
+            <label class="label">
+                Issued Date
+            </label>
+            <label class="label">
+                <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
+            </label>
+            <%: Html.TextBoxFor(m => m.IssuedDate, new { @id = "TxtIssuedDate", @class = "text txtdate", @maxlength = "10" })%>
             <label class="star">
                 *</label>
         </li>

@@ -1,0 +1,4 @@
+﻿1. Date plugin for multi select for recurrence receipt.
+2. Receipt generation in HTML and PDF
+3. Export to excel
+4. Edit  for receipts
