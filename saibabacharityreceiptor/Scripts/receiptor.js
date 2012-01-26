@@ -17,17 +17,33 @@
             && $('.txtmerchandiseItem').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtquantity').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtservicetype').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txthoursserved').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txtfmvvalue').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtdonationamount').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtdonationinwords').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtmerchandiseItem').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txtvalue').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txthoursserved').validateText({ cssclass: "errorinfo", alert: true })) {
+            && $('.txthoursserved').validateText({ cssclass: "errorinfo", alert: true })
+            && $('.txtrateperhour').validateText({ cssclass: "errorinfo", alert: true })) {
+            if ($('.txtfmvvalue').size() > 0 && $('.txtfmvvalue').val() != "" && parseInt($('.txtfmvvalue').val()) < 1) {
+                alert("Please Input FMV");
+                $('.txtfmvvalue').addClass('errorinfo');
+                $('.txtfmvvalue').focus();
+                return false;
+            }
+            if ($('.txtvalue').size() > 0 && $('.txtvalue').val() != "" && parseInt($('.txtvalue').val()) < 1) {
+                alert("Please Input value");
+                $('.txtvalue').addClass('errorinfo');
+                $('.txtvalue').focus();
+                return false;
+            }
             if ($('.txthoursserved').size() > 0 && $('.txthoursserved').val() != "" && parseInt($('.txthoursserved').val()) < 1) {
-                alert("Please Input no of hours");
+                alert("Please Input no of hours served");
                 $('.txthoursserved').addClass('errorinfo');
                 $('.txthoursserved').focus();
+                return false;
+            }
+            if ($('.txtrateperhour').size() > 0 && $('.txtrateperhour').val() != "" && parseInt($('.txtrateperhour').val()) < 1) {
+                alert("Please Input rate per hour");
+                $('.txtrateperhour').addClass('errorinfo');
+                $('.txtrateperhour').focus();
                 return false;
             }
             if ($('.cmbModeOfPayment').size() > 0 && $('.cmbModeOfPayment')[0].selectedIndex == 0) {

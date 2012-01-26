@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\document.css" />
     <Content Include="Images\add.jpg" />
     <Content Include="Images\remove.jpg" />
     <Content Include="Scripts\Reports.js" />
@@ -415,16 +416,26 @@
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Logon_Ctrl.ascx" />
+    <Content Include="Views\Account\LogOnPage.aspx" />
     <Content Include="Views\Controlpanel\AddUser.aspx" />
     <Content Include="Views\Controlpanel\EditUser.aspx" />
     <Content Include="Views\Controlpanel\Home.aspx" />
     <Content Include="Views\Controlpanel\ImportfromExcel.aspx" />
+    <Content Include="Views\Home\EditMerchandiseReceipt.aspx" />
+    <Content Include="Views\Home\EditRecurringReceipt.aspx" />
+    <Content Include="Views\Home\EditRegularReceipt.aspx" />
+    <Content Include="Views\Home\EditServicesReceipt.aspx" />
+    <Content Include="Views\Home\MerchandiseReceipt_Ctrl.ascx" />
+    <Content Include="Views\Home\RecurringReceipt_Ctrl.ascx" />
+    <Content Include="Views\Home\ServicesReceipt_Ctrl.ascx" />
     <Content Include="Views\Reports\MerchandiseReceipts.aspx" />
     <Content Include="Views\Reports\RecurringReceipts.aspx" />
     <Content Include="Views\Reports\RegularReceipts.aspx" />
     <Content Include="Views\Controlpanel\Users.aspx" />
     <Content Include="Views\Home\MerchandiseReceipt.aspx" />
     <Content Include="Views\Controlpanel\Reports.aspx" />
+    <Content Include="Views\Home\RegularReceipt_Ctrl.ascx" />
     <Content Include="Views\Reports\ServicesReceipts.aspx" />
     <Content Include="Views\Shared\Printoptions.aspx" />
     <Content Include="Views\Home\PrintReceipt.aspx" />

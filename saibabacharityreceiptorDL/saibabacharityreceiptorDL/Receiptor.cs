@@ -10,7 +10,7 @@ namespace saibabacharityreceiptorDL
         public Receipt()
         {
             RecurringDates = new List<DateTime>();
-            OnDateTime = DateTime.Now;
+            DateReceived = DateTime.Now;
             IssuedDate = DateTime.Now;
         }
 
@@ -56,7 +56,7 @@ namespace saibabacharityreceiptorDL
 
         public User DonationReceiver { get; set; }
 
-        public DateTime OnDateTime { get; set; }
+        public DateTime DateReceived { get; set; }
 
         public ReceiptType ReceiptType { get; set; }
 

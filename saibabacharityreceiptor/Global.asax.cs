@@ -42,6 +42,12 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "edit_receipt", // Route name
+                "EditReceipt/{recpId}", // URL with parameters
+                new { controller = "home", action = "EditReceipt", recpId = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Controlpanel", // Route name
                 "Controlpanel", // URL with parameters
                 new { controller = "Controlpanel", action = "home" }

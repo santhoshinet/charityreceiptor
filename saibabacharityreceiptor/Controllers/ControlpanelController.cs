@@ -292,45 +292,78 @@ namespace saibabacharityreceiptor.Controllers
                                     foreach (DataRow dataRow in dtExcelRecords.Rows)
                                     {
                                         string receiptType = string.Empty,
-                                               name = string.Empty,
+                                               firstname = string.Empty,
+                                               mi = string.Empty,
+                                               lastname = string.Empty,
                                                address = string.Empty,
+                                               city = string.Empty,
+                                               state = string.Empty,
+                                               zipcode = string.Empty,
                                                email = string.Empty,
                                                contact = string.Empty,
+                                               datereceived = string.Empty,
+                                               issueddate = string.Empty,
                                                donationamount = string.Empty,
                                                donationAmountinwords = string.Empty,
-                                               merchandiseItem = string.Empty,
-                                               value = string.Empty,
-                                               hoursServed = string.Empty,
                                                recurringDates = string.Empty,
+                                               merchandiseItem = string.Empty,
+                                               quantity = string.Empty,
+                                               value = string.Empty,
+                                               servicetype = string.Empty,
+                                               hoursServed = string.Empty,
+                                               rateperhour = string.Empty,
+                                               fmvvalue = string.Empty,
                                                modeOfPayment = string.Empty,
                                                receivedBy = string.Empty;
                                         if (dataRow[0] != null && !string.IsNullOrEmpty(dataRow[0].ToString()))
                                             receiptType = dataRow[0].ToString();
                                         if (dataRow[1] != null && !string.IsNullOrEmpty(dataRow[1].ToString()))
-                                            name = dataRow[1].ToString();
+                                            firstname = dataRow[1].ToString();
                                         if (dataRow[2] != null && !string.IsNullOrEmpty(dataRow[2].ToString()))
-                                            address = dataRow[2].ToString();
+                                            mi = dataRow[2].ToString();
                                         if (dataRow[3] != null && !string.IsNullOrEmpty(dataRow[3].ToString()))
-                                            email = dataRow[3].ToString();
+                                            lastname = dataRow[3].ToString();
                                         if (dataRow[4] != null && !string.IsNullOrEmpty(dataRow[4].ToString()))
-                                            contact = dataRow[4].ToString();
+                                            address = dataRow[4].ToString();
                                         if (dataRow[5] != null && !string.IsNullOrEmpty(dataRow[5].ToString()))
-                                            donationamount = dataRow[5].ToString();
+                                            city = dataRow[5].ToString();
                                         if (dataRow[6] != null && !string.IsNullOrEmpty(dataRow[6].ToString()))
-                                            donationAmountinwords = dataRow[6].ToString();
+                                            state = dataRow[6].ToString();
                                         if (dataRow[7] != null && !string.IsNullOrEmpty(dataRow[7].ToString()))
-                                            merchandiseItem = dataRow[7].ToString();
+                                            zipcode = dataRow[7].ToString();
                                         if (dataRow[8] != null && !string.IsNullOrEmpty(dataRow[8].ToString()))
-                                            value = dataRow[8].ToString();
+                                            email = dataRow[8].ToString();
                                         if (dataRow[9] != null && !string.IsNullOrEmpty(dataRow[9].ToString()))
-                                            hoursServed = dataRow[9].ToString();
+                                            contact = dataRow[9].ToString();
                                         if (dataRow[10] != null && !string.IsNullOrEmpty(dataRow[10].ToString()))
-                                            recurringDates = dataRow[10].ToString();
+                                            datereceived = dataRow[10].ToString();
                                         if (dataRow[11] != null && !string.IsNullOrEmpty(dataRow[11].ToString()))
-                                            modeOfPayment = dataRow[11].ToString();
+                                            issueddate = dataRow[11].ToString();
                                         if (dataRow[12] != null && !string.IsNullOrEmpty(dataRow[12].ToString()))
-                                            receivedBy = dataRow[12].ToString();
-                                        if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(receivedBy))
+                                            donationamount = dataRow[12].ToString();
+                                        if (dataRow[13] != null && !string.IsNullOrEmpty(dataRow[13].ToString()))
+                                            donationAmountinwords = dataRow[13].ToString();
+                                        if (dataRow[14] != null && !string.IsNullOrEmpty(dataRow[14].ToString()))
+                                            recurringDates = dataRow[14].ToString();
+                                        if (dataRow[15] != null && !string.IsNullOrEmpty(dataRow[15].ToString()))
+                                            merchandiseItem = dataRow[15].ToString();
+                                        if (dataRow[16] != null && !string.IsNullOrEmpty(dataRow[16].ToString()))
+                                            quantity = dataRow[16].ToString();
+                                        if (dataRow[17] != null && !string.IsNullOrEmpty(dataRow[17].ToString()))
+                                            value = dataRow[17].ToString();
+                                        if (dataRow[18] != null && !string.IsNullOrEmpty(dataRow[18].ToString()))
+                                            servicetype = dataRow[18].ToString();
+                                        if (dataRow[19] != null && !string.IsNullOrEmpty(dataRow[19].ToString()))
+                                            hoursServed = dataRow[19].ToString();
+                                        if (dataRow[20] != null && !string.IsNullOrEmpty(dataRow[20].ToString()))
+                                            rateperhour = dataRow[20].ToString();
+                                        if (dataRow[21] != null && !string.IsNullOrEmpty(dataRow[21].ToString()))
+                                            fmvvalue = dataRow[21].ToString();
+                                        if (dataRow[22] != null && !string.IsNullOrEmpty(dataRow[22].ToString()))
+                                            modeOfPayment = dataRow[22].ToString();
+                                        if (dataRow[23] != null && !string.IsNullOrEmpty(dataRow[23].ToString()))
+                                            receivedBy = dataRow[23].ToString();
+                                        if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(firstname) && !string.IsNullOrEmpty(receivedBy))
                                         {
                                             List<User> receiver =
                                                 (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
@@ -341,18 +374,24 @@ namespace saibabacharityreceiptor.Controllers
                                                 var receipt = new Receipt
                                                                   {
                                                                       ReceiptNumber = Utilities.GenerateReceiptId(),
-                                                                      FirstName = name,
+                                                                      FirstName = firstname,
+                                                                      Mi = mi,
+                                                                      LastName = lastname,
                                                                       Address = address,
+                                                                      City = city,
+                                                                      State = state,
+                                                                      ZipCode = zipcode,
                                                                       Email = email,
-                                                                      OnDateTime = DateTime.Now,
                                                                       Contact = contact,
+                                                                      DateReceived = Convert.ToDateTime(datereceived),
+                                                                      IssuedDate = Convert.ToDateTime(issueddate),
                                                                       DonationReceiver = receiver[0],
                                                                       GroupId = groupId
                                                                   };
                                                 switch (receiptType.ToLower().Trim())
                                                 {
                                                     case "regular receipt":
-                                                    case "recurring payment receipt":
+                                                    case "recurring receipt":
                                                         {
                                                             if (string.IsNullOrEmpty(modeOfPayment) || string.IsNullOrEmpty(donationamount) || string.IsNullOrEmpty(donationAmountinwords))
                                                                 continue;
@@ -400,8 +439,14 @@ namespace saibabacharityreceiptor.Controllers
                                                 }
                                                 switch (receiptType.ToLower().Trim())
                                                 {
-                                                    case "recurring payment receipt":
+                                                    case "regular receipt":
                                                         {
+                                                            receipt.ReceiptType = ReceiptType.GeneralReceipt;
+                                                            break;
+                                                        }
+                                                    case "recurring receipt":
+                                                        {
+                                                            receipt.ReceiptType = ReceiptType.RecurringReceipt;
                                                             string[] dates = recurringDates.Split(',');
                                                             foreach (string date in dates)
                                                             {
@@ -418,17 +463,20 @@ namespace saibabacharityreceiptor.Controllers
                                                         }
                                                     case "merchandise receipt":
                                                         {
-                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(value))
+                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(value) || string.IsNullOrEmpty(quantity))
                                                                 continue;
+                                                            receipt.ReceiptType = ReceiptType.MerchandiseReceipt;
                                                             receipt.MerchandiseItem = merchandiseItem;
+                                                            receipt.Quantity = quantity;
                                                             receipt.FmvValue = value;
                                                             break;
                                                         }
                                                     case "services receipt":
                                                         {
-                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(hoursServed))
+                                                            if (string.IsNullOrEmpty(servicetype) || string.IsNullOrEmpty(hoursServed) || string.IsNullOrEmpty(rateperhour) || string.IsNullOrEmpty(fmvvalue))
                                                                 continue;
-                                                            receipt.MerchandiseItem = merchandiseItem;
+                                                            receipt.ReceiptType = ReceiptType.ServicesReceipt;
+                                                            receipt.ServiceType = servicetype;
                                                             try
                                                             {
                                                                 receipt.HoursServed = Convert.ToInt32(hoursServed);
@@ -437,6 +485,8 @@ namespace saibabacharityreceiptor.Controllers
                                                             {
                                                                 continue;
                                                             }
+                                                            receipt.RatePerHrOrDay = rateperhour;
+                                                            receipt.FmvValue = fmvvalue;
                                                             break;
                                                         }
                                                     default:

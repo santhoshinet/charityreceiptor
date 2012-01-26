@@ -77,12 +77,10 @@
                         <% } %>
                     </td>
                     <td style="width: 60px">
-                        <span class="delete_button" href="<%="/Reports/EditRegularReceipt/" + localRecurringReceipt.ReceiptNumber%>">
-                            <img src="/Images/ico-delete.gif" />
-                            delete</span>
+                        <span class="delete_button"><img src="/Images/ico-delete.gif" />delete</span>
                     </td>
                     <td style="width: 50px">
-                        <span class="edit_button" href="<%="/Reports/EditRegularReceipt/" + localRecurringReceipt.ReceiptNumber%>">
+                        <span class="edit_button" href="<%="/EditReceipt/" + localRecurringReceipt.ReceiptNumber%>">
                             <img src="/Images/edit.gif" />
                             edit</span>
                     </td>

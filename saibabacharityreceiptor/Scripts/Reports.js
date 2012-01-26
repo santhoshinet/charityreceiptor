@@ -6,36 +6,11 @@
             'transitionOut': 'elastic',
             'type': 'iframe',
             'autoScale': 'true',
-            'height': 320,
-            'width': 490,
+            'height': 420,
+            'width': 540,
             'autoDimensions': 'false',
             'onClosed': function () {
-                var self = $(this)[0].orig;
-                var tr = self.parents('tr').eq(0);
-                var img = self.find('img');
-                img.css({ 'width': 'auto', 'height': 'auto' });
-                $.ajax({
-                    type: 'POST',
-                    url: '/Home/EditReceipt/' + tr.attr('id'),
-                    data: "{'userid':'" + tr.attr('id') + "'}",
-                    async: true,
-                    cache: false,
-                    beforeSend: function () {
-                        img.attr('src', '/images/ajax-loader.gif');
-                    },
-                    success: function (data) {
-                        if (data != "") {
-                            var index = tr.find('td').eq(0).html();
-                            tr.html(data);
-                            tr.find('td').eq(0).html(index);
-                            edit_delete();
-                        }
-                        img.attr('src', '/Images/edit.gif');
-                    },
-                    error: function (e) {
-                        img.attr('src', '/Images/edit.gif');
-                    }
-                });
+                window.location = window.location;
             }
         }
         );

@@ -21,7 +21,7 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.GeneralReceipt)
-                                    orderby c.OnDateTime
+                                    orderby c.DateReceived
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalRegularReceipt
                                                                               {
@@ -33,7 +33,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   Email = receipt.Email,
                                                                                   ModeOfPayment = receipt.ModeOfPayment,
                                                                                   Name = receipt.FirstName,
-                                                                                  OnDateTime = receipt.OnDateTime,
+                                                                                  OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber
                                                                               }).ToList();
                     ViewData["pageIndex"] = pageIndex;
@@ -71,7 +71,7 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.RecurringReceipt)
-                                    orderby c.OnDateTime
+                                    orderby c.DateReceived
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalRecurrenceReceipt
                                                                               {
@@ -83,7 +83,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   Email = receipt.Email,
                                                                                   ModeOfPayment = receipt.ModeOfPayment,
                                                                                   Name = receipt.FirstName,
-                                                                                  OnDateTime = receipt.OnDateTime,
+                                                                                  OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
                                                                                   RecurringDates = receipt.RecurringDates
                                                                               }).ToList();
@@ -122,7 +122,7 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.MerchandiseReceipt)
-                                    orderby c.OnDateTime
+                                    orderby c.DateReceived
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalMerchandiseReceipt
                                                                               {
@@ -131,7 +131,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
                                                                                   Name = receipt.FirstName,
-                                                                                  OnDateTime = receipt.OnDateTime,
+                                                                                  OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
                                                                                   MerchandiseItem = receipt.MerchandiseItem,
                                                                                   Value = receipt.FmvValue
@@ -171,7 +171,7 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.ServicesReceipt)
-                                    orderby c.OnDateTime
+                                    orderby c.DateReceived
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localServicesReceipts = receipts.Select(receipt => new LocalServicesReceipt
                     {
@@ -180,7 +180,7 @@ namespace saibabacharityreceiptor.Controllers
                         DonationReceiverName = receipt.DonationReceiver.Username,
                         Email = receipt.Email,
                         Name = receipt.FirstName,
-                        OnDateTime = receipt.OnDateTime,
+                        OnDateTime = receipt.DateReceived,
                         ReceiptNumber = receipt.ReceiptNumber,
                         HoursServed = receipt.HoursServed
                     }).ToList();

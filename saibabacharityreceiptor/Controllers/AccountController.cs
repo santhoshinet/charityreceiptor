@@ -24,16 +24,17 @@ namespace saibabacharityreceiptor.Controllers
             base.Initialize(requestContext);
         }
 
-        //
-        // GET: /Account/LogOn
         [HttpGet]
         public ActionResult LogOn()
         {
             return View();
         }
 
-        //
-        // POST: /Account/LogOn
+        [HttpGet]
+        public ActionResult LogOnPage()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
@@ -84,8 +85,6 @@ namespace saibabacharityreceiptor.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/LogOff
         [HttpGet]
         public ActionResult LogOff()
         {
@@ -94,17 +93,11 @@ namespace saibabacharityreceiptor.Controllers
             return null;
         }
 
-        //
-        // GET: /Account/ChangePassword
-
         [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        //
-        // POST: /Account/ChangePassword
 
         [Authorize]
         [HttpPost]
@@ -136,9 +129,6 @@ namespace saibabacharityreceiptor.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
-        // GET: /Account/ChangePasswordSuccess
 
         public ActionResult ChangePasswordSuccess()
         {

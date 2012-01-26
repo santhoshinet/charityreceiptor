@@ -41,11 +41,11 @@
                     </td>
                 </tr>
                 <%
-            int index = 1;
+        int index = 1;
                 %>
                 <%
-            foreach (LocalRegularReceipt localRegularReceipt in localRegularReceipts)
-            {
+        foreach (LocalRegularReceipt localRegularReceipt in localRegularReceipts)
+        {
                 %>
                 <tr id="<%=localRegularReceipt.ReceiptNumber%>">
                     <td>
@@ -67,12 +67,11 @@
                         <%= localRegularReceipt.DonationReceiverName %>
                     </td>
                     <td style="width: 60px">
-                        <span class="delete_button" href="<%="/Reports/EditRegularReceipt/" + localRegularReceipt.ReceiptNumber%>">
-                            <img src="/Images/ico-delete.gif" />
-                            delete</span>
+                        <span class="delete_button">
+                            <img src="/Images/ico-delete.gif" />delete</span>
                     </td>
                     <td style="width: 50px">
-                        <span class="edit_button" href="<%="/Reports/EditRegularReceipt/" + localRegularReceipt.ReceiptNumber%>">
+                        <span class="edit_button" href="<%="/EditReceipt/" + localRegularReceipt.ReceiptNumber%>">
                             <img src="/Images/edit.gif" />
                             edit</span>
                     </td>
@@ -139,9 +138,9 @@
         </li>
     </ul>
     <%
-        }
-        else
-        {%>
+    }
+    else
+    {%>
     <ul class="ul">
         <li>
             <p>

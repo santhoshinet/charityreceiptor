@@ -21,6 +21,8 @@ namespace saibabacharityreceiptor.Controllers
             {
                 LoadReceiptValuesFromDb(scope);
                 ViewData["PostAction"] = string.Empty;
+                ViewData["selectedModeOfPayment"] = string.Empty;
+                ViewData["selectedDonationReceivedBy"] = string.Empty;
                 return View(new RegularReceiptModels
                                       {
                                           ReceiptNumber = Utilities.GenerateReceiptId()
@@ -57,7 +59,7 @@ namespace saibabacharityreceiptor.Controllers
                                           DonationAmountinWords = model.DonationAmountinWords,
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
-                                          OnDateTime = receivedTime,
+                                          DateReceived = receivedTime,
                                           FirstName = model.FirstName,
                                           ReceiptType = ReceiptType.GeneralReceipt,
                                           City = model.City,
@@ -100,6 +102,8 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["selectedModeOfPayment"] = Request.Form["cmbModeOfPayment"];
+                ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
             }
@@ -112,7 +116,7 @@ namespace saibabacharityreceiptor.Controllers
         public ActionResult UpdateRegularReceipt(RegularReceiptModels model)
         {
             if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("LogOn", "Account");
+                return RedirectToAction("LogOnPage", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
             if (Checkauthorization(scope, User.Identity.Name))
             {
@@ -138,7 +142,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.DonationAmountinWords = model.DonationAmountinWords;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
-                        receipt.OnDateTime = receivedTime;
+                        receipt.DateReceived = receivedTime;
                         receipt.FirstName = model.FirstName;
                         receipt.LastName = model.LastName;
                         receipt.City = model.City;
@@ -169,18 +173,23 @@ namespace saibabacharityreceiptor.Controllers
                                     receipt.ModeOfPayment = ModeOfPayment.Goods;
                                     break;
                                 }
+                            case "Online":
+                                {
+                                    receipt.ModeOfPayment = ModeOfPayment.Online;
+                                    break;
+                                }
                         }
                         scope.Add(receipt);
                         scope.Transaction.Commit();
                         ViewData["Status"] = "Updated successfully.";
-                        return View("PartialViewStatus");
+                        return View("Status");
                     }
                 }
                 ViewData["Status"] = "Unable to generate receipt due to invalid parameter passed.";
-                return View("PartialViewStatus");
+                return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("PartialViewStatus");
+            return View("Status");
         }
 
         [Authorize]
@@ -194,6 +203,8 @@ namespace saibabacharityreceiptor.Controllers
             {
                 LoadReceiptValuesFromDb(scope);
                 ViewData["PostAction"] = string.Empty;
+                ViewData["selectedModeOfPayment"] = string.Empty;
+                ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new RecurringReceipt
                 {
                     ReceiptNumber = Utilities.GenerateReceiptId()
@@ -231,7 +242,7 @@ namespace saibabacharityreceiptor.Controllers
                         DonationAmountinWords = model.DonationAmountinWords,
                         DonationReceiver = donationReceiver[0],
                         Email = model.Email,
-                        OnDateTime = receivedTime,
+                        DateReceived = receivedTime,
                         FirstName = model.FirstName,
                         City = model.City,
                         LastName = model.LastName,
@@ -285,6 +296,8 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["selectedModeOfPayment"] = Request.Form["cmbModeOfPayment"];
+                ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
             }
@@ -323,7 +336,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.DonationAmountinWords = model.DonationAmountinWords;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
-                        receipt.OnDateTime = receivedTime;
+                        receipt.DateReceived = receivedTime;
                         receipt.FirstName = model.FirstName;
                         receipt.Mi = model.Mi;
                         receipt.LastName = model.LastName;
@@ -364,7 +377,9 @@ namespace saibabacharityreceiptor.Controllers
                         {
                             try
                             {
-                                receipt.RecurringDates.Add(Convert.ToDateTime(date));
+                                var dateTime = Convert.ToDateTime(date);
+                                if (!receipt.RecurringDates.Contains(dateTime))
+                                    receipt.RecurringDates.Add(dateTime);
                             }
                             catch (Exception)
                             {
@@ -374,14 +389,14 @@ namespace saibabacharityreceiptor.Controllers
                         scope.Add(receipt);
                         scope.Transaction.Commit();
                         ViewData["Status"] = "Updated successfully.";
-                        return View("PartialViewStatus");
+                        return View("Status");
                     }
                 }
                 ViewData["Status"] = "Unable to generate receipt due to invalid parameter passed.";
-                return View("PartialViewStatus");
+                return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("PartialViewStatus");
+            return View("Status");
         }
 
         [Authorize]
@@ -395,6 +410,7 @@ namespace saibabacharityreceiptor.Controllers
             {
                 LoadReceiptValuesFromDb(scope);
                 ViewData["PostAction"] = string.Empty;
+                ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new MerchandiseReceipt
                                       {
                                           ReceiptNumber = Utilities.GenerateReceiptId()
@@ -432,7 +448,7 @@ namespace saibabacharityreceiptor.Controllers
                                           FmvValue = model.Value,
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
-                                          OnDateTime = receivedTime,
+                                          DateReceived = receivedTime,
                                           FirstName = model.FirstName,
                                           City = model.City,
                                           LastName = model.LastName,
@@ -448,6 +464,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
             }
@@ -486,7 +503,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.FmvValue = model.Value;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
-                        receipt.OnDateTime = receivedTime;
+                        receipt.DateReceived = receivedTime;
                         receipt.FirstName = model.FirstName;
                         receipt.Mi = model.Mi;
                         receipt.LastName = model.LastName;
@@ -499,14 +516,14 @@ namespace saibabacharityreceiptor.Controllers
                         scope.Add(receipt);
                         scope.Transaction.Commit();
                         ViewData["Status"] = "Updated successfully.";
-                        return View("PartialViewStatus");
+                        return View("Status");
                     }
                 }
                 ViewData["Status"] = "Unable to generate receipt due to invalid parameter passed.";
-                return View("PartialViewStatus");
+                return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("PartialViewStatus");
+            return View("Status");
         }
 
         [Authorize]
@@ -520,6 +537,7 @@ namespace saibabacharityreceiptor.Controllers
             {
                 LoadReceiptValuesFromDb(scope);
                 ViewData["PostAction"] = string.Empty;
+                ViewData["selectedDonationReceivedBy"] = string.Empty;
                 var receiptModel = new ServicesReceipt
                                        {
                                            ReceiptNumber = Utilities.GenerateReceiptId()
@@ -557,7 +575,7 @@ namespace saibabacharityreceiptor.Controllers
                                           HoursServed = Convert.ToInt32(model.HoursServed),
                                           DonationReceiver = donationReceiver[0],
                                           Email = model.Email,
-                                          OnDateTime = receivedTime,
+                                          DateReceived = receivedTime,
                                           FirstName = model.FirstName,
                                           Mi = model.Mi,
                                           City = model.City,
@@ -567,13 +585,14 @@ namespace saibabacharityreceiptor.Controllers
                                           ReceiptType = ReceiptType.ServicesReceipt,
                                           FmvValue = model.FmvValue.ToString(),
                                           IssuedDate = model.IssuedDate,
-                                          RatePerHrOrDay = model.RateperHour.ToString(),
+                                          RatePerHrOrDay = model.RateperHour.ToString()
                                       };
                     scope.Add(receipt);
                     scope.Transaction.Commit();
                     ViewData["ReceiptID"] = receipt.ReceiptNumber;
                     return View("Printoptions");
                 }
+                ViewData["selectedDonationReceivedBy"] = Request.Form["CmbDonationReceivedBy"];
                 ModelState.AddModelError("", "Unable to generate receipt due to invalid parameter passed.");
                 return View();
             }
@@ -611,7 +630,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.HoursServed = Convert.ToInt32(model.HoursServed);
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
-                        receipt.OnDateTime = receivedTime;
+                        receipt.DateReceived = receivedTime;
                         receipt.ReceiptType = ReceiptType.ServicesReceipt;
                         receipt.City = model.City;
                         receipt.FirstName = model.FirstName;
@@ -627,22 +646,21 @@ namespace saibabacharityreceiptor.Controllers
                         scope.Add(receipt);
                         scope.Transaction.Commit();
                         ViewData["Status"] = "Updated successfully.";
-                        return View("PartialViewStatus");
+                        return View("Status");
                     }
                 }
                 ViewData["Status"] = "Unable to generate receipt due to invalid parameter passed.";
-                return View("PartialViewStatus");
+                return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
-            return View("PartialViewStatus");
+            return View("Status");
         }
 
-        [Authorize]
         [HttpGet]
-        public ActionResult PrintReceipt(string recpId)
+        public ActionResult EditReceipt(string recpId)
         {
             if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("LogOn", "Account");
+                return RedirectToAction("LogOnPage", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
             if (Checkauthorization(scope, User.Identity.Name))
             {
@@ -651,9 +669,109 @@ namespace saibabacharityreceiptor.Controllers
                                           select c).ToList();
                 if (receipts.Count > 0)
                 {
-                    var receiptData = new ReceiptData { Name = receipts[0].FirstName };
-                    ViewData["Receipt_Data"] = receiptData;
-                    return View();
+                    LoadReceiptValuesFromDb(scope);
+                    var receipt = receipts[0];
+                    switch (receipt.ReceiptType)
+                    {
+                        case ReceiptType.GeneralReceipt:
+                            {
+                                var model = new RegularReceiptModels
+                                                {
+                                                    Address = receipt.Address,
+                                                    Contact = receipt.Contact,
+                                                    DateReceived = receipt.DateReceived,
+                                                    DonationAmount = receipt.DonationAmount,
+                                                    DonationAmountinWords = receipt.DonationAmountinWords,
+                                                    Email = receipt.Email,
+                                                    City = receipt.City,
+                                                    FirstName = receipt.FirstName,
+                                                    LastName = receipt.LastName,
+                                                    Mi = receipt.Mi,
+                                                    ReceiptNumber = receipt.ReceiptNumber,
+                                                    State = receipt.State,
+                                                    ZipCode = receipt.ZipCode,
+                                                    IssuedDate = receipt.IssuedDate
+                                                };
+                                ViewData["PostAction"] = "UpdateRegularReceipt";
+                                ViewData["selectedModeOfPayment"] = receipt.ModeOfPayment.ToString();
+                                ViewData["selectedDonationReceivedBy"] = receipt.DonationReceiver.Username;
+                                return View("EditRegularReceipt", model);
+                            }
+                        case ReceiptType.RecurringReceipt:
+                            {
+                                var model = new RecurringReceipt
+                                                {
+                                                    Address = receipt.Address,
+                                                    Contact = receipt.Contact,
+                                                    DateReceived = receipt.DateReceived,
+                                                    DonationAmount = receipt.DonationAmount,
+                                                    DonationAmountinWords = receipt.DonationAmountinWords,
+                                                    Email = receipt.Email,
+                                                    ReceiptNumber = receipt.ReceiptNumber,
+                                                    City = receipt.City,
+                                                    FirstName = receipt.FirstName,
+                                                    LastName = receipt.LastName,
+                                                    Mi = receipt.Mi,
+                                                    State = receipt.State,
+                                                    ZipCode = receipt.ZipCode,
+                                                    IssuedDate = receipt.IssuedDate,
+                                                    RecurrenceDates = receipt.RecurringDates.Select(recurringDate => recurringDate.ToString()).ToArray()
+                                                };
+                                ViewData["PostAction"] = "UpdateRecurringReceipt";
+                                ViewData["selectedModeOfPayment"] = receipt.ModeOfPayment.ToString();
+                                ViewData["selectedDonationReceivedBy"] = receipt.DonationReceiver.Username;
+                                return View("EditRecurringReceipt", model);
+                            }
+                        case ReceiptType.MerchandiseReceipt:
+                            {
+                                var model = new MerchandiseReceipt
+                                {
+                                    Address = receipt.Address,
+                                    Contact = receipt.Contact,
+                                    DateReceived = receipt.DateReceived,
+                                    Email = receipt.Email,
+                                    ReceiptNumber = receipt.ReceiptNumber,
+                                    MerchandiseItem = receipt.MerchandiseItem,
+                                    Value = receipt.FmvValue,
+                                    City = receipt.City,
+                                    FirstName = receipt.FirstName,
+                                    LastName = receipt.LastName,
+                                    Mi = receipt.Mi,
+                                    Quanity = receipt.Quantity,
+                                    State = receipt.State,
+                                    ZipCode = receipt.ZipCode,
+                                    IssuedDate = receipt.IssuedDate
+                                };
+                                ViewData["selectedDonationReceivedBy"] = receipt.DonationReceiver.Username;
+                                ViewData["PostAction"] = "UpdateMerchandiseReceipt";
+                                return View("EditMerchandiseReceipt", model);
+                            }
+                        case ReceiptType.ServicesReceipt:
+                            {
+                                var model = new ServicesReceipt
+                                {
+                                    Address = receipt.Address,
+                                    Contact = receipt.Contact,
+                                    DateReceived = receipt.DateReceived,
+                                    Email = receipt.Email,
+                                    ReceiptNumber = receipt.ReceiptNumber,
+                                    HoursServed = receipt.HoursServed,
+                                    City = receipt.City,
+                                    FirstName = receipt.FirstName,
+                                    FmvValue = Convert.ToInt32(receipt.FmvValue),
+                                    LastName = receipt.LastName,
+                                    Mi = receipt.Mi,
+                                    RateperHour = Convert.ToInt32(receipt.RatePerHrOrDay),
+                                    IssuedDate = receipt.IssuedDate,
+                                    ServiceType = receipt.ServiceType,
+                                    State = receipt.State,
+                                    ZipCode = receipt.ZipCode
+                                };
+                                ViewData["selectedDonationReceivedBy"] = receipt.DonationReceiver.Username;
+                                ViewData["PostAction"] = "UpdateServicesReceipt";
+                                return View("EditServicesReceipt", model);
+                            }
+                    }
                 }
                 ViewData["Status"] = "The receipt not found for the given id.";
                 return View("Status");
@@ -673,136 +791,6 @@ namespace saibabacharityreceiptor.Controllers
             {
                 ViewData["ReceiptID"] = recpId;
                 return View();
-            }
-            ViewData["Status"] = "You are not authorized to do this operation";
-            return View("PartialViewStatus");
-        }
-
-        [Authorize]
-        [HttpGet]
-        public string DownloadReceipt(string recpId)
-        {
-            return "this feature is under construction.";
-        }
-
-        [Authorize]
-        [HttpGet]
-        public ActionResult EditReceipt(string recpId)
-        {
-            if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("LogOn", "Account");
-            var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
-            {
-                List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                          where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
-                                          select c).ToList();
-                if (receipts.Count > 0)
-                {
-                    var receipt = receipts[0];
-                    switch (receipt.ReceiptType)
-                    {
-                        case ReceiptType.GeneralReceipt:
-                            {
-                                var model = new RegularReceiptModels
-                                                {
-                                                    Address = receipt.Address,
-                                                    Contact = receipt.Contact,
-                                                    DateReceived = receipt.OnDateTime,
-                                                    DonationAmount = receipt.DonationAmount,
-                                                    DonationAmountinWords = receipt.DonationAmountinWords,
-                                                    Email = receipt.Email,
-                                                    City = receipt.City,
-                                                    FirstName = receipt.FirstName,
-                                                    LastName = receipt.LastName,
-                                                    Mi = receipt.Mi,
-                                                    ReceiptNumber = receipt.ReceiptNumber,
-                                                    State = receipt.State,
-                                                    ZipCode = receipt.ZipCode,
-                                                    IssuedDate = receipt.IssuedDate
-                                                };
-                                ViewData["PostAction"] = "UpdateRegularReceipt";
-                                return View("RegularReceipt", model);
-                            }
-                        case ReceiptType.RecurringReceipt:
-                            {
-                                var model = new RecurringReceipt
-                                                {
-                                                    Address = receipt.Address,
-                                                    Contact = receipt.Contact,
-                                                    DateReceived = receipt.OnDateTime,
-                                                    DonationAmount = receipt.DonationAmount,
-                                                    DonationAmountinWords = receipt.DonationAmountinWords,
-                                                    Email = receipt.Email,
-                                                    ReceiptNumber = receipt.ReceiptNumber,
-                                                    City = receipt.City,
-                                                    FirstName = receipt.FirstName,
-                                                    LastName = receipt.LastName,
-                                                    Mi = receipt.Mi,
-                                                    State = receipt.State,
-                                                    ZipCode = receipt.ZipCode,
-                                                    IssuedDate = receipt.IssuedDate
-                                                };
-                                var recurrenceDates = new List<string>();
-                                foreach (DateTime recurringDate in receipt.RecurringDates)
-                                {
-                                    recurrenceDates.Add(recurringDate.ToString());
-                                }
-                                model.RecurrenceDates = recurrenceDates.ToArray();
-                                ViewData["PostAction"] = "UpdateRecurringReceipt";
-                                return View("RecurringReceipt", model);
-                            }
-                        case ReceiptType.MerchandiseReceipt:
-                            {
-                                var model = new MerchandiseReceipt
-                                {
-                                    Address = receipt.Address,
-                                    Contact = receipt.Contact,
-                                    DateReceived = receipt.OnDateTime,
-                                    Email = receipt.Email,
-                                    ReceiptNumber = receipt.ReceiptNumber,
-                                    MerchandiseItem = receipt.MerchandiseItem,
-                                    Value = receipt.FmvValue,
-                                    City = receipt.City,
-                                    FirstName = receipt.FirstName,
-                                    LastName = receipt.LastName,
-                                    Mi = receipt.Mi,
-                                    Quanity = receipt.Quantity,
-                                    State = receipt.State,
-                                    ZipCode = receipt.ZipCode,
-                                    IssuedDate = receipt.IssuedDate
-                                };
-                                ViewData["PostAction"] = "UpdateMerchandiseReceipt";
-                                return View("MerchandiseReceipt", model);
-                            }
-                        case ReceiptType.ServicesReceipt:
-                            {
-                                var model = new ServicesReceipt
-                                {
-                                    Address = receipt.Address,
-                                    Contact = receipt.Contact,
-                                    DateReceived = receipt.OnDateTime,
-                                    Email = receipt.Email,
-                                    ReceiptNumber = receipt.ReceiptNumber,
-                                    HoursServed = receipt.HoursServed,
-                                    City = receipt.City,
-                                    FirstName = receipt.FirstName,
-                                    FmvValue = Convert.ToInt32(receipt.FmvValue),
-                                    LastName = receipt.LastName,
-                                    Mi = receipt.Mi,
-                                    RateperHour = Convert.ToInt32(receipt.RatePerHrOrDay),
-                                    IssuedDate = receipt.IssuedDate,
-                                    ServiceType = receipt.ServiceType,
-                                    State = receipt.State,
-                                    ZipCode = receipt.ZipCode
-                                };
-                                ViewData["PostAction"] = "UpdateServicesReceipt";
-                                return View("ServicesReceipt", model);
-                            }
-                    }
-                }
-                ViewData["Status"] = "The receipt not found for the given id.";
-                return View("Status");
             }
             ViewData["Status"] = "You are not authorized to do this operation";
             return View("PartialViewStatus");
@@ -860,6 +848,38 @@ namespace saibabacharityreceiptor.Controllers
                              select c).ToList();
             var donationReceivers = receivers.Select(receiver => receiver.Username).ToList();
             ViewData["donationReceivers"] = donationReceivers;
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult PrintReceipt(string recpId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogOn", "Account");
+            var scope = ObjectScopeProvider1.GetNewObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                          where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
+                                          select c).ToList();
+                if (receipts.Count > 0)
+                {
+                    var receiptData = new ReceiptData { Name = receipts[0].FirstName };
+                    ViewData["Receipt_Data"] = receiptData;
+                    return View();
+                }
+                ViewData["Status"] = "The receipt not found for the given id.";
+                return View("Status");
+            }
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("PartialViewStatus");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public string DownloadReceipt(string recpId)
+        {
+            return "this feature is under construction.";
         }
     }
 
