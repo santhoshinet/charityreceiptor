@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\document.css" />
+    <Content Include="Content\receipt.css" />
     <Content Include="Images\add.jpg" />
     <Content Include="Images\remove.jpg" />
     <Content Include="Scripts\Reports.js" />

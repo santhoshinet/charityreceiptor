@@ -375,13 +375,12 @@ namespace saibabacharityreceiptor.Controllers
                                     break;
                                 }
                         }
+                        receipt.RecurringDates.Clear();
                         foreach (string date in model.RecurrenceDates)
                         {
                             try
                             {
-                                var dateTime = Convert.ToDateTime(date);
-                                if (!receipt.RecurringDates.Contains(dateTime))
-                                    receipt.RecurringDates.Add(dateTime);
+                                receipt.RecurringDates.Add(Convert.ToDateTime(date));
                             }
                             catch (Exception)
                             {
