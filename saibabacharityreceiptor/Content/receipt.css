@@ -1,0 +1,133 @@
+BODY, DIV, UL, LI, SPAN, H3, TABLE, TR, TD
+{
+	padding: 0px;
+	margin: 0px;
+}
+.container
+{
+	margin: 0px 0px 0px 20px;
+	width: 800px;
+}
+.empty-header
+{
+	height: 120px;
+}
+.header
+{
+	text-align: center;
+}
+.header H3
+{
+	font: 1.4em Cambria;
+}
+.data
+{
+	margin-top: 15px;
+}
+UL
+{
+	list-style: none;
+}
+.data UL LI
+{
+	float: left;
+}
+.one
+{
+	width: 100%;
+}
+.two
+{
+	width: 50%;
+}
+.three
+{
+	width: 33%;
+}
+.clear
+{
+	float: none;
+	clear: both;
+}
+.field
+{
+	font: bold 0.9em Calibri;
+}
+.value
+{
+	font: normal 0.9em Calibri;
+	margin-left: 10px;
+}
+.box
+{
+	vertical-align: middle;
+	padding: 20px 0 0 5px;
+	border: 1px solid #999;
+	height: 100px;
+	margin-top: 10px;
+	width: 790px;
+}
+.box UL LI
+{
+	float: left;
+}
+.notes
+{
+	margin-top: 10px;
+}
+.slogan
+{
+	text-align: center;
+	margin-top: 50px;
+	color: #D94444;
+}
+.thanks
+{
+	text-align: center;
+	margin-top: 10px;
+}
+.barcode
+{
+	text-align: right;
+	margin-right: 10px;
+}
+.box UL
+{
+	margin-top: 10px;
+}
+.notes UL
+{
+	list-style: circle none;
+	margin-left: 30px;
+	font: 0.9em Calibri;
+}
+.notes UL LI
+{
+	margin-top: 10px;
+}
+.receipt .field
+{
+	font: bold 1.1em Cambria;
+}
+.receipt .value
+{
+	font: normal 1.1em Cambria;
+}
+.data TABLE
+{
+	width: 100%;
+	font: 0.9em Calibri;
+	border: 1px solid #999999;
+	padding: 5px 5px 5px 10px;
+	background: #FDFDFD;
+}
+.Tableheader
+{
+	font: bold 1em Calibri;
+	background: #F5F5F5;
+	padding: 5px;
+}
+.one TABLE TD
+{
+	padding: 0px 0px 10px 5px;
+}
