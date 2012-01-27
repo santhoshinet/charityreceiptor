@@ -95,6 +95,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ExcelModels.cs" />
     <Compile Include="Models\ReceiptModels.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Utilities.cs" />
@@ -440,6 +441,7 @@
     <Content Include="Views\Home\MerchandiseReceipt.aspx" />
     <Content Include="Views\Controlpanel\Reports.aspx" />
     <Content Include="Views\Home\RegularReceipt_Ctrl.ascx" />
+    <Content Include="Views\Reports\SearchReceipts.aspx" />
     <Content Include="Views\Reports\ServicesReceipts.aspx" />
     <Content Include="Views\Shared\Printoptions.aspx" />
     <Content Include="Views\Home\PrintRegularReceipt.aspx" />

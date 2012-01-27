@@ -3,23 +3,51 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
       <Item value="DateReceived" priority="0" />
+      <Item value="List" priority="0" />
+      <Item value="receipts" priority="0" />
+      <Item value="from" priority="0" />
+      <Item value="scope" priority="3" />
+      <Item value="Receipt`0" priority="0" />
+      <Item value="where" priority="0" />
+      <Item value="c" priority="0" />
+      <Item value="select" priority="0" />
+      <Item value="foreach" priority="0" />
+      <Item value="receipt" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
+      <Item value="GetOqlQuery`0" priority="0" />
+      <Item value="Transaction" priority="1" />
+      <Item value="Refresh`0" priority="0" />
+      <Item value="Remove`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
+      <Item value="ExecuteEnumerable`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
+      <Item value="Begin`0" priority="0" />
+      <Item value="Commit`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1447" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1622" fromTop="28" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="591" fromTop="15" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1453" fromTop="31" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="283" fromTop="12" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="760" fromTop="19" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

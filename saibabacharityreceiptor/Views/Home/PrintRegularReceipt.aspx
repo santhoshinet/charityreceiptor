@@ -66,7 +66,7 @@
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Donation Amount Received in USD:</span><span
+                <li class="one"><span class="field">Donation amount received in USD:</span><span
                     class="value"><%= receptData.DonationAmount %></span></li>
             </ul>
         </div>
@@ -74,7 +74,7 @@
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Donation Received in Words:</span><span class="value"><%= receptData.DonationAmountinWords %></span></li>
+                <li class="one"><span class="field">Donation received in words:</span><span class="value"><%= receptData.DonationAmountinWords %></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -88,14 +88,14 @@
         </div>
         <div class="box">
             <ul>
-                <li class="two"><span class="field">Donation Received By:</span><span class="value"><%= receptData.DonationReceiverName %></span></li>
+                <li class="two"><span class="field">Donation received by:</span><span class="value"><%= receptData.DonationReceiverName %></span></li>
                 <li class="two"><span class="field">Signature:</span><span class="value"></span></li>
             </ul>
             <div class="clear">
             </div>
             <ul>
                 <li class="two"><span class="field">Shridi Saibaba Temple Arizona</span><span class="value"></span></li>
-                <li class="two"><span class="field">Issues Date:</span><span class="value"><%= receptData.IssuedDate.ToString("dd MMM yyyy") %></span></li>
+                <li class="two"><span class="field">Issues date:</span><span class="value"><%= receptData.IssuedDate.ToString("dd MMM yyyy") %></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -116,7 +116,7 @@
                 Thank You – Jai Sairam!</h3>
         </div>
         <div class="barcode">
-            <img src="" />
+            <img src="#" />
         </div>
     </div>
 </body>

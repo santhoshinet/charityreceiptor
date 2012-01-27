@@ -10,6 +10,15 @@ namespace saibabacharityreceiptorSeeds
         {
             CreateUser("santhoshonet", "santhoshonet@gmail.com");
             CreateUser("santhosh", "santhoshonet@gmail.com");
+            var scope = ObjectScopeProvider1.GetNewObjectScope();
+            List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                      select c).ToList();
+            foreach (var receipt in receipts)
+            {
+                scope.Transaction.Begin();
+                scope.Remove(receipt) ;
+                scope.Transaction.Commit();
+            }
         }
 
         private static void CreateUser(string username, string email)
