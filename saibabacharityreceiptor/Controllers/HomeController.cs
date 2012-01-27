@@ -119,7 +119,7 @@ namespace saibabacharityreceiptor.Controllers
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOnPage", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
+            if (CheckAdminauthorization(scope, User.Identity.Name))
             {
                 var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         where
@@ -314,7 +314,7 @@ namespace saibabacharityreceiptor.Controllers
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOn", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
+            if (CheckAdminauthorization(scope, User.Identity.Name))
             {
                 var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         where
@@ -481,7 +481,7 @@ namespace saibabacharityreceiptor.Controllers
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOn", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
+            if (CheckAdminauthorization(scope, User.Identity.Name))
             {
                 var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         where
@@ -610,7 +610,7 @@ namespace saibabacharityreceiptor.Controllers
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOn", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
+            if (CheckAdminauthorization(scope, User.Identity.Name))
             {
                 var donationReceiver = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         where
@@ -659,13 +659,14 @@ namespace saibabacharityreceiptor.Controllers
             return View("Status");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult EditReceipt(string recpId)
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("LogOnPage", "Account");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
-            if (Checkauthorization(scope, User.Identity.Name))
+            if (CheckAdminauthorization(scope, User.Identity.Name))
             {
                 List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                           where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
@@ -806,7 +807,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     var scope = ObjectScopeProvider1.GetNewObjectScope();
-                    if (Checkauthorization(scope, User.Identity.Name))
+                    if (CheckAdminauthorization(scope, User.Identity.Name))
                     {
                         List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                                   where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
@@ -837,7 +838,17 @@ namespace saibabacharityreceiptor.Controllers
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 where c.Username.ToLower().Equals(username.ToLower())
                                 select c).ToList();
-            if (users.Count > 0 && users[0].IsheDonationReceiver)
+            if (users.Count > 0 && (users[0].IsheDonationReceiver || users[0].IsheAdmin))
+                return true;
+            return false;
+        }
+
+        private static bool CheckAdminauthorization(IObjectScope scope, string username)
+        {
+            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                where c.Username.ToLower().Equals(username.ToLower())
+                                select c).ToList();
+            if (users.Count > 0 && users[0].IsheAdmin)
                 return true;
             return false;
         }
@@ -867,36 +878,40 @@ namespace saibabacharityreceiptor.Controllers
                                           select c).ToList();
                 if (receipts.Count > 0)
                 {
-                    var receiptData = new ReceiptData
-                                          {
-                                              FirstName = receipts[0].FirstName,
-                                              Address = receipts[0].Address,
-                                              City = receipts[0].City,
-                                              Contact = receipts[0].Contact,
-                                              DateReceived = receipts[0].DateReceived,
-                                              DonationAmount = receipts[0].DonationAmount,
-                                              DonationAmountinWords = receipts[0].DonationAmountinWords,
-                                              DonationReceiverName = receipts[0].DonationReceiver.Username,
-                                              Email = receipts[0].Email,
-                                              FmvValue = receipts[0].FmvValue,
-                                              GroupId = receipts[0].GroupId,
-                                              HoursServed = receipts[0].HoursServed,
-                                              IssuedDate = receipts[0].IssuedDate,
-                                              LastName = receipts[0].LastName,
-                                              MerchandiseItem = receipts[0].MerchandiseItem,
-                                              Mi = receipts[0].Mi,
-                                              ModeOfPayment = receipts[0].ModeOfPayment.ToString(),
-                                              Quantity = receipts[0].Quantity,
-                                              RatePerHrOrDay = receipts[0].RatePerHrOrDay,
-                                              ReceiptNumber = receipts[0].ReceiptNumber,
-                                              ReceiptType = receipts[0].ReceiptType.ToString(),
-                                              RecurringDates = receipts[0].RecurringDates,
-                                              ServiceType = receipts[0].ServiceType,
-                                              State = receipts[0].State,
-                                              ZipCode = receipts[0].ZipCode
-                                          };
-                    ViewData["Receipt_Data"] = receiptData;
-                    switch (receipts[0].ReceiptType)
+                    var receiptDatas = new List<ReceiptData>
+                                           {
+                                               new ReceiptData
+                                                   {
+                                                       FirstName = receipts[0].FirstName,
+                                                       Address = receipts[0].Address,
+                                                       City = receipts[0].City,
+                                                       Contact = receipts[0].Contact,
+                                                       DateReceived = receipts[0].DateReceived,
+                                                       DonationAmount = receipts[0].DonationAmount,
+                                                       DonationAmountinWords = receipts[0].DonationAmountinWords,
+                                                       DonationReceiverName = receipts[0].DonationReceiver.Username,
+                                                       Email = receipts[0].Email,
+                                                       FmvValue = receipts[0].FmvValue,
+                                                       GroupId = receipts[0].GroupId,
+                                                       HoursServed = receipts[0].HoursServed,
+                                                       IssuedDate = receipts[0].IssuedDate,
+                                                       LastName = receipts[0].LastName,
+                                                       MerchandiseItem = receipts[0].MerchandiseItem,
+                                                       Mi = receipts[0].Mi,
+                                                       ModeOfPayment = receipts[0].ModeOfPayment.ToString(),
+                                                       Quantity = receipts[0].Quantity,
+                                                       RatePerHrOrDay = receipts[0].RatePerHrOrDay,
+                                                       ReceiptNumber = receipts[0].ReceiptNumber,
+                                                       ReceiptType = receipts[0].ReceiptType.ToString(),
+                                                       RecurringDates = receipts[0].RecurringDates,
+                                                       ServiceType = receipts[0].ServiceType,
+                                                       State = receipts[0].State,
+                                                       ZipCode = receipts[0].ZipCode
+                                                   }
+                                           };
+                    ViewData["Receipt_Data"] = receiptDatas;
+                    return View();
+                    /*switch (receipts[0].ReceiptType)
                     {
                         case ReceiptType.GeneralReceipt:
                             {
@@ -914,7 +929,43 @@ namespace saibabacharityreceiptor.Controllers
                             {
                                 return View("PrintServicesReceipt");
                             }
-                    }
+                    }*/
+                }
+                receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                            where c.GroupId != null && c.GroupId.ToLower().Equals(recpId.ToLower())
+                            select c).ToList();
+                if (receipts.Count > 0)
+                {
+                    var receiptDatas = receipts.Select(receipt => new ReceiptData
+                                                                      {
+                                                                          FirstName = receipt.FirstName,
+                                                                          Address = receipt.Address,
+                                                                          City = receipt.City,
+                                                                          Contact = receipt.Contact,
+                                                                          DateReceived = receipt.DateReceived,
+                                                                          DonationAmount = receipt.DonationAmount,
+                                                                          DonationAmountinWords = receipt.DonationAmountinWords,
+                                                                          DonationReceiverName = receipt.DonationReceiver.Username,
+                                                                          Email = receipt.Email,
+                                                                          FmvValue = receipt.FmvValue,
+                                                                          GroupId = receipt.GroupId,
+                                                                          HoursServed = receipt.HoursServed,
+                                                                          IssuedDate = receipt.IssuedDate,
+                                                                          LastName = receipt.LastName,
+                                                                          MerchandiseItem = receipt.MerchandiseItem,
+                                                                          Mi = receipt.Mi,
+                                                                          ModeOfPayment = receipt.ModeOfPayment.ToString(),
+                                                                          Quantity = receipt.Quantity,
+                                                                          RatePerHrOrDay = receipt.RatePerHrOrDay,
+                                                                          ReceiptNumber = receipt.ReceiptNumber,
+                                                                          ReceiptType = receipt.ReceiptType.ToString(),
+                                                                          RecurringDates = receipt.RecurringDates,
+                                                                          ServiceType = receipt.ServiceType,
+                                                                          State = receipt.State,
+                                                                          ZipCode = receipt.ZipCode
+                                                                      }).ToList();
+                    ViewData["Receipt_Data"] = receiptDatas;
+                    return View();
                 }
                 ViewData["Status"] = "The receipt not found for the given id.";
                 return View("Status");

@@ -90,6 +90,12 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "BarCode", // Route name
+                "BarCode/{recpId}", // URL with parameters
+                new { controller = "BarCode", action = "index", recpId = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "PrintReceipt", // Route name
                 "PrintReceipt/{recpId}", // URL with parameters
                 new { controller = "Home", action = "PrintReceipt", recpId = UrlParameter.Optional }

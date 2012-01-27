@@ -117,7 +117,7 @@
                 Thank You – Jai Sairam!</h3>
         </div>
         <div class="barcode">
-            <img src="#" />
+            <img src="/barcode/<%= receptData.ReceiptNumber  %>" alt="barcode" />
         </div>
     </div>
 </body>

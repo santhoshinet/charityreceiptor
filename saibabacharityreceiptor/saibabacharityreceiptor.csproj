@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeGenerator.1D">
+      <HintPath>..\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\DLL\BarcodeGenerator.1D.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeGenerator.Common">
+      <HintPath>..\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\DLL\BarcodeGenerator.Common.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -78,7 +84,28 @@
     <Content Include="Images\remove.jpg" />
     <Content Include="Scripts\Reports.js" />
     <Content Include="todo.txt" />
+    <Compile Include="BarCode\barcode.cs" />
+    <Compile Include="BarCode\codabar.cs" />
+    <Compile Include="BarCode\code11.cs" />
+    <Compile Include="BarCode\code128.cs" />
+    <Compile Include="BarCode\code39.cs" />
+    <Compile Include="BarCode\code39extended.cs" />
+    <Compile Include="BarCode\code93.cs" />
+    <Compile Include="BarCode\ean13.cs" />
+    <Compile Include="BarCode\ean8.cs" />
+    <Compile Include="BarCode\i25.cs" />
+    <Compile Include="BarCode\isbn.cs" />
+    <Compile Include="BarCode\KeyCode.cs" />
+    <Compile Include="BarCode\msi.cs" />
+    <Compile Include="BarCode\othercode.cs" />
+    <Compile Include="BarCode\postnet.cs" />
+    <Compile Include="BarCode\s25.cs" />
+    <Compile Include="BarCode\upca.cs" />
+    <Compile Include="BarCode\upce.cs" />
+    <Compile Include="BarCode\upcext2.cs" />
+    <Compile Include="BarCode\upcext5.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BarcodeController.cs" />
     <Compile Include="Controllers\ControlpanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -430,6 +457,7 @@
     <Content Include="Views\Home\EditServicesReceipt.aspx" />
     <Content Include="Views\Home\MerchandiseReceipt_Ctrl.ascx" />
     <Content Include="Views\Home\PrintMerchandiseReport.aspx" />
+    <Content Include="Views\Home\PrintReceipt.aspx" />
     <Content Include="Views\Home\PrintRecurringReceipt.aspx" />
     <Content Include="Views\Home\PrintServicesReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt_Ctrl.ascx" />

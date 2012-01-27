@@ -21,9 +21,13 @@ namespace saibabacharityreceiptor.Controllers
         [HttpGet]
         public ActionResult AddUser()
         {
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Logon", "Account");
+            var scope = ObjectScopeProvider1.GetNewObjectScope();
+            if (CheckAdminauthorization(scope, User.Identity.Name))
                 return View();
-            return RedirectToAction("Logon", "Account");
+            ViewData["Status"] = "You are not authorized to do this operation";
+            return View("Status");
         }
 
         [Authorize]
@@ -33,7 +37,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
                     if (ModelState.IsValid)
                     {
@@ -55,7 +59,7 @@ namespace saibabacharityreceiptor.Controllers
                                            };
                             scope.Add(user);
                             scope.Transaction.Commit();
-                            FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
+                            //FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
                             ViewData["Status"] = "User added successfully.";
                             return View("Status");
                             //return RedirectToAction("Index", "Home");
@@ -79,10 +83,8 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
-                    return View();
-                ViewData["Status"] = "You are not authorized to do this operation";
-                return View("PartialViewStatus");
+                CheckAdminauthorization(scope, User.Identity.Name);
+                return View();
             }
             return RedirectToAction("LogOn", "Account");
         }
@@ -94,7 +96,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
                     List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         select c).ToList();
@@ -122,7 +124,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
                     List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                         where c.Id.Equals(uid)
@@ -153,7 +155,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
                     if (!string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.UserId))
                     {
@@ -193,7 +195,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     var scope = ObjectScopeProvider1.GetNewObjectScope();
-                    if (Checkauthorization(scope, User.Identity.Name))
+                    if (CheckAdminauthorization(scope, User.Identity.Name))
                     {
                         List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                             where c.Id.Equals(userid)
@@ -236,7 +238,7 @@ namespace saibabacharityreceiptor.Controllers
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 ViewData["Status"] = string.Empty;
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                     return View();
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("PartialViewStatus");
@@ -252,7 +254,7 @@ namespace saibabacharityreceiptor.Controllers
             {
                 ViewData["Status"] = string.Empty;
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
                     if (ModelState.IsValid)
                     {
@@ -553,7 +555,7 @@ namespace saibabacharityreceiptor.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                if (Checkauthorization(scope, User.Identity.Name))
+                if (CheckAdminauthorization(scope, User.Identity.Name))
                     return View();
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("PartialViewStatus");
@@ -568,7 +570,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     var scope = ObjectScopeProvider1.GetNewObjectScope();
-                    if (Checkauthorization(scope, User.Identity.Name))
+                    if (CheckAdminauthorization(scope, User.Identity.Name))
                     {
                         List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                             where c.Id.Equals(userid)
@@ -607,16 +609,17 @@ namespace saibabacharityreceiptor.Controllers
             base.Initialize(requestContext);
         }
 
-        private bool Checkauthorization(IObjectScope scope, string username)
+        private bool CheckAdminauthorization(IObjectScope scope, string username)
         {
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 where c.Username.ToLower().Equals(username.ToLower())
                                 select c).ToList();
-            if (users.Count > 0 && users[0].IsheAdmin)
+            if (users.Count > 0)
             {
                 ViewData["IsheAdmin"] = users[0].IsheAdmin;
                 ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
-                return true;
+                if (users[0].IsheAdmin)
+                    return true;
             }
             return false;
         }

@@ -228,92 +228,117 @@ namespace saibabacharityreceiptor.Controllers
         [HttpGet]
         public ActionResult SearchReceipts()
         {
-            ViewData["selectedTypeOfReceipt"] = string.Empty;
-            ViewData["SeachReceipts"] = new List<ReceiptData>();
-            ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
-            return View(new SearchModel { PageIndex = 0, EndDate = DateTime.Now, StartDate = DateTime.Now.AddMonths(-1) });
+            if (User.Identity.IsAuthenticated)
+            {
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                {
+                    ViewData["selectedTypeOfReceipt"] = string.Empty;
+                    ViewData["SeachReceipts"] = new List<ReceiptData>();
+                    ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
+                    return
+                        View(new SearchModel { PageIndex = 0, EndDate = DateTime.Now, StartDate = DateTime.Now.AddMonths(-1) });
+                }
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("PartialViewStatus");
+            }
+            return RedirectToAction("LogOn", "Account");
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult SearchReceipts(SearchModel searchModel)
         {
-            ViewData["selectedTypeOfReceipt"] = string.Empty;
-            ViewData["SeachReceipts"] = new List<ReceiptData>();
-            ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                ViewData["selectedTypeOfReceipt"] = searchModel.TypeOfReceipt;
-                ReceiptType receiptType = ReceiptType.GeneralReceipt;
-                switch (searchModel.TypeOfReceipt)
-                {
-                    case "Regular":
-                        {
-                            receiptType = ReceiptType.GeneralReceipt;
-                            break;
-                        }
-                    case "Recurrence":
-                        {
-                            receiptType = ReceiptType.RecurringReceipt;
-                            break;
-                        }
-                    case "Merchandise":
-                        {
-                            receiptType = ReceiptType.MerchandiseReceipt;
-                            break;
-                        }
-                    case "Service":
-                        {
-                            receiptType = ReceiptType.ServicesReceipt;
-                            break;
-                        }
-                    case "All":
-                        {
-                            break;
-                        }
-                }
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
-                List<Receipt> receipts;
-                if (searchModel.TypeOfReceipt != "All")
-                    receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                where c.ReceiptType.Equals(receiptType)
-                                orderby c.DateReceived
-                                select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(searchModel.Maxrecordsperpage).ToList();
-                else
-                    receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                orderby c.DateReceived
-                                select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(searchModel.Maxrecordsperpage).ToList();
-                var localRegularReceipts = receipts.Select(receipt => new ReceiptData
+                if (Checkauthorization(scope, User.Identity.Name))
                 {
-                    ReceiptNumber = receipt.ReceiptNumber,
-                    FirstName = receipt.FirstName,
-                    Mi = receipt.Mi,
-                    LastName = receipt.LastName,
-                    DateReceived = receipt.DateReceived,
-                    ReceiptType = receipt.ReceiptType.ToString()
-                }).ToList();
-                ViewData["pageIndex"] = searchModel.PageIndex;
-                if (searchModel.PageIndex <= 0)
-                    ViewData["HasPrevious"] = false;
-                else
-                    ViewData["HasPrevious"] = true;
-                var totalrecords = 0;
-                if (searchModel.TypeOfReceipt != "All")
-                    totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                    where c.ReceiptType.Equals(receiptType)
-                                    select c).Count();
-                else
-                    totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                    select c).Count();
-                if (totalrecords > (searchModel.PageIndex + 1) * NoOfRecordsPerPage)
-                    ViewData["HasNext"] = true;
-                else
-                    ViewData["HasNext"] = false;
+                    ViewData["selectedTypeOfReceipt"] = string.Empty;
+                    ViewData["SeachReceipts"] = new List<ReceiptData>();
+                    ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
+                    if (ModelState.IsValid)
+                    {
+                        ViewData["selectedTypeOfReceipt"] = searchModel.TypeOfReceipt;
+                        ReceiptType receiptType = ReceiptType.GeneralReceipt;
+                        switch (searchModel.TypeOfReceipt)
+                        {
+                            case "Regular":
+                                {
+                                    receiptType = ReceiptType.GeneralReceipt;
+                                    break;
+                                }
+                            case "Recurrence":
+                                {
+                                    receiptType = ReceiptType.RecurringReceipt;
+                                    break;
+                                }
+                            case "Merchandise":
+                                {
+                                    receiptType = ReceiptType.MerchandiseReceipt;
+                                    break;
+                                }
+                            case "Service":
+                                {
+                                    receiptType = ReceiptType.ServicesReceipt;
+                                    break;
+                                }
+                            case "All":
+                                {
+                                    break;
+                                }
+                        }
+                        List<Receipt> receipts;
+                        if (searchModel.TypeOfReceipt != "All")
+                            receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                        where c.ReceiptType.Equals(receiptType)
+                                        orderby c.DateReceived
+                                        select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(
+                                            searchModel.Maxrecordsperpage).ToList();
+                        else
+                            receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                        orderby c.DateReceived
+                                        select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(
+                                            searchModel.Maxrecordsperpage).ToList();
+                        var localRegularReceipts = receipts.Select(receipt => new ReceiptData
+                                                                                  {
+                                                                                      ReceiptNumber =
+                                                                                          receipt.ReceiptNumber,
+                                                                                      FirstName = receipt.FirstName,
+                                                                                      Mi = receipt.Mi,
+                                                                                      LastName = receipt.LastName,
+                                                                                      DateReceived =
+                                                                                          receipt.DateReceived,
+                                                                                      ReceiptType =
+                                                                                          receipt.ReceiptType.ToString()
+                                                                                  }).ToList();
+                        ViewData["pageIndex"] = searchModel.PageIndex;
+                        if (searchModel.PageIndex <= 0)
+                            ViewData["HasPrevious"] = false;
+                        else
+                            ViewData["HasPrevious"] = true;
+                        int totalrecords;
+                        if (searchModel.TypeOfReceipt != "All")
+                            totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                            where c.ReceiptType.Equals(receiptType)
+                                            select c).Count();
+                        else
+                            totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                            select c).Count();
+                        if (totalrecords > (searchModel.PageIndex + 1) * NoOfRecordsPerPage)
+                            ViewData["HasNext"] = true;
+                        else
+                            ViewData["HasNext"] = false;
 
-                ViewData["SeachReceipts"] = localRegularReceipts;
-                return View();
+                        ViewData["SeachReceipts"] = localRegularReceipts;
+                        return View();
+                    }
+                    return View();
+                }
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("PartialViewStatus");
             }
-            return View();
+            return RedirectToAction("LogOn", "Account");
         }
     }
 }
