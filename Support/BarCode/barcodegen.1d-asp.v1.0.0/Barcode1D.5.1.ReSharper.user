@@ -1,0 +1,97 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx" caret="1265" fromTop="6" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx" caret="0" fromTop="0" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:TestCode.aspx" caret="0" fromTop="0" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:WebControls.aspx" caret="553" fromTop="13" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.designer.cs" caret="7297" fromTop="24" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:codabar.cs" caret="393" fromTop="20" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:code11.cs" caret="62" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:code128.cs" caret="131" fromTop="6" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:code39.cs" caret="97" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:code39extended.cs" caret="97" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:code93.cs" caret="67" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:ean13.cs" caret="64" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:ean8.cs" caret="63" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:i25.cs" caret="97" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:isbn.cs" caret="63" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:msi.cs" caret="98" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:othercode.cs" caret="101" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:s25.cs" caret="0" fromTop="0" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:postnet.cs" caret="0" fromTop="0" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:upca.cs" caret="62" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:upce.cs" caret="63" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:upcext2.cs" caret="64" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:upcext5.cs" caret="66" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:TestCode.aspx.cs" caret="1465" fromTop="29" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:WebControls.aspx.cs" caret="180" fromTop="7" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="4657" fromTop="24" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Utility.cs" caret="8738" fromTop="39" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:KeyCode.cs" caret="39" fromTop="2" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:barcode.cs" caret="412" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="5386" fromTop="17" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="3661" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="4559" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="5918" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="7877" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="8009" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Default.aspx.cs" caret="8118" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="1314" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="2340" fromTop="6" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="2959" fromTop="4" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="1807" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="2698" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="2080" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="4142" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="5640" fromTop="10" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="6093" fromTop="21" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="5720" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="821" fromTop="26" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:image.aspx.cs" caret="1069" fromTop="11" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:KeyCode.cs" caret="82" fromTop="5" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:KeyCode.cs" caret="390" fromTop="20" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:KeyCode.cs" caret="600" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:TestCode.aspx.cs" caret="651" fromTop="18" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:TestCode.aspx.cs" caret="1069" fromTop="15" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:TestCode.aspx.cs" caret="1465" fromTop="23" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Utility.cs" caret="9588" fromTop="11" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:WebControls.aspx.cs" caret="180" fromTop="7" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Utility.cs" caret="128" fromTop="8" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Utility.cs" caret="9722" fromTop="14" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/f:Utility.cs" caret="10289" fromTop="26" />
+      <File id="15419C92-AC3A-44D1-9905-6D4A62AC477B/d:code/f:barcode.cs" caret="412" fromTop="8" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="Code39`0" priority="1" />
+      <Item value="Barcode`0" priority="0" />
+      <Item value="Barcode" priority="0" />
+      <Item value="Code39" priority="0" />
+      <Item value="code" priority="2" />
+      <Item value="public" priority="0" />
+      <Item value="static" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

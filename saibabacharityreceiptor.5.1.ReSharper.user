@@ -14,6 +14,17 @@
       <Item value="var" priority="0" />
       <Item value="int" priority="0" />
       <Item value="recurringDate" priority="0" />
+      <Item value="string" priority="3" />
+      <Item value="Utilities`0" priority="4" />
+      <Item value="Barcode" priority="0" />
+      <Item value="BarCode" priority="0" />
+      <Item value="return" priority="1" />
+      <Item value="null" priority="0" />
+      <Item value="public" priority="1" />
+      <Item value="text" priority="0" />
+      <Item value="recpid" priority="0" />
+      <Item value="static" priority="0" />
+      <Item value="FileStreamResult`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:saibabacharityreceiptor.Controllers.ReceiptData">
       <Item value="ReceiptNumber" priority="0" />
@@ -40,6 +51,9 @@
     <ItemStatistics item="Qualified:System.Web.UI.HtmlControls.HtmlTable">
       <Item value="tr" priority="0" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:@saibabacharityreceiptor.Utilities">
+      <Item value="Encrypt`0" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
@@ -47,38 +61,60 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="367" fromTop="10" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="2894" fromTop="20" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:postnet.cs" caret="1137" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:barcode.cs" caret="499" fromTop="19" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code93.cs" caret="1450" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:ean8.cs" caret="1037" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:codabar.cs" caret="1351" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code11.cs" caret="1311" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:upca.cs" caret="1258" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:upce.cs" caret="1122" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:ean13.cs" caret="1144" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:upcext2.cs" caret="1026" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:isbn.cs" caret="1241" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:othercode.cs" caret="441" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:msi.cs" caret="1033" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code39extended.cs" caret="1212" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:s25.cs" caret="1155" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code128.cs" caret="1459" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:i25.cs" caret="1029" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:upcext5.cs" caret="1420" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code39.cs" caret="1779" fromTop="61" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="3645" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="587" fromTop="9" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12318" fromTop="25" />
     </RecentFiles>
     <RecentEdits>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="35" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="42" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="42" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="38" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="40" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="39" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="30" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="17" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="17" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="5105" fromTop="24" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="667" fromTop="20" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="533" fromTop="15" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="2704" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="3567" fromTop="35" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="4317" fromTop="34" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="21" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRegularReceipt.aspx" caret="310" fromTop="9" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="295" fromTop="7" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="543" fromTop="15" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="48330" fromTop="37" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="20" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="24" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="39" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="6739" fromTop="32" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="4144" fromTop="42" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="4728" fromTop="31" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintRecurringReceipt.aspx" caret="2967" fromTop="22" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1105" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1105" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:upcext5.cs" caret="1420" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code39.cs" caret="1269" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code39.cs" caret="140" fromTop="6" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:BarCode/f:code39.cs" caret="1779" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="2006" fromTop="5" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="2872" fromTop="22" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1105" fromTop="15" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="589" fromTop="15" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1421" fromTop="11" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1897" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1810" fromTop="14" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12172" fromTop="52" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12042" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12042" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="11890" fromTop="27" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12562" fromTop="21" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12833" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12575" fromTop="12" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="13070" fromTop="22" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="5304" fromTop="25" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="361" fromTop="10" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1613" fromTop="22" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="5316" fromTop="25" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="3379" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="3647" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="11377" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12318" fromTop="25" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="1971" fromTop="15" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

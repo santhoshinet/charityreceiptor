@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestCode.aspx.cs" Inherits="Barcode.TestCode" %>

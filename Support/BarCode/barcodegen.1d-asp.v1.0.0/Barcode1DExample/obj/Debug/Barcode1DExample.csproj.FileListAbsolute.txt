@@ -1,0 +1,14 @@
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\Barcode.dll
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\Barcode.pdb
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\BarcodeGenerator.1D.dll
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\BarcodeGenerator.Common.dll
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\Barcode.dll
+C:\Users\Santhosh\Desktop\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\Barcode.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\Barcode.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\Barcode.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\Barcode.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\BarcodeGenerator.1D.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\bin\BarcodeGenerator.Common.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\Support\BarCode\barcodegen.1d-asp.v1.0.0\Barcode1DExample\obj\Debug\Barcode.dll

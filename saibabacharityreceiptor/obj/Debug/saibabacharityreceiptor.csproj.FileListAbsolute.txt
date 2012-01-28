@@ -20,3 +20,5 @@ C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\b
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.dll
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\BarcodeGenerator.1D.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\BarcodeGenerator.Common.dll
