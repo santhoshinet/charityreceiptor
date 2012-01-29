@@ -4,7 +4,6 @@
 <html>
 <head runat="server">
     <title>Status</title>
-    <link href="/Content/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <%

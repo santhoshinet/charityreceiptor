@@ -221,6 +221,8 @@ namespace saibabacharityreceiptor.Controllers
                 ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
                 return true;
             }
+            ViewData["IsheAdmin"] = false;
+            ViewData["IsheDonationReceiver"] = false;
             return false;
         }
 
@@ -237,7 +239,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["SeachReceipts"] = new List<ReceiptData>();
                     ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
                     return
-                        View(new SearchModel { PageIndex = 0, EndDate = DateTime.Now, StartDate = DateTime.Now.AddMonths(-1) });
+                        View(new SearchModel { PageIndex = 0, EndDate = DateTime.Now, StartDate = DateTime.Now });
                 }
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("PartialViewStatus");
@@ -289,17 +291,19 @@ namespace saibabacharityreceiptor.Controllers
                                 }
                         }
                         List<Receipt> receipts;
+                        int maxrecordsperpage = Convert.ToInt32(searchModel.Maxrecordsperpage);
                         if (searchModel.TypeOfReceipt != "All")
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                        where c.ReceiptType.Equals(receiptType)
+                                        where c.ReceiptType.Equals(receiptType) && c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
                                         orderby c.DateReceived
-                                        select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(
-                                            searchModel.Maxrecordsperpage).ToList();
+                                        select c).Skip(searchModel.PageIndex * maxrecordsperpage).Take(
+                                            maxrecordsperpage).ToList();
                         else
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                        where c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
                                         orderby c.DateReceived
-                                        select c).Skip(searchModel.PageIndex * searchModel.Maxrecordsperpage).Take(
-                                            searchModel.Maxrecordsperpage).ToList();
+                                        select c).Skip(searchModel.PageIndex * maxrecordsperpage).Take(
+                                            maxrecordsperpage).ToList();
                         var localRegularReceipts = receipts.Select(receipt => new ReceiptData
                                                                                   {
                                                                                       ReceiptNumber =
@@ -320,10 +324,11 @@ namespace saibabacharityreceiptor.Controllers
                         int totalrecords;
                         if (searchModel.TypeOfReceipt != "All")
                             totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
-                                            where c.ReceiptType.Equals(receiptType)
+                                            where c.ReceiptType.Equals(receiptType) && c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
                                             select c).Count();
                         else
                             totalrecords = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                            where c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
                                             select c).Count();
                         if (totalrecords > (searchModel.PageIndex + 1) * NoOfRecordsPerPage)
                             ViewData["HasNext"] = true;
@@ -331,9 +336,136 @@ namespace saibabacharityreceiptor.Controllers
                             ViewData["HasNext"] = false;
 
                         ViewData["SeachReceipts"] = localRegularReceipts;
-                        return View();
+                        return View(searchModel);
                     }
-                    return View();
+                    return View(searchModel);
+                }
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("PartialViewStatus");
+            }
+            return RedirectToAction("LogOn", "Account");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ExporttoExcel()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                {
+                    ViewData["selectedTypeOfReceipt"] = string.Empty;
+                    ViewData["SeachReceipts"] = new List<ReceiptData>();
+                    ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
+                    return
+                        View(new ExporttoExcelModel { EndDate = DateTime.Now, StartDate = DateTime.Now });
+                }
+                ViewData["Status"] = "You are not authorized to do this operation";
+                return View("PartialViewStatus");
+            }
+            return RedirectToAction("LogOn", "Account");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ExporttoExcel(ExporttoExcelModel exporttoExcelModel)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var scope = ObjectScopeProvider1.GetNewObjectScope();
+                if (Checkauthorization(scope, User.Identity.Name))
+                {
+                    ViewData["selectedTypeOfReceipt"] = string.Empty;
+                    ViewData["SeachReceipts"] = new List<ReceiptData>();
+                    ViewData["typeofreceipts"] = new List<string> { "All", "Regular", "Recurrence", "Merchandise", "Service" };
+                    if (ModelState.IsValid)
+                    {
+                        ViewData["selectedTypeOfReceipt"] = exporttoExcelModel.TypeOfReceipt;
+                        ReceiptType receiptType = ReceiptType.GeneralReceipt;
+                        switch (exporttoExcelModel.TypeOfReceipt)
+                        {
+                            case "Regular":
+                                {
+                                    receiptType = ReceiptType.GeneralReceipt;
+                                    break;
+                                }
+                            case "Recurrence":
+                                {
+                                    receiptType = ReceiptType.RecurringReceipt;
+                                    break;
+                                }
+                            case "Merchandise":
+                                {
+                                    receiptType = ReceiptType.MerchandiseReceipt;
+                                    break;
+                                }
+                            case "Service":
+                                {
+                                    receiptType = ReceiptType.ServicesReceipt;
+                                    break;
+                                }
+                            case "All":
+                                {
+                                    break;
+                                }
+                        }
+                        List<Receipt> receipts;
+                        if (exporttoExcelModel.TypeOfReceipt != "All")
+                            receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                        where c.ReceiptType.Equals(receiptType) && c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
+                                        orderby c.DateReceived
+                                        select c).ToList();
+                        else
+                            receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                        where c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
+                                        orderby c.DateReceived
+                                        select c).ToList();
+
+                        Response.AppendHeader("Content-Disposition", "attachment;filename=ExporttoExcel.csv");
+                        Response.Charset = "UTF-8";
+                        Response.ContentEncoding = System.Text.Encoding.UTF8;
+                        Response.ContentType = "application/text/csv";
+                        String csvOutput =
+                            "Receipt Type,First Name,MI,Last Name,Address,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Dates,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
+                        foreach (Receipt receipt in receipts)
+                        {
+                            // adding data
+                            csvOutput += Environment.NewLine;
+                            csvOutput += receipt.ReceiptType.ToString();
+                            csvOutput += "," + receipt.FirstName;
+                            csvOutput += "," + receipt.Mi;
+                            csvOutput += "," + receipt.LastName;
+                            csvOutput += "," + receipt.Address;
+                            csvOutput += "," + receipt.City;
+                            csvOutput += "," + receipt.State;
+                            csvOutput += "," + receipt.ZipCode;
+                            csvOutput += "," + receipt.Email;
+                            csvOutput += "," + receipt.Contact;
+                            csvOutput += "," + receipt.DateReceived.ToString("MM/dd/yyyy");
+                            csvOutput += "," + receipt.IssuedDate.ToString("MM/dd/yyyy");
+                            csvOutput += "," + receipt.DonationAmount;
+                            csvOutput += "," + receipt.DonationAmountinWords;
+                            string recurringDates = " ";
+                            foreach (var date in receipt.RecurringDates)
+                                recurringDates = date.ToString("MM/dd/yyyy") + ",";
+                            csvOutput += ",'" + recurringDates.Substring(0, recurringDates.Length - 1) + "'";
+                            csvOutput += "," + receipt.MerchandiseItem;
+                            csvOutput += "," + receipt.Quantity;
+                            csvOutput += "," + receipt.FmvValue;
+                            csvOutput += "," + receipt.ServiceType;
+                            csvOutput += "," + receipt.HoursServed;
+                            csvOutput += "," + receipt.RatePerHrOrDay;
+                            csvOutput += "," + receipt.FmvValue;
+                            csvOutput += "," + receipt.ModeOfPayment;
+                            csvOutput += "," + receipt.DonationReceiver.Username;
+                        }
+
+                        Response.Write(csvOutput);
+                        Response.End();
+                        return View(exporttoExcelModel);
+                    }
+                    return View(exporttoExcelModel);
                 }
                 ViewData["Status"] = "You are not authorized to do this operation";
                 return View("PartialViewStatus");

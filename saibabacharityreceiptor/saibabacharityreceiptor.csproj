@@ -80,9 +80,11 @@
   <ItemGroup>
     <Content Include="Content\document.css" />
     <Content Include="Content\receipt.css" />
+    <Content Include="Content\status.css" />
     <Content Include="Images\add.jpg" />
     <Content Include="Images\remove.jpg" />
     <Content Include="Scripts\Reports.js" />
+    <Content Include="Scripts\Search.js" />
     <Content Include="todo.txt" />
     <Compile Include="BarCode\barcode.cs" />
     <Compile Include="BarCode\codabar.cs" />
@@ -121,6 +123,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ExcelModels.cs" />
+    <Compile Include="Models\ExporttoExcelModel.cs" />
     <Compile Include="Models\ReceiptModels.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -462,6 +465,7 @@
     <Content Include="Views\Home\PrintServicesReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt_Ctrl.ascx" />
     <Content Include="Views\Home\ServicesReceipt_Ctrl.ascx" />
+    <Content Include="Views\Reports\ExporttoExcel.aspx" />
     <Content Include="Views\Reports\MerchandiseReceipts.aspx" />
     <Content Include="Views\Reports\RecurringReceipts.aspx" />
     <Content Include="Views\Reports\RegularReceipts.aspx" />

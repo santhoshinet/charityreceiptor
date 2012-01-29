@@ -833,23 +833,35 @@ namespace saibabacharityreceiptor.Controllers
             }
         }
 
-        private static bool Checkauthorization(IObjectScope scope, string username)
+        private bool Checkauthorization(IObjectScope scope, string username)
         {
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 where c.Username.ToLower().Equals(username.ToLower())
                                 select c).ToList();
             if (users.Count > 0 && (users[0].IsheDonationReceiver || users[0].IsheAdmin))
+            {
+                ViewData["IsheAdmin"] = users[0].IsheAdmin;
+                ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
                 return true;
+            }
+            ViewData["IsheAdmin"] = false;
+            ViewData["IsheDonationReceiver"] = false;
             return false;
         }
 
-        private static bool CheckAdminauthorization(IObjectScope scope, string username)
+        private bool CheckAdminauthorization(IObjectScope scope, string username)
         {
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 where c.Username.ToLower().Equals(username.ToLower())
                                 select c).ToList();
             if (users.Count > 0 && users[0].IsheAdmin)
+            {
+                ViewData["IsheAdmin"] = users[0].IsheAdmin;
+                ViewData["IsheDonationReceiver"] = users[0].IsheDonationReceiver;
                 return true;
+            }
+            ViewData["IsheAdmin"] = false;
+            ViewData["IsheDonationReceiver"] = false;
             return false;
         }
 

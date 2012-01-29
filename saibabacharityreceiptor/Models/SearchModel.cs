@@ -21,7 +21,7 @@ namespace saibabacharityreceiptor.Models
 
         [Required]
         [Display(Name = "Records per page")]
-        public int Maxrecordsperpage { get; set; }
+        public string Maxrecordsperpage { get; set; }
 
         [Required]
         [Display(Name = "Page index")]

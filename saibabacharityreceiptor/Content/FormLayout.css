@@ -356,3 +356,21 @@ INPUT[type="file"]
 	padding: 0px 7px;
 	border: 1px solid #E5A467;
 }
+.SearchContainer TABLE
+{
+	width: 100%;
+}
+.SearchContainer SELECT, .SearchContainer INPUT[type='text']
+{
+	padding: 5px;
+	width: 110px;
+}
+.validation-summary-errors
+{
+	color: #EE3333;
+}
+.field-validation-error
+{
+	color: #F03E3E;
+	margin-left: 10px;
+}

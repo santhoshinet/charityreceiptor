@@ -43,7 +43,7 @@
                 <div class="right">
                     <a href="/Controlpanel/ImportfromExcel">Import from Excel</a></div>
                 <div class="right">
-                    <a href="/Controlpanel/ExporttoExcel">Export to Excel</a></div>
+                    <a href="/Reports/ExporttoExcel">Export to Excel</a></div>
                 <div class="right">
                     <a href="/Reports/SearchReceipts">Search Receipts</a></div>
             </div>

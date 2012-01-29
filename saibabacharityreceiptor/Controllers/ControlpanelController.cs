@@ -621,6 +621,8 @@ namespace saibabacharityreceiptor.Controllers
                 if (users[0].IsheAdmin)
                     return true;
             }
+            ViewData["IsheAdmin"] = false;
+            ViewData["IsheDonationReceiver"] = false;
             return false;
         }
 

@@ -1,9 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
-<div class="clear">
-</div>
-<div class="loginContent small">
-    <div class="middle status">
+<link href="/Content/status.css" rel="stylesheet" type="text/css" />
+<div class="status_container">
+    <div>
         <%= ViewData["Status"] %></div>
-</div>
-<div class="clear">
 </div>
