@@ -44,7 +44,8 @@
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 1:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 2:</span><span class="value"><%= receiptData.Address2 %></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -159,7 +160,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 1:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 2:</span><span class="value"><%= receiptData.Address2 %></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -317,7 +319,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 1:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 2:</span><span class="value"><%= receiptData.Address2 %></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -424,7 +427,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 1:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><span class="field">Address 2:</span><span class="value"><%= receiptData.Address2 %></span></li>
             </ul>
         </div>
         <div class="clear">

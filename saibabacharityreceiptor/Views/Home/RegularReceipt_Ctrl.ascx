@@ -37,22 +37,23 @@
         <label class="label">
             MI</label>
         <%: Html.TextBoxFor(m => m.Mi, new { @id = "TxtMi", @class = "text txtmi", @maxlength = "8" })%>
-        <label class="star">
-            *</label>
     </li>
     <li>
         <label class="label">
             Last Name</label>
-        <%: Html.TextBoxFor(m => m.Mi, new { @id = "TxtLastName", @class = "text txtlastname", @maxlength = "16" })%>
+        <%: Html.TextBoxFor(m => m.LastName, new { @id = "TxtLastName", @class = "text txtlastname", @maxlength = "16" })%>
+    </li>
+    <li>
+        <label class="label">
+            Address 1</label>
+        <%: Html.TextAreaFor(m => m.Address, new { @id = "TxtAddress", @class = "text txtaddress", @maxlength = "255" })%>
         <label class="star">
             *</label>
     </li>
     <li>
         <label class="label">
-            Address</label>
-        <%: Html.TextAreaFor(m => m.Address, new { @id = "TxtAddress", @class = "text txtaddress" })%>
-        <label class="star">
-            *</label>
+            Address 2</label>
+        <%: Html.TextAreaFor(m => m.Address2, new { @id = "TxtAddress2", @class = "text txtaddress2", @maxlength = "255" })%>
     </li>
     <li>
         <label class="label">
@@ -154,7 +155,7 @@
                    }%>
                     <%= receiver %>
                 </option>
-            <% } %>
+                <% } %>
         </select>
         <label class="star">
             *</label>

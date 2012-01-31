@@ -117,7 +117,6 @@ namespace saibabacharityreceiptor.Controllers
             return RedirectToAction("LogOn", "Account");
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult Edituser(string uid)
         {
@@ -298,6 +297,7 @@ namespace saibabacharityreceiptor.Controllers
                                                mi = string.Empty,
                                                lastname = string.Empty,
                                                address = string.Empty,
+                                               address2 = string.Empty,
                                                city = string.Empty,
                                                state = string.Empty,
                                                zipcode = string.Empty,
@@ -328,43 +328,45 @@ namespace saibabacharityreceiptor.Controllers
                                         if (dataRow[4] != null && !string.IsNullOrEmpty(dataRow[4].ToString()))
                                             address = dataRow[4].ToString();
                                         if (dataRow[5] != null && !string.IsNullOrEmpty(dataRow[5].ToString()))
-                                            city = dataRow[5].ToString();
+                                            address2 = dataRow[5].ToString();
                                         if (dataRow[6] != null && !string.IsNullOrEmpty(dataRow[6].ToString()))
-                                            state = dataRow[6].ToString();
+                                            city = dataRow[6].ToString();
                                         if (dataRow[7] != null && !string.IsNullOrEmpty(dataRow[7].ToString()))
-                                            zipcode = dataRow[7].ToString();
+                                            state = dataRow[7].ToString();
                                         if (dataRow[8] != null && !string.IsNullOrEmpty(dataRow[8].ToString()))
-                                            email = dataRow[8].ToString();
+                                            zipcode = dataRow[8].ToString();
                                         if (dataRow[9] != null && !string.IsNullOrEmpty(dataRow[9].ToString()))
-                                            contact = dataRow[9].ToString();
+                                            email = dataRow[9].ToString();
                                         if (dataRow[10] != null && !string.IsNullOrEmpty(dataRow[10].ToString()))
-                                            datereceived = dataRow[10].ToString();
+                                            contact = dataRow[10].ToString();
                                         if (dataRow[11] != null && !string.IsNullOrEmpty(dataRow[11].ToString()))
-                                            issueddate = dataRow[11].ToString();
+                                            datereceived = dataRow[11].ToString();
                                         if (dataRow[12] != null && !string.IsNullOrEmpty(dataRow[12].ToString()))
-                                            donationamount = dataRow[12].ToString();
+                                            issueddate = dataRow[12].ToString();
                                         if (dataRow[13] != null && !string.IsNullOrEmpty(dataRow[13].ToString()))
-                                            donationAmountinwords = dataRow[13].ToString();
+                                            donationamount = dataRow[13].ToString();
                                         if (dataRow[14] != null && !string.IsNullOrEmpty(dataRow[14].ToString()))
-                                            recurringDates = dataRow[14].ToString();
+                                            donationAmountinwords = dataRow[14].ToString();
                                         if (dataRow[15] != null && !string.IsNullOrEmpty(dataRow[15].ToString()))
-                                            merchandiseItem = dataRow[15].ToString();
+                                            recurringDates = dataRow[15].ToString();
                                         if (dataRow[16] != null && !string.IsNullOrEmpty(dataRow[16].ToString()))
-                                            quantity = dataRow[16].ToString();
+                                            merchandiseItem = dataRow[16].ToString();
                                         if (dataRow[17] != null && !string.IsNullOrEmpty(dataRow[17].ToString()))
-                                            value = dataRow[17].ToString();
+                                            quantity = dataRow[17].ToString();
                                         if (dataRow[18] != null && !string.IsNullOrEmpty(dataRow[18].ToString()))
-                                            servicetype = dataRow[18].ToString();
+                                            value = dataRow[18].ToString();
                                         if (dataRow[19] != null && !string.IsNullOrEmpty(dataRow[19].ToString()))
-                                            hoursServed = dataRow[19].ToString();
+                                            servicetype = dataRow[19].ToString();
                                         if (dataRow[20] != null && !string.IsNullOrEmpty(dataRow[20].ToString()))
-                                            rateperhour = dataRow[20].ToString();
+                                            hoursServed = dataRow[20].ToString();
                                         if (dataRow[21] != null && !string.IsNullOrEmpty(dataRow[21].ToString()))
-                                            fmvvalue = dataRow[21].ToString();
+                                            rateperhour = dataRow[21].ToString();
                                         if (dataRow[22] != null && !string.IsNullOrEmpty(dataRow[22].ToString()))
-                                            modeOfPayment = dataRow[22].ToString();
+                                            fmvvalue = dataRow[22].ToString();
                                         if (dataRow[23] != null && !string.IsNullOrEmpty(dataRow[23].ToString()))
-                                            receivedBy = dataRow[23].ToString();
+                                            modeOfPayment = dataRow[23].ToString();
+                                        if (dataRow[24] != null && !string.IsNullOrEmpty(dataRow[24].ToString()))
+                                            receivedBy = dataRow[24].ToString();
                                         if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(firstname) && !string.IsNullOrEmpty(receivedBy))
                                         {
                                             List<User> receiver =
@@ -380,6 +382,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                       Mi = mi,
                                                                       LastName = lastname,
                                                                       Address = address,
+                                                                      Address2 = address2,
                                                                       City = city,
                                                                       State = state,
                                                                       ZipCode = zipcode,

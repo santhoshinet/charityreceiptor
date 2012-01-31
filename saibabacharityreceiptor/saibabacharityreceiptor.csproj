@@ -459,10 +459,7 @@
     <Content Include="Views\Home\EditRegularReceipt.aspx" />
     <Content Include="Views\Home\EditServicesReceipt.aspx" />
     <Content Include="Views\Home\MerchandiseReceipt_Ctrl.ascx" />
-    <Content Include="Views\Home\PrintMerchandiseReport.aspx" />
     <Content Include="Views\Home\PrintReceipt.aspx" />
-    <Content Include="Views\Home\PrintRecurringReceipt.aspx" />
-    <Content Include="Views\Home\PrintServicesReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt_Ctrl.ascx" />
     <Content Include="Views\Home\ServicesReceipt_Ctrl.ascx" />
     <Content Include="Views\Reports\ExporttoExcel.aspx" />
@@ -476,7 +473,6 @@
     <Content Include="Views\Reports\SearchReceipts.aspx" />
     <Content Include="Views\Reports\ServicesReceipts.aspx" />
     <Content Include="Views\Shared\Printoptions.aspx" />
-    <Content Include="Views\Home\PrintRegularReceipt.aspx" />
     <Content Include="Views\Home\RecurringReceipt.aspx" />
     <Content Include="Views\Home\ServicesReceipt.aspx" />
     <Content Include="Views\Shared\CreateUser.ascx" />

@@ -53,6 +53,7 @@ namespace saibabacharityreceiptor.Controllers
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           DonationAmount = model.DonationAmount,
@@ -137,6 +138,7 @@ namespace saibabacharityreceiptor.Controllers
                         var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.DonationAmount = model.DonationAmount;
@@ -237,6 +239,7 @@ namespace saibabacharityreceiptor.Controllers
                     var receipt = new Receipt
                     {
                         Address = model.Address,
+                        Address2 = model.Address2,
                         Contact = model.Contact,
                         ReceiptNumber = model.ReceiptNumber,
                         DonationAmount = model.DonationAmount,
@@ -332,6 +335,7 @@ namespace saibabacharityreceiptor.Controllers
                         var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.DonationAmount = model.DonationAmount;
@@ -443,6 +447,7 @@ namespace saibabacharityreceiptor.Controllers
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           MerchandiseItem = model.MerchandiseItem,
@@ -499,6 +504,7 @@ namespace saibabacharityreceiptor.Controllers
                         var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.MerchandiseItem = model.MerchandiseItem;
@@ -571,6 +577,7 @@ namespace saibabacharityreceiptor.Controllers
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           ServiceType = model.ServiceType,
@@ -628,6 +635,7 @@ namespace saibabacharityreceiptor.Controllers
                         var receipt = receipts[0];
                         var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.HoursServed = Convert.ToInt32(model.HoursServed);
@@ -682,6 +690,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new RegularReceiptModels
                                                 {
                                                     Address = receipt.Address,
+                                                    Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
                                                     DateReceived = receipt.DateReceived,
                                                     DonationAmount = receipt.DonationAmount,
@@ -706,6 +715,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new RecurringReceipt
                                                 {
                                                     Address = receipt.Address,
+                                                    Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
                                                     DateReceived = receipt.DateReceived,
                                                     DonationAmount = receipt.DonationAmount,
@@ -731,6 +741,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new MerchandiseReceipt
                                 {
                                     Address = receipt.Address,
+                                    Address2 = receipt.Address2,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.DateReceived,
                                     Email = receipt.Email,
@@ -755,6 +766,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new ServicesReceipt
                                 {
                                     Address = receipt.Address,
+                                    Address2 = receipt.Address2,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.DateReceived,
                                     Email = receipt.Email,
@@ -896,6 +908,7 @@ namespace saibabacharityreceiptor.Controllers
                                                    {
                                                        FirstName = receipts[0].FirstName,
                                                        Address = receipts[0].Address,
+                                                       Address2 = receipts[0].Address2,
                                                        City = receipts[0].City,
                                                        Contact = receipts[0].Contact,
                                                        DateReceived = receipts[0].DateReceived,
@@ -952,6 +965,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                       {
                                                                           FirstName = receipt.FirstName,
                                                                           Address = receipt.Address,
+                                                                          Address2 = receipts[0].Address2,
                                                                           City = receipt.City,
                                                                           Contact = receipt.Contact,
                                                                           DateReceived = receipt.DateReceived,
@@ -1005,6 +1019,8 @@ namespace saibabacharityreceiptor.Controllers
         public string LastName { get; set; }
 
         public string Address { get; set; }
+
+        public string Address2 { get; set; }
 
         public string City { get; set; }
 

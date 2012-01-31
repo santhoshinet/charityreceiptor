@@ -427,7 +427,7 @@ namespace saibabacharityreceiptor.Controllers
                         Response.ContentEncoding = System.Text.Encoding.UTF8;
                         Response.ContentType = "application/text/csv";
                         String csvOutput =
-                            "Receipt Type,First Name,MI,Last Name,Address,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Dates,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
+                            "Receipt Type,First Name,MI,Last Name,Address 1,Address 2,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Dates,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
                         foreach (Receipt receipt in receipts)
                         {
                             // adding data
@@ -437,6 +437,7 @@ namespace saibabacharityreceiptor.Controllers
                             csvOutput += "," + receipt.Mi;
                             csvOutput += "," + receipt.LastName;
                             csvOutput += "," + receipt.Address;
+                            csvOutput += "," + receipt.Address2;
                             csvOutput += "," + receipt.City;
                             csvOutput += "," + receipt.State;
                             csvOutput += "," + receipt.ZipCode;
