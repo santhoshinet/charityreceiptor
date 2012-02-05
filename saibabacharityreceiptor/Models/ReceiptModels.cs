@@ -15,12 +15,10 @@ namespace saibabacharityreceiptor.Models
         [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "MI")]
         public string Mi { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
@@ -29,6 +27,10 @@ namespace saibabacharityreceiptor.Models
         [DataType(DataType.MultilineText)]
         [Display(Name = "Address")]
         public string Address { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Address2")]
+        public string Address2 { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

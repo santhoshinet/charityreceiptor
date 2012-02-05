@@ -44,7 +44,8 @@
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
+                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
             </ul>
         </div>
         <div class="clear">
@@ -159,7 +160,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
+                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
             </ul>
         </div>
         <div class="clear">
@@ -317,7 +319,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
+                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
             </ul>
         </div>
         <div class="clear">
@@ -424,7 +427,8 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Address:</span><span class="value"><%= receiptData.Address%></span></li>
+                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
+                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
             </ul>
         </div>
         <div class="clear">
@@ -464,7 +468,7 @@ break;
             <ul>
                 <li class="two"><span class="field">Service Duration (No.of hrs/ day):</span><span
                     class="value"><%= receiptData.HoursServed%></span></li>
-                <li class="two"><span class="field">Rate per hr/day):</span><span class="value"><%= receiptData.RatePerHrOrDay%></span></li>
+                <li class="two"><span class="field">Rate per hr/day:</span><span class="value"><%= receiptData.RatePerHrOrDay%></span></li>
             </ul>
         </div>
         <div class="clear">

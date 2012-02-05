@@ -5,8 +5,6 @@
         if ($('.txtreceiptno').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtdate').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtname').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txtmi').validateText({ cssclass: "errorinfo", alert: true })
-            && $('.txtlastname').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtaddress').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtcity').validateText({ cssclass: "errorinfo", alert: true })
             && $('.txtstate').validateText({ cssclass: "errorinfo", alert: true })

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using saibabacharityreceiptor.Models;
 using saibabacharityreceiptorDL;
 using Telerik.OpenAccess;
+using Font = iTextSharp.text.Font;
 
 namespace saibabacharityreceiptor.Controllers
 {
@@ -24,6 +25,8 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
+                var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile" };
+                ViewData["modeOfPayment"] = modeofpayments;
                 ViewData["PostAction"] = "RegularReceipt";
                 ViewData["selectedModeOfPayment"] = string.Empty;
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
@@ -53,10 +56,11 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           DonationAmount = model.DonationAmount,
@@ -138,9 +142,10 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.DonationAmount = model.DonationAmount;
@@ -237,10 +242,11 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                     {
                         Address = model.Address,
+                        Address2 = model.Address2,
                         Contact = model.Contact,
                         ReceiptNumber = model.ReceiptNumber,
                         DonationAmount = model.DonationAmount,
@@ -333,9 +339,10 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.DonationAmount = model.DonationAmount;
@@ -443,10 +450,11 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           MerchandiseItem = model.MerchandiseItem,
@@ -500,9 +508,10 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.MerchandiseItem = model.MerchandiseItem;
@@ -571,10 +580,11 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
+                                          Address2 = model.Address2,
                                           Contact = model.Contact,
                                           ReceiptNumber = model.ReceiptNumber,
                                           ServiceType = model.ServiceType,
@@ -630,8 +640,9 @@ namespace saibabacharityreceiptor.Controllers
                     {
                         scope.Transaction.Begin();
                         var receipt = receipts[0];
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         receipt.Address = model.Address;
+                        receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.HoursServed = Convert.ToInt32(model.HoursServed);
@@ -686,6 +697,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new RegularReceiptModels
                                                 {
                                                     Address = receipt.Address,
+                                                    Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
                                                     DateReceived = receipt.DateReceived,
                                                     DonationAmount = receipt.DonationAmount,
@@ -710,6 +722,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new RecurringReceipt
                                                 {
                                                     Address = receipt.Address,
+                                                    Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
                                                     DateReceived = receipt.DateReceived,
                                                     DonationAmount = receipt.DonationAmount,
@@ -735,6 +748,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new MerchandiseReceipt
                                 {
                                     Address = receipt.Address,
+                                    Address2 = receipt.Address2,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.DateReceived,
                                     Email = receipt.Email,
@@ -759,6 +773,7 @@ namespace saibabacharityreceiptor.Controllers
                                 var model = new ServicesReceipt
                                 {
                                     Address = receipt.Address,
+                                    Address2 = receipt.Address2,
                                     Contact = receipt.Contact,
                                     DateReceived = receipt.DateReceived,
                                     Email = receipt.Email,
@@ -900,6 +915,7 @@ namespace saibabacharityreceiptor.Controllers
                                                    {
                                                        FirstName = receipts[0].FirstName,
                                                        Address = receipts[0].Address,
+                                                       Address2 = receipts[0].Address2,
                                                        City = receipts[0].City,
                                                        Contact = receipts[0].Contact,
                                                        DateReceived = receipts[0].DateReceived,
@@ -956,6 +972,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                       {
                                                                           FirstName = receipt.FirstName,
                                                                           Address = receipt.Address,
+                                                                          Address2 = receipts[0].Address2,
                                                                           City = receipt.City,
                                                                           Contact = receipt.Contact,
                                                                           DateReceived = receipt.DateReceived,
@@ -992,7 +1009,7 @@ namespace saibabacharityreceiptor.Controllers
 
         [Authorize]
         [HttpGet]
-        public FileResult DownloadReceipt(string recpId)
+        public FileStreamResult DownloadReceipt(string recpId)
         {
             if (!User.Identity.IsAuthenticated)
                 return null;
@@ -1002,9 +1019,10 @@ namespace saibabacharityreceiptor.Controllers
                 List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                           where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
                                           select c).ToList();
+                var receiptDatas = new List<ReceiptData>();
                 if (receipts.Count > 0)
                 {
-                    var receiptDatas = new List<ReceiptData>
+                    receiptDatas = new List<ReceiptData>
                                            {
                                                new ReceiptData
                                                    {
@@ -1035,26 +1053,6 @@ namespace saibabacharityreceiptor.Controllers
                                                        ZipCode = receipts[0].ZipCode
                                                    }
                                            };
-                    ViewData["Receipt_Data"] = receiptDatas;
-                    /*switch (receipts[0].ReceiptType)
-                    {
-                        case ReceiptType.GeneralReceipt:
-                            {
-                                return View("PrintRegularReceipt");
-                            }
-                        case ReceiptType.RecurringReceipt:
-                            {
-                                return View("PrintRecurringReceipt");
-                            }
-                        case ReceiptType.MerchandiseReceipt:
-                            {
-                                return View("PrintMerchandiseReport");
-                            }
-                        case ReceiptType.ServicesReceipt:
-                            {
-                                return View("PrintServicesReceipt");
-                            }
-                    }*/
                 }
                 else
                 {
@@ -1063,7 +1061,7 @@ namespace saibabacharityreceiptor.Controllers
                                 select c).ToList();
                     if (receipts.Count > 0)
                     {
-                        var receiptDatas = receipts.Select(receipt => new ReceiptData
+                        receiptDatas = receipts.Select(receipt => new ReceiptData
                                                                           {
                                                                               FirstName = receipt.FirstName,
                                                                               Address = receipt.Address,
@@ -1094,46 +1092,149 @@ namespace saibabacharityreceiptor.Controllers
                                                                               State = receipt.State,
                                                                               ZipCode = receipt.ZipCode
                                                                           }).ToList();
-                        ViewData["Receipt_Data"] = receiptDatas;
                     }
                 }
-                var partialViewResult = View("PrintReceipt");
-                var sw = new StringWriter();
-                if (string.IsNullOrEmpty(partialViewResult.ViewName))
-                {
-                    partialViewResult.ViewName = ControllerContext.RouteData.GetRequiredString("action");
-                }
-                ViewEngineResult result = null;
-                if (partialViewResult.View == null)
-                {
-                    result = partialViewResult.ViewEngineCollection.FindPartialView(ControllerContext, partialViewResult.ViewName);
-                    if (result.View == null)
-                        return null;
-                    partialViewResult.View = result.View;
-                }
-                var view = partialViewResult.View;
-                var viewContext = new ViewContext(ControllerContext, view, partialViewResult.ViewData,
-                                                  partialViewResult.TempData, sw);
-                view.Render(viewContext, sw);
-                if (result != null)
-                {
-                    result.ViewEngine.ReleaseView(ControllerContext, view);
-                }
+
                 // Create a Document object
                 var document = new Document(PageSize.A4, 50, 50, 25, 25);
                 var output = new MemoryStream();
                 PdfWriter.GetInstance(document, output);
                 document.Open();
-                var parsedHtmlElements = HTMLWorker.ParseToList(new StringReader(sw.ToString()), null);
-                foreach (var htmlElement in parsedHtmlElements)
-                    document.Add(htmlElement);
+                //add header image
+                //Image headerlogo = Image.GetInstance("C:\\Temp\\citylogo.png");
+                //document.Add(headerlogo);
+                foreach (ReceiptData receiptData in receiptDatas)
+                {
+                    switch (receiptData.ReceiptType)
+                    {
+                        case "GeneralReceipt":
+                            {
+                                Header(document, "Donation Receipt");
+                                NewLine(document);
+                                ReceiptId(document, receiptData.ReceiptNumber);
+                                NewLine(document);
+                                ThreeField(document, "First name:", receiptData.FirstName, "MI:", receiptData.Mi, "Last Name:", receiptData.LastName);
+                                NewLine(document);
+                                TwoField(document, "Address1", "", "Address2", "");
+                                NewLine(document);
+                                TwoField(document, "  ", receiptData.Address, "  ", receiptData.Address2);
+                                NewLine(document);
+                                ThreeField(document, "City:", receiptData.City, "State:", receiptData.State, "Zip:", receiptData.ZipCode);
+                                NewLine(document);
+                                TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Address2);
+                                NewLine(document);
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
+                                NewLine(document);
+                                SingleField(document, "Donation amount received in USD:", receiptData.DonationAmount);
+                                NewLine(document);
+                                SingleField(document, "Donation received in words:", receiptData.DonationAmountinWords);
+                                NewLine(document);
+                                SingleField(document, "Mode of donation:", receiptData.ModeOfPayment);
+                                NewLine(document);
+                                NewLine(document);
+                                NewLine(document);
+                                TwoField(document, "Donation received by:", receiptData.DonationReceiverName, "Signature:", "");
+                                NewLine(document);
+                                TwoField(document, "Shridi Saibaba Temple Arizona", "", "Issued Date:", receiptData.IssuedDate.ToString("dd MMM yyyy"));
+                                NewLine(document);
+                                NewLine(document);
+                                NewLine(document);
+                                SingleField(document, "◦ No goods or services were provided in exchange for these contributions.", "");
+                                NewLine(document);
+                                SingleField(document, "◦ ◦This document is necessary for any available federal income tax deduction for your contribution. Please retain it for your records.", "");
+                                NewLine(document);
+                                NewLine(document);
+                                Theme(document, "“Dharma will put an end to Karma”");
+                                NewLine(document);
+                                Thanks(document, "Thank You – Jai Sairam!");
+                                NewLine(document);
+                                break;
+                            }
+                        case "RecurringReceipt":
+                            {
+                                break;
+                            }
+                        case "MerchandiseReceipt":
+                            {
+                                break;
+                            }
+                        case "ServicesReceipt":
+                            {
+                                break;
+                            }
+                    }
+                }
                 document.Close();
                 Response.ContentType = "application/pdf";
                 Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", recpId));
-                Response.BinaryWrite(output.ToArray());
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(output.GetBuffer(), 0, output.GetBuffer().Length);
+                Response.OutputStream.Flush();
                 Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
             return null;
+        }
+
+        private static void TwoField(Document document, string field1, string value1, string field2, string value2)
+        {
+            SingleField(document, field1, value1);
+            //spaces
+            for (int i = 0; i < 50; i++)
+                document.Add(new Anchor(" ", new Font()));
+            SingleField(document, field2, value2);
+        }
+
+        private static void SingleField(Document document, string field1, string value1)
+        {
+            var baseColor = new BaseColor(Color.Gray);
+            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 9f, baseColor);
+            document.Add(new Anchor(field1, arial));
+            arial = FontFactory.GetFont("Arial", 9f, baseColor);
+            document.Add(new Anchor(value1, arial));
+        }
+
+        private static void Theme(Document document, string theme)
+        {
+            var baseColor = new BaseColor(Color.Red);
+            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            document.Add(new Paragraph(theme, arial) { IndentationLeft = 220 });
+        }
+
+        private static void Thanks(Document document, string theme)
+        {
+            var baseColor = new BaseColor(Color.Black);
+            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            document.Add(new Paragraph(theme, arial) { IndentationLeft = 220 });
+        }
+
+        private static void ThreeField(Document document, string field1, string value1, string field2, string value2, string field3, string value3)
+        {
+            TwoField(document, field1, value1, field2, value2);
+            //spaces
+            for (int i = 0; i < 30; i++)
+                document.Add(new Anchor(" ", new Font()));
+            SingleField(document, field3, value3);
+        }
+
+        private static void NewLine(Document document)
+        {
+            document.Add(new Phrase("\n"));
+        }
+
+        private static void Header(Document document, string title)
+        {
+            var baseColor = new BaseColor(Color.Black);
+            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 11f, baseColor);
+            document.Add(new Paragraph(title, arial) { IndentationLeft = 220 });
+        }
+
+        private static void ReceiptId(Document document, string receiptId)
+        {
+            var arial = new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.BOLD, new BaseColor(163, 21, 21)); //FontFactory.GetFont("Arial", 10f, baseColor);
+            document.Add(new Anchor("Receipt #:", arial));
+            document.Add(new Anchor("  " + receiptId, arial));
         }
     }
 
@@ -1148,6 +1249,8 @@ namespace saibabacharityreceiptor.Controllers
         public string LastName { get; set; }
 
         public string Address { get; set; }
+
+        public string Address2 { get; set; }
 
         public string City { get; set; }
 

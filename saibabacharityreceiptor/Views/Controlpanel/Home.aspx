@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul class="ul">
         <li>
-            <% if ((bool)ViewData["IsheDonationReceiver"])
+            <% if ((bool)ViewData["IsheDonationReceiver"] || (bool)ViewData["IsheAdmin"])
                {%>
             <h2>
                 Generate a receipt</h2>

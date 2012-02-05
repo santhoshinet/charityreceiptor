@@ -3,9 +3,6 @@ using System.Web.Routing;
 
 namespace saibabacharityreceiptor
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -115,9 +112,15 @@ namespace saibabacharityreceiptor
 
             routes.MapRoute(
                 "Reports", // Route name
-                "{controller}/{action}/{pageIndex}", // URL with parameters
-                new { controller = "controlpanel", action = "home", pageIndex = 0 } // Parameter defaults
+                "Reports/{action}/{pageIndex}", // URL with parameters
+                new { controller = "Reports", action = "home", pageIndex = 0 } // Parameter defaults
             );
+
+            routes.MapRoute(
+                            "Default", // Route name
+                            "{controller}/{action}", // URL with parameters
+                            new { controller = "Account", action = "Index" } // Parameter defaults
+                        );
 
             routes.MapRoute(
                 "delete_user", // Route name
@@ -130,18 +133,11 @@ namespace saibabacharityreceiptor
                 "{controller}/{action}/{recpId}", // URL with parameters
                 new { controller = "controlpanel", action = "home", recpId = UrlParameter.Optional } // Parameter defaults
             );
-
-            routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "controlpanel", action = "home", id = UrlParameter.Optional } // Parameter defaults
-            );
         }
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

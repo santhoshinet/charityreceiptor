@@ -8,9 +8,15 @@ namespace saibabacharityreceiptorSeeds
     {
         private static void Main()
         {
-            CreateUser("santhoshonet", "santhoshonet@gmail.com");
-            CreateUser("santhosh", "santhoshonet@gmail.com");
+            //CreateUser("santhoshonet", "santhoshonet@gmail.com");
+            //CreateUser("santhosh", "santhoshonet@gmail.com");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
+            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                select c).ToList();
+            foreach (var user in users)
+            {
+            }
+            /*
             List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                       select c).ToList();
             foreach (var receipt in receipts)
@@ -18,7 +24,7 @@ namespace saibabacharityreceiptorSeeds
                 scope.Transaction.Begin();
                 scope.Remove(receipt) ;
                 scope.Transaction.Commit();
-            }
+            }*/
         }
 
         private static void CreateUser(string username, string email)

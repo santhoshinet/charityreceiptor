@@ -12,7 +12,7 @@ namespace saibabacharityreceiptor
     {
         public static string GenerateReceiptId()
         {
-            var currentUtcTime = DateTime.Now.ToUniversalTime();
+            var currentUtcTime = DateTime.Now;
             return "SAI" + currentUtcTime.ToString("yyyy") +
                    string.Concat(Enumerable.Repeat('0', 3 - currentUtcTime.DayOfYear.ToString().Length)) +
                    currentUtcTime.DayOfYear +

@@ -22,10 +22,6 @@
         <%= Html.ValidationMessageFor(m => m.Password) %>
     </li>
     <li>
-        <%= Html.CheckBoxFor(m => m.RememberMe) %>
-        <%= Html.LabelFor(m => m.RememberMe) %>
-    </li>
-    <li>
         <input type="submit" value="Log On" />
     </li>
 </ul>
