@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using saibabacharityreceiptor.Models;
 using saibabacharityreceiptorDL;
 using Telerik.OpenAccess;
@@ -988,9 +992,148 @@ namespace saibabacharityreceiptor.Controllers
 
         [Authorize]
         [HttpGet]
-        public string DownloadReceipt(string recpId)
+        public FileResult DownloadReceipt(string recpId)
         {
-            return "this feature is under construction.";
+            if (!User.Identity.IsAuthenticated)
+                return null;
+            var scope = ObjectScopeProvider1.GetNewObjectScope();
+            if (Checkauthorization(scope, User.Identity.Name))
+            {
+                List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                          where c.ReceiptNumber.ToLower().Equals(recpId.ToLower())
+                                          select c).ToList();
+                if (receipts.Count > 0)
+                {
+                    var receiptDatas = new List<ReceiptData>
+                                           {
+                                               new ReceiptData
+                                                   {
+                                                       FirstName = receipts[0].FirstName,
+                                                       Address = receipts[0].Address,
+                                                       City = receipts[0].City,
+                                                       Contact = receipts[0].Contact,
+                                                       DateReceived = receipts[0].DateReceived,
+                                                       DonationAmount = receipts[0].DonationAmount,
+                                                       DonationAmountinWords = receipts[0].DonationAmountinWords,
+                                                       DonationReceiverName = receipts[0].DonationReceiver.Username,
+                                                       Email = receipts[0].Email,
+                                                       FmvValue = receipts[0].FmvValue,
+                                                       GroupId = receipts[0].GroupId,
+                                                       HoursServed = receipts[0].HoursServed,
+                                                       IssuedDate = receipts[0].IssuedDate,
+                                                       LastName = receipts[0].LastName,
+                                                       MerchandiseItem = receipts[0].MerchandiseItem,
+                                                       Mi = receipts[0].Mi,
+                                                       ModeOfPayment = receipts[0].ModeOfPayment.ToString(),
+                                                       Quantity = receipts[0].Quantity,
+                                                       RatePerHrOrDay = receipts[0].RatePerHrOrDay,
+                                                       ReceiptNumber = receipts[0].ReceiptNumber,
+                                                       ReceiptType = receipts[0].ReceiptType.ToString(),
+                                                       RecurringDates = receipts[0].RecurringDates,
+                                                       ServiceType = receipts[0].ServiceType,
+                                                       State = receipts[0].State,
+                                                       ZipCode = receipts[0].ZipCode
+                                                   }
+                                           };
+                    ViewData["Receipt_Data"] = receiptDatas;
+                    /*switch (receipts[0].ReceiptType)
+                    {
+                        case ReceiptType.GeneralReceipt:
+                            {
+                                return View("PrintRegularReceipt");
+                            }
+                        case ReceiptType.RecurringReceipt:
+                            {
+                                return View("PrintRecurringReceipt");
+                            }
+                        case ReceiptType.MerchandiseReceipt:
+                            {
+                                return View("PrintMerchandiseReport");
+                            }
+                        case ReceiptType.ServicesReceipt:
+                            {
+                                return View("PrintServicesReceipt");
+                            }
+                    }*/
+                }
+                else
+                {
+                    receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                where c.GroupId != null && c.GroupId.ToLower().Equals(recpId.ToLower())
+                                select c).ToList();
+                    if (receipts.Count > 0)
+                    {
+                        var receiptDatas = receipts.Select(receipt => new ReceiptData
+                                                                          {
+                                                                              FirstName = receipt.FirstName,
+                                                                              Address = receipt.Address,
+                                                                              City = receipt.City,
+                                                                              Contact = receipt.Contact,
+                                                                              DateReceived = receipt.DateReceived,
+                                                                              DonationAmount = receipt.DonationAmount,
+                                                                              DonationAmountinWords =
+                                                                                  receipt.DonationAmountinWords,
+                                                                              DonationReceiverName =
+                                                                                  receipt.DonationReceiver.Username,
+                                                                              Email = receipt.Email,
+                                                                              FmvValue = receipt.FmvValue,
+                                                                              GroupId = receipt.GroupId,
+                                                                              HoursServed = receipt.HoursServed,
+                                                                              IssuedDate = receipt.IssuedDate,
+                                                                              LastName = receipt.LastName,
+                                                                              MerchandiseItem = receipt.MerchandiseItem,
+                                                                              Mi = receipt.Mi,
+                                                                              ModeOfPayment =
+                                                                                  receipt.ModeOfPayment.ToString(),
+                                                                              Quantity = receipt.Quantity,
+                                                                              RatePerHrOrDay = receipt.RatePerHrOrDay,
+                                                                              ReceiptNumber = receipt.ReceiptNumber,
+                                                                              ReceiptType = receipt.ReceiptType.ToString(),
+                                                                              RecurringDates = receipt.RecurringDates,
+                                                                              ServiceType = receipt.ServiceType,
+                                                                              State = receipt.State,
+                                                                              ZipCode = receipt.ZipCode
+                                                                          }).ToList();
+                        ViewData["Receipt_Data"] = receiptDatas;
+                    }
+                }
+                var partialViewResult = View("PrintReceipt");
+                var sw = new StringWriter();
+                if (string.IsNullOrEmpty(partialViewResult.ViewName))
+                {
+                    partialViewResult.ViewName = ControllerContext.RouteData.GetRequiredString("action");
+                }
+                ViewEngineResult result = null;
+                if (partialViewResult.View == null)
+                {
+                    result = partialViewResult.ViewEngineCollection.FindPartialView(ControllerContext, partialViewResult.ViewName);
+                    if (result.View == null)
+                        return null;
+                    partialViewResult.View = result.View;
+                }
+                var view = partialViewResult.View;
+                var viewContext = new ViewContext(ControllerContext, view, partialViewResult.ViewData,
+                                                  partialViewResult.TempData, sw);
+                view.Render(viewContext, sw);
+                if (result != null)
+                {
+                    result.ViewEngine.ReleaseView(ControllerContext, view);
+                }
+                // Create a Document object
+                var document = new Document(PageSize.A4, 50, 50, 25, 25);
+                var output = new MemoryStream();
+                PdfWriter.GetInstance(document, output);
+                document.Open();
+                var parsedHtmlElements = HTMLWorker.ParseToList(new StringReader(sw.ToString()), null);
+                foreach (var htmlElement in parsedHtmlElements)
+                    document.Add(htmlElement);
+                document.Close();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("Content-Disposition", string.Format("attachment;filename=Receipt-{0}.pdf", recpId));
+                Response.BinaryWrite(output.ToArray());
+                Response.End();
+            }
+            return null;
         }
     }
 

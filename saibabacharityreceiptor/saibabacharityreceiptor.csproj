@@ -42,6 +42,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\Support\itextsharp-all-5.1.3\itextsharp-dll-core-5.1.3\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="saibabacharityreceiptorDL">
       <HintPath>..\saibabacharityreceiptorDL\saibabacharityreceiptorDL\bin\Debug\saibabacharityreceiptorDL.dll</HintPath>
     </Reference>

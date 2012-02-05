@@ -125,7 +125,7 @@
                 Thank You – Jai Sairam!</h3>
         </div>
         <div class="barcode">
-            <img src="/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
+            <img src="http://shirdisaibabaaz.org/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
         </div>
     </div>
     <%
