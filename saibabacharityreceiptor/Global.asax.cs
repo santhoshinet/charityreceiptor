@@ -119,7 +119,7 @@ namespace saibabacharityreceiptor
             routes.MapRoute(
                             "Default", // Route name
                             "{controller}/{action}", // URL with parameters
-                            new { controller = "Account", action = "Index" } // Parameter defaults
+                            new { controller = "Account", action = "LogOn" } // Parameter defaults
                         );
 
             routes.MapRoute(

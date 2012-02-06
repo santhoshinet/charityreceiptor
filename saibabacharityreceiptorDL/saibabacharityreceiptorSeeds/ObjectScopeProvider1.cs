@@ -18,42 +18,42 @@ using Telerik.OpenAccess.Util;
 
 namespace saibabacharityreceiptorSeeds
 {
-    /// <summary>
-    /// This class provides an object context for connected database access.
-    /// </summary>
-    /// <remarks>
-    /// This class can be used to obtain an IObjectScope instance required for a connected database
-    /// access.
-    /// </remarks>
-    public class ObjectScopeProvider1 : IObjectScopeProvider
-    {
-        private Database myDatabase;
-        private IObjectScope myScope;
+	/// <summary>
+	/// This class provides an object context for connected database access.
+	/// </summary>
+	/// <remarks>
+	/// This class can be used to obtain an IObjectScope instance required for a connected database
+	/// access.
+	/// </remarks>
+	public class ObjectScopeProvider1 : IObjectScopeProvider
+	{
+		private Database myDatabase;
+		private IObjectScope myScope;
 
-        static private ObjectScopeProvider1 theObjectScopeProvider1;
+		static private ObjectScopeProvider1 theObjectScopeProvider1;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <remarks></remarks>
+		public ObjectScopeProvider1()
+		{
+		}
 
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <remarks></remarks>
-        public ObjectScopeProvider1()
-        {
-        }
-
-        /// <summary>
-        /// Adjusts for dynamic loading when no entry assembly is available/configurable.
-        /// </summary>
-        /// <remarks>
+		/// Adjusts for dynamic loading when no entry assembly is available/configurable.
+		/// </summary>
+		/// <remarks>
         /// When dynamic loading is used, the configuration path from the
         /// applications entry assembly to the connection setting might be broken.
         /// This method makes up the necessary configuration entries.
         /// </remarks>
         static public void AdjustForDynamicLoad()
         {
-            if (theObjectScopeProvider1 == null)
+            if( theObjectScopeProvider1 == null )
                 theObjectScopeProvider1 = new ObjectScopeProvider1();
 
-            if (theObjectScopeProvider1.myDatabase == null)
+            if( theObjectScopeProvider1.myDatabase == null )
             {
                 string assumedInitialConfiguration =
                            "<openaccess>" +
@@ -68,55 +68,55 @@ namespace saibabacharityreceiptorSeeds
                 xmlDoc.LoadXml(assumedInitialConfiguration);
                 Database db = Telerik.OpenAccess.Database.Get("DatabaseConnection1",
                                             xmlDoc.DocumentElement,
-                                            new System.Reflection.Assembly[] { dll });
+                                            new System.Reflection.Assembly[] { dll } );
 
                 theObjectScopeProvider1.myDatabase = db;
             }
         }
 
-        /// <summary>
-        /// Returns the instance of Database for the connectionId
-        /// specified in the Enable Project Wizard.
-        /// </summary>
-        /// <returns>Instance of Database.</returns>
-        /// <remarks></remarks>
-        static public Database Database()
-        {
-            if (theObjectScopeProvider1 == null)
-                theObjectScopeProvider1 = new ObjectScopeProvider1();
+		/// <summary>
+		/// Returns the instance of Database for the connectionId
+		/// specified in the Enable Project Wizard.
+		/// </summary>
+		/// <returns>Instance of Database.</returns>
+		/// <remarks></remarks>
+		static public Database Database()
+		{
+			if( theObjectScopeProvider1 == null )
+				theObjectScopeProvider1 = new ObjectScopeProvider1();
 
-            if (theObjectScopeProvider1.myDatabase == null)
-                theObjectScopeProvider1.myDatabase = Telerik.OpenAccess.Database.Get("DatabaseConnection1");
+			if( theObjectScopeProvider1.myDatabase == null )
+				theObjectScopeProvider1.myDatabase = Telerik.OpenAccess.Database.Get( "DatabaseConnection1" );
 
-            return theObjectScopeProvider1.myDatabase;
-        }
+			return theObjectScopeProvider1.myDatabase;
+		}
 
-        /// <summary>
-        /// Returns the instance of ObjectScope for the application.
-        /// </summary>
-        /// <returns>Instance of IObjectScope.</returns>
-        /// <remarks></remarks>
-        static public IObjectScope ObjectScope()
-        {
-            Database();
+		/// <summary>
+		/// Returns the instance of ObjectScope for the application.
+		/// </summary>
+		/// <returns>Instance of IObjectScope.</returns>
+		/// <remarks></remarks>
+		static public IObjectScope ObjectScope()
+		{
+			Database();
 
-            if (theObjectScopeProvider1.myScope == null)
-                theObjectScopeProvider1.myScope = GetNewObjectScope();
+			if( theObjectScopeProvider1.myScope == null )
+				theObjectScopeProvider1.myScope = GetNewObjectScope();
 
-            return theObjectScopeProvider1.myScope;
-        }
+			return theObjectScopeProvider1.myScope;
+		}
 
-        /// <summary>
-        /// Returns the new instance of ObjectScope for the application.
-        /// </summary>
-        /// <returns>Instance of IObjectScope.</returns>
-        /// <remarks></remarks>
-        static public IObjectScope GetNewObjectScope()
-        {
-            Database db = Database();
+		/// <summary>
+		/// Returns the new instance of ObjectScope for the application.
+		/// </summary>
+		/// <returns>Instance of IObjectScope.</returns>
+		/// <remarks></remarks>
+		static public IObjectScope GetNewObjectScope()
+		{
+			Database db = Database();
 
-            IObjectScope newScope = db.GetObjectScope();
-            return newScope;
-        }
-    }
+			IObjectScope newScope = db.GetObjectScope();
+			return newScope;
+		}
+	}
 }

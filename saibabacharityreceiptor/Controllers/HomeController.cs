@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
+using BarcodeGenerator;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using saibabacharityreceiptor.Models;
@@ -1098,31 +1101,33 @@ namespace saibabacharityreceiptor.Controllers
                 // Create a Document object
                 var document = new Document(PageSize.A4, 50, 50, 25, 25);
                 var output = new MemoryStream();
-                PdfWriter.GetInstance(document, output);
+                PdfWriter writer = PdfWriter.GetInstance(document, output);
                 document.Open();
                 //add header image
                 //Image headerlogo = Image.GetInstance("C:\\Temp\\citylogo.png");
                 //document.Add(headerlogo);
                 foreach (ReceiptData receiptData in receiptDatas)
                 {
+                    for (int i = 0; i < 8; i++)
+                        NewLine(document);
+                    Header(document, "Donation Receipt");
+                    NewLine(document);
+                    ReceiptId(document, receiptData.ReceiptNumber);
+                    NewLine(document);
+                    ThreeField(document, "First name:", receiptData.FirstName, "MI:", receiptData.Mi, "Last Name:", receiptData.LastName);
+                    NewLine(document);
+                    TwoField(document, "Address1:", "", "Address2:", "");
+                    NewLine(document);
+                    TwoField(document, "", receiptData.Address, "", receiptData.Address2);
+                    NewLine(document);
+                    ThreeField(document, "City:", receiptData.City, "State:", receiptData.State, "Zip:", receiptData.ZipCode);
+                    NewLine(document);
+                    TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Address2);
+                    NewLine(document);
                     switch (receiptData.ReceiptType)
                     {
                         case "GeneralReceipt":
                             {
-                                Header(document, "Donation Receipt");
-                                NewLine(document);
-                                ReceiptId(document, receiptData.ReceiptNumber);
-                                NewLine(document);
-                                ThreeField(document, "First name:", receiptData.FirstName, "MI:", receiptData.Mi, "Last Name:", receiptData.LastName);
-                                NewLine(document);
-                                TwoField(document, "Address1", "", "Address2", "");
-                                NewLine(document);
-                                TwoField(document, "  ", receiptData.Address, "  ", receiptData.Address2);
-                                NewLine(document);
-                                ThreeField(document, "City:", receiptData.City, "State:", receiptData.State, "Zip:", receiptData.ZipCode);
-                                NewLine(document);
-                                TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Address2);
-                                NewLine(document);
                                 SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
                                 NewLine(document);
                                 SingleField(document, "Donation amount received in USD:", receiptData.DonationAmount);
@@ -1130,23 +1135,6 @@ namespace saibabacharityreceiptor.Controllers
                                 SingleField(document, "Donation received in words:", receiptData.DonationAmountinWords);
                                 NewLine(document);
                                 SingleField(document, "Mode of donation:", receiptData.ModeOfPayment);
-                                NewLine(document);
-                                NewLine(document);
-                                NewLine(document);
-                                TwoField(document, "Donation received by:", receiptData.DonationReceiverName, "Signature:", "");
-                                NewLine(document);
-                                TwoField(document, "Shridi Saibaba Temple Arizona", "", "Issued Date:", receiptData.IssuedDate.ToString("dd MMM yyyy"));
-                                NewLine(document);
-                                NewLine(document);
-                                NewLine(document);
-                                SingleField(document, "◦ No goods or services were provided in exchange for these contributions.", "");
-                                NewLine(document);
-                                SingleField(document, "◦ ◦This document is necessary for any available federal income tax deduction for your contribution. Please retain it for your records.", "");
-                                NewLine(document);
-                                NewLine(document);
-                                Theme(document, "“Dharma will put an end to Karma”");
-                                NewLine(document);
-                                Thanks(document, "Thank You – Jai Sairam!");
                                 NewLine(document);
                                 break;
                             }
@@ -1156,13 +1144,60 @@ namespace saibabacharityreceiptor.Controllers
                             }
                         case "MerchandiseReceipt":
                             {
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
+                                NewLine(document);
+                                SingleField(document, "Goods received:", receiptData.MerchandiseItem);
+                                NewLine(document);
+                                SingleField(document, "Goods FMV in USD:", receiptData.FmvValue);
+                                NewLine(document);
                                 break;
                             }
                         case "ServicesReceipt":
                             {
+                                SingleField(document, "Service received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
+                                NewLine(document);
+                                SingleField(document, "Service type:", receiptData.ServiceType);
+                                NewLine(document);
+                                TwoField(document, "Service Duration (No.of hrs/ day):", receiptData.HoursServed.ToString(), "Rate per hr/day", receiptData.RatePerHrOrDay);
+                                NewLine(document);
+                                SingleField(document, "FMV in USD:", receiptData.FmvValue);
                                 break;
                             }
                     }
+                    for (int i = 0; i < 3; i++)
+                        NewLine(document);
+                    TwoField(document, "Donation received by:", receiptData.DonationReceiverName, "Signature:", "");
+                    NewLine(document);
+                    TwoField(document, "Shridi Saibaba Temple Arizona", "", "Issued Date:", receiptData.IssuedDate.ToString("dd MMM yyyy"));
+                    for (int i = 0; i < 3; i++)
+                        NewLine(document);
+                    Notes(document, "* No goods or services were provided in exchange for these contributions.", "");
+                    NewLine(document);
+                    Notes(document, "* This document is necessary for any available federal income tax deduction for your contribution. Please retain it for your records.", "");
+                    NewLine(document);
+                    NewLine(document);
+                    Theme(document, "“Dharma will put an end to Karma”");
+                    NewLine(document);
+                    Thanks(document, "Thank You – Jai Sairam!");
+                    NewLine(document);
+                    PdfContentByte cb = writer.DirectContent;
+                    var code128 = new Barcode128
+                    {
+                        CodeType = iTextSharp.text.pdf.Barcode.CODE128,
+                        ChecksumText = true,
+                        GenerateChecksum = true,
+                        StartStopText = true,
+                        Code = receiptData.ReceiptNumber
+                    };
+                    iTextSharp.text.Image image = code128.CreateImageWithBarcode(cb,
+                                                                                 new BaseColor(Color.Black),
+                                                                                 new BaseColor(Color.White));
+                    image.IndentationLeft = 150f;
+                    image.SpacingBefore = 150f;
+                    image.Left = 150f;
+                    image.GetLeft(150f);
+                    image.Alignment = 1;
+                    document.Add(image);
                 }
                 document.Close();
                 Response.ContentType = "application/pdf";
@@ -1180,8 +1215,14 @@ namespace saibabacharityreceiptor.Controllers
         private static void TwoField(Document document, string field1, string value1, string field2, string value2)
         {
             SingleField(document, field1, value1);
-            //spaces
-            for (int i = 0; i < 50; i++)
+            if (string.IsNullOrEmpty(value1))
+                value1 = string.Empty;
+            if (string.IsNullOrEmpty(field1))
+                field1 = string.Empty;
+            int count = value1.Length + field1.Length - 80;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
                 document.Add(new Anchor(" ", new Font()));
             SingleField(document, field2, value2);
         }
@@ -1189,32 +1230,49 @@ namespace saibabacharityreceiptor.Controllers
         private static void SingleField(Document document, string field1, string value1)
         {
             var baseColor = new BaseColor(Color.Gray);
-            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 9f, baseColor);
-            document.Add(new Anchor(field1, arial));
+            Font arial = FontFactory.GetFont("Arial", 9f, baseColor);
+            document.Add(new Anchor(field1 + " ", arial));
+            baseColor = new BaseColor(Color.Black);
             arial = FontFactory.GetFont("Arial", 9f, baseColor);
             document.Add(new Anchor(value1, arial));
         }
 
-        private static void Theme(Document document, string theme)
+        private static void Notes(Document document, string field1, string value1)
         {
-            var baseColor = new BaseColor(Color.Red);
-            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
-            document.Add(new Paragraph(theme, arial) { IndentationLeft = 220 });
-        }
-
-        private static void Thanks(Document document, string theme)
-        {
-            var baseColor = new BaseColor(Color.Black);
-            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
-            document.Add(new Paragraph(theme, arial) { IndentationLeft = 220 });
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont("Arial", 8f, baseColor);
+            document.Add(new Anchor(field1 + " ", arial));
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont("Arial", 8f, baseColor);
+            document.Add(new Anchor(value1, arial));
         }
 
         private static void ThreeField(Document document, string field1, string value1, string field2, string value2, string field3, string value3)
         {
-            TwoField(document, field1, value1, field2, value2);
-            //spaces
-            for (int i = 0; i < 30; i++)
+            SingleField(document, field1, value1);
+
+            if (string.IsNullOrEmpty(value1))
+                value1 = string.Empty;
+            if (string.IsNullOrEmpty(field1))
+                field1 = string.Empty;
+            int count = value1.Length + field1.Length - 50;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
                 document.Add(new Anchor(" ", new Font()));
+
+            SingleField(document, field2, value2);
+
+            if (string.IsNullOrEmpty(value2))
+                value2 = string.Empty;
+            if (string.IsNullOrEmpty(field2))
+                field2 = string.Empty;
+            count = value2.Length + field2.Length - 50;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
+                document.Add(new Anchor(" ", new Font()));
+
             SingleField(document, field3, value3);
         }
 
@@ -1226,7 +1284,7 @@ namespace saibabacharityreceiptor.Controllers
         private static void Header(Document document, string title)
         {
             var baseColor = new BaseColor(Color.Black);
-            iTextSharp.text.Font arial = FontFactory.GetFont("Arial", 11f, baseColor);
+            Font arial = FontFactory.GetFont("Arial", 11f, baseColor);
             document.Add(new Paragraph(title, arial) { IndentationLeft = 220 });
         }
 
@@ -1235,6 +1293,60 @@ namespace saibabacharityreceiptor.Controllers
             var arial = new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.BOLD, new BaseColor(163, 21, 21)); //FontFactory.GetFont("Arial", 10f, baseColor);
             document.Add(new Anchor("Receipt #:", arial));
             document.Add(new Anchor("  " + receiptId, arial));
+        }
+
+        private static void Thanks(Document document, string theme)
+        {
+            var baseColor = new BaseColor(Color.Black);
+            Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            document.Add(new Paragraph(theme, arial) { IndentationLeft = 200 });
+        }
+
+        private static void Theme(Document document, string theme)
+        {
+            var baseColor = new BaseColor(Color.Red);
+            Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            document.Add(new Paragraph(theme, arial) { IndentationLeft = 180 });
+        }
+
+        private static MemoryStream Barcode(string recpId)
+        {
+            try
+            {
+                const string fontString = "Arial";
+                const int thickness = 30;
+                const string code = "Code 128";
+                const int scale = 1;
+
+                var font = new BCGFont(new System.Drawing.Font(fontString, 1));
+                var colorBlack = new BCGColor(Color.Black);
+                var colorWhite = new BCGColor(Color.White);
+                Type codeType = (from kvp in Utilities.CodeType where kvp.Value == code select kvp.Key).FirstOrDefault();
+                var temporaryBarcode = (BarCode.Barcode)Activator.CreateInstance(codeType);
+                var codebar = (BCGBarcode1D)Activator.CreateInstance(temporaryBarcode.Code);
+                codebar.setThickness(thickness);
+                codebar.setScale(scale);
+                MethodInfo method = temporaryBarcode.Code.GetMethod("setStart");
+                if (method != null)
+                {
+                    method.Invoke(codebar, new object[] { "A" });
+                }
+                codebar.setBackgroundColor(colorWhite);
+                codebar.setForegroundColor(colorBlack);
+                codebar.setFont(font);
+                codebar.parse(Utilities.Encrypt(recpId));
+                var drawing = new BCGDrawing(colorWhite);
+                drawing.setBarcode(codebar);
+                drawing.draw();
+                var stream = new MemoryStream();
+                drawing.finish(ImageFormat.Jpeg, stream);
+                return stream;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return null;
         }
     }
 
