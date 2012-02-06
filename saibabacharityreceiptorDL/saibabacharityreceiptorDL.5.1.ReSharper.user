@@ -10,28 +10,31 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
       <Item value="DateReceived" priority="0" />
-      <Item value="List" priority="0" />
+      <Item value="List" priority="1" />
       <Item value="receipts" priority="0" />
-      <Item value="from" priority="0" />
-      <Item value="scope" priority="3" />
+      <Item value="from" priority="1" />
+      <Item value="scope" priority="4" />
       <Item value="Receipt`0" priority="0" />
       <Item value="where" priority="0" />
       <Item value="c" priority="0" />
       <Item value="select" priority="0" />
-      <Item value="foreach" priority="0" />
+      <Item value="foreach" priority="1" />
       <Item value="receipt" priority="0" />
+      <Item value="User`0" priority="0" />
+      <Item value="users" priority="0" />
+      <Item value="user" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
-      <Item value="GetOqlQuery`0" priority="0" />
+      <Item value="GetOqlQuery`0" priority="1" />
       <Item value="Transaction" priority="1" />
       <Item value="Refresh`0" priority="0" />
       <Item value="Remove`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
-      <Item value="ExecuteEnumerable`0" priority="0" />
+      <Item value="ExecuteEnumerable`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="ToList`1" priority="0" />
+      <Item value="ToList`1" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
       <Item value="Begin`0" priority="0" />
@@ -44,17 +47,18 @@
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="772" fromTop="15" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="615" fromTop="12" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="454" fromTop="19" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="863" fromTop="22" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1501" fromTop="31" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="283" fromTop="12" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="760" fromTop="19" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="623" fromTop="26" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1010" fromTop="21" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="627" fromTop="17" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

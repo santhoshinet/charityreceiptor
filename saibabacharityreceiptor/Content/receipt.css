@@ -131,3 +131,13 @@ UL
 {
 	padding: 0px 0px 10px 5px;
 }
+DIV.value
+{
+	width: 380px;
+	overflow: hidden;
+	height: auto;
+	min-height: 50px;
+}
+DIV.field
+{
+}

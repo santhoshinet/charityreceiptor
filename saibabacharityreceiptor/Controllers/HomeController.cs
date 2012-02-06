@@ -20,6 +20,8 @@ namespace saibabacharityreceiptor.Controllers
             if (Checkauthorization(scope, User.Identity.Name))
             {
                 LoadReceiptValuesFromDb(scope);
+                var modeofpayments = new List<string> { "Cash", "Cheque", "Online", "Mobile" };
+                ViewData["modeOfPayment"] = modeofpayments;
                 ViewData["PostAction"] = "RegularReceipt";
                 ViewData["selectedModeOfPayment"] = string.Empty;
                 ViewData["selectedDonationReceivedBy"] = string.Empty;
@@ -49,7 +51,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
@@ -135,7 +137,7 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
                         receipt.Address2 = model.Address2;
@@ -235,7 +237,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                     {
                         Address = model.Address,
@@ -332,7 +334,7 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
                         receipt.Address2 = model.Address2;
@@ -443,7 +445,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
@@ -501,7 +503,7 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
                         receipt.Address2 = model.Address2;
@@ -573,7 +575,7 @@ namespace saibabacharityreceiptor.Controllers
                 if (donationReceiver.Count > 0)
                 {
                     scope.Transaction.Begin();
-                    var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                    var receivedTime = Convert.ToDateTime(model.DateReceived);
                     var receipt = new Receipt
                                       {
                                           Address = model.Address,
@@ -633,7 +635,7 @@ namespace saibabacharityreceiptor.Controllers
                     {
                         scope.Transaction.Begin();
                         var receipt = receipts[0];
-                        var receivedTime = Convert.ToDateTime(model.DateReceived).ToUniversalTime();
+                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         receipt.Address = model.Address;
                         receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
