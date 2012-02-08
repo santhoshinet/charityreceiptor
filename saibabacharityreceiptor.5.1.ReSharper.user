@@ -22,8 +22,8 @@
       <Item value="Document`0" priority="1" />
       <Item value="string" priority="4" />
       <Item value="void" priority="1" />
-      <Item value="document" priority="18" />
-      <Item value="new" priority="21" />
+      <Item value="document" priority="21" />
+      <Item value="new" priority="22" />
       <Item value="Phrase`0" priority="0" />
       <Item value="field1" priority="3" />
       <Item value="Font`0" priority="1" />
@@ -36,11 +36,11 @@
       <Item value="BaseColor`0" priority="0" />
       <Item value="baseColor" priority="1" />
       <Item value="Color`0" priority="1" />
-      <Item value="value1" priority="6" />
+      <Item value="value1" priority="7" />
       <Item value="for" priority="0" />
       <Item value="int" priority="1" />
       <Item value="i" priority="2" />
-      <Item value="doc" priority="3" />
+      <Item value="doc" priority="4" />
       <Item value="TwoField`0" priority="5" />
       <Item value="NewLine`0" priority="3" />
       <Item value="Paragraph`0" priority="0" />
@@ -62,12 +62,12 @@
       <Item value="foreach" priority="0" />
       <Item value="break" priority="2" />
       <Item value="ReceiptId`0" priority="0" />
-      <Item value="receiptData" priority="10" />
+      <Item value="receiptData" priority="13" />
       <Item value="SingleField`0" priority="3" />
       <Item value="field2" priority="2" />
-      <Item value="value2" priority="1" />
+      <Item value="value2" priority="2" />
       <Item value="field3" priority="0" />
-      <Item value="value3" priority="0" />
+      <Item value="value3" priority="1" />
       <Item value="Math`0" priority="0" />
       <Item value="if" priority="1" />
       <Item value="count" priority="5" />
@@ -88,10 +88,16 @@
       <Item value="Image" priority="0" />
       <Item value="Image`0" priority="2" />
       <Item value="PdfImage`0" priority="0" />
-      <Item value="cb" priority="0" />
+      <Item value="cb" priority="3" />
       <Item value="writer" priority="0" />
       <Item value="X" priority="0" />
       <Item value="image" priority="5" />
+      <Item value="contentByte" priority="3" />
+      <Item value="Rectangle" priority="0" />
+      <Item value="value4" priority="0" />
+      <Item value="TableValues`0" priority="0" />
+      <Item value="recurringId" priority="0" />
+      <Item value="recurringDate" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:iTextSharp.text.Document">
       <Item value="Add`0" priority="1" />
@@ -114,8 +120,8 @@
       <Item value="BaseFont" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Drawing.Color">
-      <Item value="Gray" priority="2" />
-      <Item value="Black" priority="2" />
+      <Item value="Gray" priority="3" />
+      <Item value="Black" priority="3" />
       <Item value="Red" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:iTextSharp.text.pdf.BaseFont">
@@ -139,9 +145,9 @@
       <Item value="ZipCode" priority="0" />
       <Item value="Email" priority="0" />
       <Item value="DateReceived" priority="0" />
-      <Item value="DonationAmount" priority="0" />
+      <Item value="DonationAmount" priority="1" />
       <Item value="DonationAmountinWords" priority="0" />
-      <Item value="ModeOfPayment" priority="0" />
+      <Item value="ModeOfPayment" priority="1" />
       <Item value="DonationReceiverName" priority="0" />
       <Item value="IssuedDate" priority="0" />
       <Item value="MerchandiseItem" priority="0" />
@@ -149,9 +155,10 @@
       <Item value="ServiceType" priority="0" />
       <Item value="HoursServed" priority="1" />
       <Item value="RatePerHrOrDay" priority="0" />
+      <Item value="Contact" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.DateTime">
-      <Item value="ToString`0" priority="1" />
+      <Item value="ToString`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.String">
       <Item value="Length" priority="3" />
@@ -178,52 +185,62 @@
       <Item value="Alignment" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Int32">
-      <Item value="ToString`0" priority="0" />
+      <Item value="ToString`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:iTextSharp.text.pdf.PdfContentByte">
+      <Item value="Rectangle`0" priority="1" />
+      <Item value="Stroke`0" priority="0" />
+      <Item value="MoveTo`0" priority="0" />
+      <Item value="LineTo`0" priority="0" />
+      <Item value="ClosePath`0" priority="0" />
+      <Item value="SetFlatness`0" priority="0" />
+      <Item value="SetLineWidth`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="2349" fromTop="20" />
-      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="93" fromTop="4" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="454" fromTop="8" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:User.cs" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:common.js" caret="1305" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="3307" fromTop="26" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66913" fromTop="33" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="55829" fromTop="90" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintReceipt.aspx" caret="8936" fromTop="12" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="788" fromTop="23" />
     </RecentFiles>
     <RecentEdits>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="71766" fromTop="13" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="71575" fromTop="9" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="72453" fromTop="20" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="72453" fromTop="32" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="72453" fromTop="26" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="72265" fromTop="26" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70182" fromTop="21" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="71359" fromTop="37" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="71280" fromTop="32" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70924" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65341" fromTop="19" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75669" fromTop="37" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74073" fromTop="27" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75571" fromTop="16" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74265" fromTop="9" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75435" fromTop="29" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="73949" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65341" fromTop="28" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="63101" fromTop="7" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65341" fromTop="18" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="63427" fromTop="5" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="67009" fromTop="17" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="69139" fromTop="37" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66053" fromTop="24" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="64462" fromTop="5" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="64805" fromTop="11" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65800" fromTop="26" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66820" fromTop="34" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66911" fromTop="29" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65307" fromTop="5" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="77481" fromTop="23" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="63486" fromTop="5" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="68532" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="64863" fromTop="11" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66953" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="68532" fromTop="8" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70563" fromTop="35" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70563" fromTop="25" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70563" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="70541" fromTop="20" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="837" fromTop="21" />
+      <File id="FD08E22F-8EDF-42F9-9FC3-B1F0D988D01A/f:Program.cs" caret="710" fromTop="21" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="64478" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74803" fromTop="37" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74792" fromTop="18" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74470" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65879" fromTop="13" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="76031" fromTop="37" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="74782" fromTop="19" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="66523" fromTop="29" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="63234" fromTop="9" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="69659" fromTop="15" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="65540" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75964" fromTop="36" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75238" fromTop="7" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75507" fromTop="15" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="75776" fromTop="23" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="71264" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="67372" fromTop="16" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="68354" fromTop="23" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

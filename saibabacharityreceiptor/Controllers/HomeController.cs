@@ -1103,6 +1103,7 @@ namespace saibabacharityreceiptor.Controllers
                 var output = new MemoryStream();
                 PdfWriter writer = PdfWriter.GetInstance(document, output);
                 document.Open();
+                PdfContentByte cb = writer.DirectContent;
                 //add header image
                 //Image headerlogo = Image.GetInstance("C:\\Temp\\citylogo.png");
                 //document.Add(headerlogo);
@@ -1122,7 +1123,7 @@ namespace saibabacharityreceiptor.Controllers
                     NewLine(document);
                     ThreeField(document, "City:", receiptData.City, "State:", receiptData.State, "Zip:", receiptData.ZipCode);
                     NewLine(document);
-                    TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Address2);
+                    TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Contact);
                     NewLine(document);
                     switch (receiptData.ReceiptType)
                     {
@@ -1136,10 +1137,27 @@ namespace saibabacharityreceiptor.Controllers
                                 NewLine(document);
                                 SingleField(document, "Mode of donation:", receiptData.ModeOfPayment);
                                 NewLine(document);
+
+                                cb.SetLineWidth(0.1f);
+                                cb.Rectangle(40f, 360f, 500f, 70f);
+                                cb.Stroke();
+
                                 break;
                             }
                         case "RecurringReceipt":
                             {
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
+                                NewLine(document);
+                                NewLine(document);
+                                TableHeaders(document, "Recurring ID", "Date received", "Mode of donation",
+                                             "Amount in USD");
+                                NewLine(document);
+                                int recurringId = 1;
+                                foreach (DateTime recurringDate in receiptData.RecurringDates)
+                                {
+                                    TableValues(document, recurringId++.ToString(), recurringDate.ToString("MMM dd yyyy"), receiptData.ModeOfPayment, receiptData.DonationAmount);
+                                    NewLine(document);
+                                }
                                 break;
                             }
                         case "MerchandiseReceipt":
@@ -1150,6 +1168,11 @@ namespace saibabacharityreceiptor.Controllers
                                 NewLine(document);
                                 SingleField(document, "Goods FMV in USD:", receiptData.FmvValue);
                                 NewLine(document);
+
+                                cb.SetLineWidth(0.1f);
+                                cb.Rectangle(40f, 380f, 500f, 70f);
+                                cb.Stroke();
+
                                 break;
                             }
                         case "ServicesReceipt":
@@ -1161,6 +1184,11 @@ namespace saibabacharityreceiptor.Controllers
                                 TwoField(document, "Service Duration (No.of hrs/ day):", receiptData.HoursServed.ToString(), "Rate per hr/day", receiptData.RatePerHrOrDay);
                                 NewLine(document);
                                 SingleField(document, "FMV in USD:", receiptData.FmvValue);
+
+                                cb.SetLineWidth(0.1f);
+                                cb.Rectangle(40f, 385f, 500f, 70f);
+                                cb.Stroke();
+
                                 break;
                             }
                     }
@@ -1180,7 +1208,7 @@ namespace saibabacharityreceiptor.Controllers
                     NewLine(document);
                     Thanks(document, "Thank You – Jai Sairam!");
                     NewLine(document);
-                    PdfContentByte cb = writer.DirectContent;
+
                     var code128 = new Barcode128
                     {
                         CodeType = iTextSharp.text.pdf.Barcode.CODE128,
@@ -1197,6 +1225,7 @@ namespace saibabacharityreceiptor.Controllers
                     image.Left = 150f;
                     image.GetLeft(150f);
                     image.Alignment = 1;
+
                     document.Add(image);
                 }
                 document.Close();
@@ -1211,6 +1240,8 @@ namespace saibabacharityreceiptor.Controllers
             }
             return null;
         }
+
+        private const string FontName = "Sanserif";
 
         private static void TwoField(Document document, string field1, string value1, string field2, string value2)
         {
@@ -1230,20 +1261,20 @@ namespace saibabacharityreceiptor.Controllers
         private static void SingleField(Document document, string field1, string value1)
         {
             var baseColor = new BaseColor(Color.Gray);
-            Font arial = FontFactory.GetFont("Arial", 9f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
             document.Add(new Anchor(field1 + " ", arial));
             baseColor = new BaseColor(Color.Black);
-            arial = FontFactory.GetFont("Arial", 9f, baseColor);
+            arial = FontFactory.GetFont(FontName, 9f, baseColor);
             document.Add(new Anchor(value1, arial));
         }
 
         private static void Notes(Document document, string field1, string value1)
         {
             var baseColor = new BaseColor(Color.Gray);
-            Font arial = FontFactory.GetFont("Arial", 8f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 8f, baseColor);
             document.Add(new Anchor(field1 + " ", arial));
             baseColor = new BaseColor(Color.Black);
-            arial = FontFactory.GetFont("Arial", 8f, baseColor);
+            arial = FontFactory.GetFont(FontName, 8f, baseColor);
             document.Add(new Anchor(value1, arial));
         }
 
@@ -1276,6 +1307,58 @@ namespace saibabacharityreceiptor.Controllers
             SingleField(document, field3, value3);
         }
 
+        private static void TableHeaders(Document document, string field1, string field2, string field3, string field4)
+        {
+            var baseColor = new BaseColor(Color.Black);
+            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
+
+            document.Add(new Anchor(field1, arial));
+            for (int i = 0; i < 25; i++)
+                document.Add(new Anchor(" ", new Font()));
+            document.Add(new Anchor(field2, arial));
+            for (int i = 0; i < 25; i++)
+                document.Add(new Anchor(" ", new Font()));
+            document.Add(new Anchor(field3, arial));
+            for (int i = 0; i < 25; i++)
+                document.Add(new Anchor(" ", new Font()));
+            document.Add(new Anchor(field4, arial));
+        }
+
+        private static void TableValues(Document document, string value1, string value2, string value3, string value4)
+        {
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
+
+            document.Add(new Anchor(value1, arial));
+
+            if (string.IsNullOrEmpty(value1))
+                value1 = string.Empty;
+
+            int count = 40 - value1.Length;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
+                document.Add(new Anchor(" ", new Font()));
+
+            document.Add(new Anchor(value2, arial));
+
+            count = 40 - value2.Length;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
+                document.Add(new Anchor(" ", new Font()));
+
+            document.Add(new Anchor(value3, arial));
+
+            count = 40 - value3.Length;
+            if (count < 0)
+                count = count * -1;
+            for (int i = 0; i < count; i++)
+                document.Add(new Anchor(" ", new Font()));
+
+            document.Add(new Anchor(value4, arial));
+        }
+
         private static void NewLine(Document document)
         {
             document.Add(new Phrase("\n"));
@@ -1284,7 +1367,7 @@ namespace saibabacharityreceiptor.Controllers
         private static void Header(Document document, string title)
         {
             var baseColor = new BaseColor(Color.Black);
-            Font arial = FontFactory.GetFont("Arial", 11f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 11f, baseColor);
             document.Add(new Paragraph(title, arial) { IndentationLeft = 220 });
         }
 
@@ -1298,14 +1381,14 @@ namespace saibabacharityreceiptor.Controllers
         private static void Thanks(Document document, string theme)
         {
             var baseColor = new BaseColor(Color.Black);
-            Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 10f, baseColor);
             document.Add(new Paragraph(theme, arial) { IndentationLeft = 200 });
         }
 
         private static void Theme(Document document, string theme)
         {
             var baseColor = new BaseColor(Color.Red);
-            Font arial = FontFactory.GetFont("Arial", 10f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 10f, baseColor);
             document.Add(new Paragraph(theme, arial) { IndentationLeft = 180 });
         }
 
@@ -1313,12 +1396,11 @@ namespace saibabacharityreceiptor.Controllers
         {
             try
             {
-                const string fontString = "Arial";
                 const int thickness = 30;
                 const string code = "Code 128";
                 const int scale = 1;
 
-                var font = new BCGFont(new System.Drawing.Font(fontString, 1));
+                var font = new BCGFont(new System.Drawing.Font(FontName, 1));
                 var colorBlack = new BCGColor(Color.Black);
                 var colorWhite = new BCGColor(Color.White);
                 Type codeType = (from kvp in Utilities.CodeType where kvp.Value == code select kvp.Key).FirstOrDefault();
