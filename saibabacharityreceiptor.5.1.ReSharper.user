@@ -195,7 +195,6 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Search.js" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Reports.js" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:RecurringReceipt_Ctrl.ascx" caret="2206" fromTop="32" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:ServicesReceipt_Ctrl.ascx" caret="2204" fromTop="32" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:EditMerchandiseReceipt.aspx" caret="0" fromTop="0" />
@@ -210,20 +209,19 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:CreateUser.ascx" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:RegularReceipt_Ctrl.ascx" caret="1413" fromTop="28" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:receiptor.js" caret="2003" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="1847" fromTop="13" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ReportsController.cs" caret="463" fromTop="17" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="4873" fromTop="28" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="389" fromTop="14" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="32908" fromTop="22" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintReceipt.aspx" caret="3053" fromTop="21" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Account/f:Logon_Ctrl.ascx" caret="918" fromTop="23" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:AccountModels.cs" caret="6333" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="2593" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3033" fromTop="22" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2021" fromTop="19" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="1291" fromTop="30" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:BarcodeController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="55678" fromTop="31" />
     </RecentFiles>
     <RecentEdits>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="37727" fromTop="25" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="39755" fromTop="27" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="41337" fromTop="19" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="55849" fromTop="29" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="48302" fromTop="28" />
@@ -236,7 +234,6 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintReceipt.aspx" caret="17979" fromTop="21" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ReportsController.cs" caret="24901" fromTop="12" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ReportsController.cs" caret="25723" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="1891" fromTop="13" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="4318" fromTop="16" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="4582" fromTop="22" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="4873" fromTop="26" />
@@ -250,8 +247,11 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="32908" fromTop="22" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="389" fromTop="14" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Account/f:Logon_Ctrl.ascx" caret="918" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3057" fromTop="29" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="2814" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3372" fromTop="29" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2021" fromTop="19" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3022" fromTop="29" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="2665" fromTop="24" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="3346" fromTop="33" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
