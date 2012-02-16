@@ -9,7 +9,7 @@ namespace saibabacharityreceiptorDL
     {
         public Receipt()
         {
-            RecurringDates = new List<DateTime>();
+            RecurringDetails = new List<RecurringDetails>();
             DateReceived = DateTime.Now;
             IssuedDate = DateTime.Now;
         }
@@ -52,7 +52,7 @@ namespace saibabacharityreceiptorDL
 
         public string RatePerHrOrDay { get; set; }
 
-        public IList<DateTime> RecurringDates { get; set; }
+        public IList<RecurringDetails> RecurringDetails { get; set; }
 
         public ModeOfPayment ModeOfPayment { get; set; }
 
@@ -65,6 +65,8 @@ namespace saibabacharityreceiptorDL
         public string GroupId { get; set; }
 
         public DateTime IssuedDate { get; set; }
+
+        public SignatureImage SignatureImage { get; set; }
     }
 
     public enum ModeOfPayment

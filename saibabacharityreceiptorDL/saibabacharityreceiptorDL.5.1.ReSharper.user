@@ -3,72 +3,107 @@
     <string />
     <integer />
     <boolean>
-      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="livetemplates.csharp.usevar">False</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="DateReceived" priority="2" />
-      <Item value="List" priority="1" />
-      <Item value="receipts" priority="0" />
-      <Item value="from" priority="1" />
-      <Item value="scope" priority="4" />
-      <Item value="Receipt`0" priority="0" />
-      <Item value="where" priority="0" />
-      <Item value="c" priority="0" />
-      <Item value="select" priority="0" />
-      <Item value="foreach" priority="1" />
-      <Item value="receipt" priority="0" />
-      <Item value="User`0" priority="0" />
-      <Item value="users" priority="0" />
-      <Item value="user" priority="0" />
-      <Item value="value" priority="0" />
-      <Item value="return" priority="0" />
-      <Item value="private" priority="0" />
-      <Item value="DateTime`0" priority="0" />
-      <Item value="dateReceived" priority="1" />
       <Item value="string" priority="0" />
+      <Item value="public" priority="1" />
+      <Item value="ModeOfPayment`0" priority="0" />
+      <Item value="ModeOfPayment" priority="0" />
+      <Item value="Double`0" priority="0" />
+      <Item value="RecurringDetails`0" priority="1" />
+      <Item value="RecurringDetails" priority="0" />
+      <Item value="List&lt;RecurringDetails&gt;" priority="0" />
+      <Item value="SignatureImage`0" priority="1" />
+      <Item value="SignatureImage" priority="1" />
+      <Item value="new" priority="1" />
+      <Item value="receipts" priority="0" />
+      <Item value="recurringDetailses" priority="0" />
+      <Item value="foreach" priority="1" />
+      <Item value="recurringDetailse" priority="0" />
+      <Item value="signatureImages" priority="0" />
+      <Item value="wb" priority="2" />
+      <Item value="bmp" priority="0" />
+      <Item value="WebBrowser" priority="0" />
+      <Item value="while" priority="0" />
+      <Item value="Application`0" priority="1" />
+      <Item value="return" priority="0" />
+      <Item value="System" priority="1" />
+      <Item value="Threading" priority="1" />
+      <Item value="Thread`0" priority="1" />
+      <Item value="_wb" priority="3" />
+      <Item value="Complete" priority="0" />
+      <Item value="int" priority="1" />
+      <Item value="width" priority="1" />
+      <Item value="height" priority="1" />
     </ItemStatistics>
-    <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
-      <Item value="GetOqlQuery`0" priority="1" />
-      <Item value="Transaction" priority="1" />
-      <Item value="Refresh`0" priority="0" />
-      <Item value="Remove`0" priority="0" />
+    <ItemStatistics item="Qualified:System.Windows.Forms.WebBrowser">
+      <Item value="Url" priority="0" />
+      <Item value="Navigate`0" priority="0" />
+      <Item value="DocumentCompleted" priority="0" />
+      <Item value="ReadyState" priority="0" />
+      <Item value="Width" priority="1" />
+      <Item value="Handle" priority="0" />
+      <Item value="ClientRectangle" priority="0" />
+      <Item value="Height" priority="0" />
     </ItemStatistics>
-    <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
-      <Item value="ExecuteEnumerable`0" priority="1" />
+    <ItemStatistics item="Qualified:System.Drawing.Bitmap">
+      <Item value="Save`0" priority="0" />
     </ItemStatistics>
-    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="ToList`1" priority="1" />
+    <ItemStatistics item="Qualified:@System.Windows.Forms.Application">
+      <Item value="DoEvents`0" priority="1" />
     </ItemStatistics>
-    <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
-      <Item value="Begin`0" priority="0" />
-      <Item value="Commit`0" priority="0" />
+    <ItemStatistics item="Qualified:@System.Threading.Thread">
+      <Item value="Sleep`0" priority="1" />
     </ItemStatistics>
-    <ItemStatistics item="Qualified:System.DateTime">
-      <Item value="ToUniversalTime`0" priority="0" />
+    <ItemStatistics item="Qualified:System.Drawing.Rectangle">
+      <Item value="Width" priority="0" />
+      <Item value="Height" priority="1" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:User.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config1" caret="772" fromTop="15" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="612" fromTop="16" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1527" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="295" fromTop="12" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="133" fromTop="6" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config1" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:App.config2" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:App.config" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1210" fromTop="33" />
     </RecentFiles>
     <RecentEdits>
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="283" fromTop="12" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2457" fromTop="39" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="623" fromTop="26" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1010" fromTop="21" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="627" fromTop="17" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1473" fromTop="8" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1527" fromTop="25" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="42" fromTop="1" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="274" fromTop="12" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1353" fromTop="21" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="150" fromTop="9" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="113" fromTop="9" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="329" fromTop="15" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1750" fromTop="23" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="1129" fromTop="26" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1352" fromTop="25" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1005" fromTop="28" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1217" fromTop="15" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="98" fromTop="5" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="181" fromTop="10" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="571" fromTop="4" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1844" fromTop="33" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1095" fromTop="26" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1040" fromTop="26" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="773" fromTop="25" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="602" fromTop="19" />
+      <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="411" fromTop="14" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

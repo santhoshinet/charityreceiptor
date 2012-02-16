@@ -8,23 +8,42 @@ namespace saibabacharityreceiptorSeeds
     {
         private static void Main()
         {
-            //CreateUser("santhoshonet", "santhoshonet@gmail.com");
-            //CreateUser("santhosh", "santhoshonet@gmail.com");
+            CreateUser("santhoshonet", "santhoshonet@gmail.com");
+            CreateUser("santhosh", "santhoshonet@gmail.com");
             var scope = ObjectScopeProvider1.GetNewObjectScope();
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 select c).ToList();
-            foreach (var user in users)
-            {
-            }
+
             /*
+            List<SignatureImage> signatureImages = (from c in scope.GetOqlQuery<SignatureImage>().ExecuteEnumerable()
+                                                    select c).ToList();
+
+            foreach (SignatureImage signatureImage in signatureImages)
+            {
+                scope.Transaction.Begin();
+                scope.Remove(signatureImage);
+                scope.Transaction.Commit();
+            }
+
+            List<RecurringDetails> recurringDetailses = (from c in scope.GetOqlQuery<RecurringDetails>().ExecuteEnumerable()
+                                                         select c).ToList();
+
+            foreach (RecurringDetails recurringDetailse in recurringDetailses)
+            {
+                scope.Transaction.Begin();
+                scope.Remove(recurringDetailse);
+                scope.Transaction.Commit();
+            }
+
             List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                       select c).ToList();
             foreach (var receipt in receipts)
             {
                 scope.Transaction.Begin();
-                scope.Remove(receipt) ;
+                scope.Remove(receipt);
                 scope.Transaction.Commit();
-            }*/
+            }
+             * */
         }
 
         private static void CreateUser(string username, string email)

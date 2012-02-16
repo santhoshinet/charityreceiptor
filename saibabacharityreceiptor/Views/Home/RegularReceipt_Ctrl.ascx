@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<saibabacharityreceiptor.Models.RegularReceiptModels>" %>
-<% using (Html.BeginForm(ViewData["PostAction"].ToString(), "Home"))
+<% using (Html.BeginForm(ViewData["PostAction"].ToString(), "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
    {%>
 <ul class="ul">
     <li>
@@ -85,7 +85,7 @@
     </li>
     <li>
         <label class="label">
-            Contact</label>
+            Contact No</label>
         <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact", @maxlength="12" })%>
         <label class="star">
             *</label>
@@ -171,9 +171,16 @@
         <label class="star">
             *</label>
     </li>
+    <li>
+        <label class="label">
+            Signature Image
+        </label>
+        <input type="file" name="SignatureImage" />
+        <%=Html.ValidationMessageFor(m => m.SignatureImage)%>
+    </li>
     <li></li>
     <li>
-        <input type="submit" value="Submit my donation" />
+        <input type="submit" value="Submit" />
     </li>
 </ul>
 <%

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "saibabacharityreceiptorDL",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "saibabacharityreceiptorSeeds", "saibabacharityreceiptorSeeds\saibabacharityreceiptorSeeds.csproj", "{A925B4AA-25A8-4552-B6E6-360509EDD3AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screenshot", "Screenshot\Screenshot.csproj", "{C70F94CE-3827-4CC1-BEC5-952BA122D9E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{A925B4AA-25A8-4552-B6E6-360509EDD3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A925B4AA-25A8-4552-B6E6-360509EDD3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A925B4AA-25A8-4552-B6E6-360509EDD3AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C70F94CE-3827-4CC1-BEC5-952BA122D9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C70F94CE-3827-4CC1-BEC5-952BA122D9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C70F94CE-3827-4CC1-BEC5-952BA122D9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C70F94CE-3827-4CC1-BEC5-952BA122D9E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,9 +3,13 @@ BODY, DIV, UL, LI, SPAN, H3, TABLE, TR, TD
 	padding: 0px;
 	margin: 0px;
 }
+.body
+{
+	border: 1 solid #777;
+}
 .container
 {
-	margin: 0px 0px 0px 20px;
+	margin: 0px 0px 0px 35px;
 	width: 800px;
 }
 .empty-header
@@ -18,7 +22,7 @@ BODY, DIV, UL, LI, SPAN, H3, TABLE, TR, TD
 }
 .header H3
 {
-	font: 1.4em Cambria;
+	font: bold 1.4em Cambria;
 }
 .data
 {
@@ -64,8 +68,15 @@ UL
 	padding: 20px 0 0 5px;
 	border: 1px solid #999;
 	height: 100px;
-	margin-top: 10px;
-	width: 790px;
+	margin-top: 5px;
+	width: 793px;
+}
+.box IMG
+{
+	width: 300px;
+	height: 50px;
+	margin-top: -35px;
+	margin-left: 50px;
 }
 .box UL LI
 {
@@ -78,7 +89,7 @@ UL
 .slogan
 {
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 30px;
 	color: #D94444;
 }
 .thanks
@@ -89,7 +100,7 @@ UL
 .barcode
 {
 	text-align: right;
-	margin: 30px 10px 0px 0px;
+	margin: 20px 10px 0px 0px;
 }
 .box UL
 {
@@ -118,7 +129,7 @@ UL
 	width: 100%;
 	font: 0.9em Calibri;
 	border: 1px solid #999999;
-	padding: 5px 5px 5px 10px;
+	padding: 5px 5px 0px 10px;
 	background: #FDFDFD;
 }
 .Tableheader
@@ -129,15 +140,31 @@ UL
 }
 .one TABLE TD
 {
-	padding: 0px 0px 10px 5px;
+	padding: 0px 0px 5px 5px;
 }
 DIV.value
 {
-	width: 380px;
+	width: 330px;
 	overflow: hidden;
 	height: auto;
-	min-height: 50px;
+	min-height: 25px;
 }
 DIV.field
 {
+	padding-bottom: 10px;
+}
+.logo, .logo IMG
+{
+	padding: 0px;
+	margin: 0px;
+}
+.border
+{
+	border: 1px solid #F57921;
+	width: 865px;
+	margin: 2px 5px 5px;
+}
+.logo
+{
+	border-bottom: 1px solid #F5791F;
 }

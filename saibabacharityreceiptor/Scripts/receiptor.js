@@ -61,7 +61,7 @@
             return false;
         return true;
     });
-    $('.txtdate,.txtdonationamount,.txtcontact,.txtdate,.txtzipcode').bind('keypress', function (e) {
+    $('.txtdate,.txtdonationamount,.txtcontact,.txtdate,.txtzipcode,.txtrecurrenceamount,.txtvalue,.txtquantity').live('keypress', function (e) {
         if ((e.which > 44 && e.which < 58) || e.which == 8 || e.which == 0)
             return true;
         return false;
@@ -76,13 +76,27 @@
             $('.txtrecurrencedates').datepicker("option", "dateFormat", "mm/dd/yy");
         }
     });
-    $('.txtdate,.txtrecurrencedates').val(getdate());
-    function getdate() {
-        var d = new Date();
+    $('.txtdate,.txtrecurrencedates').each(function () {
+        $(this).val(getdate($(this)));
+    });
+    function getdate(This) {
+        var d;
+        if (This.val() == "")
+            d = new Date();
+        else {
+            d = Date.parse(This.val());
+            d = new Date(d);
+        }
         var curr_date = d.getDate();
         var curr_month = d.getMonth();
-        curr_month++;
         var curr_year = d.getFullYear();
+        if (curr_date == 1 && curr_month == 0 && curr_year.toString() == "1901") {
+            d = new Date();
+            curr_date = d.getDate();
+            curr_month = d.getMonth();
+            curr_year = d.getFullYear();
+        }
+        curr_month++;
         var retVal = "";
         if (curr_month < 10)
             retVal += "0" + curr_month;
@@ -102,14 +116,14 @@
     }
     var Index = 1;
     $('.btnaction').live('click', function () {
-        var reccurence = $(this).parents('li').eq(0);
+        var reccurence = $(this).parents('tr').eq(0);
         var clone = reccurence.clone();
         reccurence.after(clone);
         clone.find('.btnactionremove').remove();
-        clone.append("<span class='btnactionremove'>-</span>");
+        clone.find('td:last').append("<span class='btnactionremove'>-</span>");
         Index++;
         var recclass = "reccurenceDates" + Index.toString();
-        clone.find('input[type="text"]').attr('class', recclass + " " + "text" + " " + "smallbox").attr('id', '');
+        clone.find('.txtrecurrencedates').attr('class', recclass + " " + "text" + " " + "smallbox").attr('id', '');
         $('.' + recclass).datepicker({
             onSelect: function (input, inst) {
                 $('.' + recclass).datepicker("option", "dateFormat", "mm/dd/yy");
@@ -117,6 +131,6 @@
         });
     });
     $('.btnactionremove').live('click', function () {
-        $(this).parents('li').eq(0).remove();
+        $(this).parents('tr').eq(0).remove();
     });
 });

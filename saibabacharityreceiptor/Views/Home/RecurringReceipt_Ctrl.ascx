@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<saibabacharityreceiptor.Models.RecurringReceipt>" %>
-<% using (Html.BeginForm(ViewData["PostAction"].ToString(), "Home"))
+<%@ Import Namespace="saibabacharityreceiptor.Controllers" %>
+<% using (Html.BeginForm(ViewData["PostAction"].ToString(), "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
    {%>
 <ul class="ul">
     <li>
@@ -85,68 +86,158 @@
     </li>
     <li>
         <label class="label">
-            Contact</label>
+            Contact No</label>
         <%: Html.TextBoxFor(m => m.Contact, new { @id = "TxtContact", @class = "text txtcontact", @maxlength="12" })%>
         <label class="star">
             *</label>
     </li>
     <li>
         <label class="label">
-            Donation Amount</label>
-        <%: Html.TextBoxFor(m => m.DonationAmount, new { @id = "TxtDonationAmount", @class = "text txtdonationamount", @maxlength = "15" })%>
-        <label class="star">
-            *</label>
-    </li>
-    <li>
-        <label class="label">
-            Donation Amount in words</label>
-        <%: Html.TextBoxFor(m => m.DonationAmountinWords, new { @id = "TxtDonationAmountinWords", @class = "text txtdonationinwords", @maxlength = "40" })%>
-        <label class="star">
-            *</label>
-    </li>
-    <li>
-        <label class="label">
-            Recurrence dates</label>
-        <ul class="ul">
-            <li>
-                <input type="text" name="RecurrenceDates" id="TxtRecurrenceDates" class="text txtrecurrencedates smallbox" />
-                <label class="star">
-                    *</label>
-                <span class="btnaction">+</span> </li>
-        </ul>
-    </li>
-    <li>
-        <label class="label">
-            Mode of Payment</label>
-        <select id="CmbModeOfPayment" class="cmbModeOfPayment" name="cmbModeOfPayment">
-            <option value="Select Mode of Payment" title="Select Mode of Payment" <% if ( string.IsNullOrEmpty(ViewData["selectedModeOfPayment"].ToString()))
-{%> selected="selected" <%
-}%>>--Select Mode of Payment--</option>
-            <%
-       var modeOfPayment = (List<string>)ViewData["modeOfPayment"];%>
-            <% foreach (var payment in modeOfPayment)
-               { %>
-            <% if (ViewData["selectedModeOfPayment"].ToString().ToLower() == payment.ToLower())
-               {%>
-            <option value="<%=payment%>" title="<%=payment%>" selected="selected">
+            Recurrence Amount Details</label>
+        <table class="recurrenceTable">
+            <thead>
+                <tr>
+                    <th>
+                        <label class="label">
+                            Amount</label>
+                    </th>
+                    <th>
+                        <label class="label">
+                            Mode of Payment</label>
+                    </th>
+                    <th>
+                        <label class="label">
+                            Date</label>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
                 <%
-               }
-               else
-               {
+var recurrenceData = (List<RecurrenceData>)ViewData["RecurringDetails"];
+if (recurrenceData == null || recurrenceData.Count == 0)
+{
                 %>
-                <option value="<%=payment%>" title="<%=payment%>">
-                    <%
-               }%>
-                    <%= payment %>
-                </option>
-                <% } %>
-        </select>
-        <label class="star">
-            *</label>
+                <tr>
+                    <td>
+                        <input type="text" name="RecurrenceAmount" id="RecurrenceAmount" class="text txtrecurrenceamount" />
+                    </td>
+                    <td>
+                        <select id="CmbModeOfPayment" class="cmbModeOfPayment" name="RecurrenceModeofPayment">
+                            <option value="Mode of Payment" title="Mode of Payment" <%
+           if (string.IsNullOrEmpty(ViewData["selectedModeOfPayment"].ToString()))
+           {%> selected="selected" <%
+           }%>>Mode of Payment</option>
+                            <%
+    var modeOfPayment = (List<string>)ViewData["modeOfPayment"];%>
+                            <%
+    foreach (var payment in modeOfPayment)
+    {
+        if (payment.Trim().ToLower() == "goods")
+            continue;
+                            %>
+                            <%
+        if (ViewData["selectedModeOfPayment"].ToString().ToLower() == payment.ToLower())
+        {%>
+                            <option value="<%=payment%>" title="<%=payment%>" selected="selected">
+                                <%
+        }
+        else
+        {
+                                %>
+                                <option value="<%=payment%>" title="<%=payment%>">
+                                    <%
+        }%>
+                                    <%=payment%>
+                                </option>
+                                <%
+    }%>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="RecurrenceDates" id="TxtRecurrenceDates" class="text txtrecurrencedates smallbox" />
+                    </td>
+                    <td>
+                        <label class="star">
+                            *</label>
+                    </td>
+                    <td>
+                        <span class="btnaction">+</span>
+                    </td>
+                </tr>
+                <%
+}
+else if (recurrenceData != null)
+{
+    int index = 1;
+    foreach (RecurrenceData recuData in recurrenceData)
+    {
+
+                %>
+                <tr>
+                    <td>
+                        <input type="text" name="RecurrenceAmount" id="Text1" class="text txtrecurrenceamount"
+                            value="<%= recuData.Amount %>" />
+                    </td>
+                    <td>
+                        <select id="Select1" class="cmbModeOfPayment" name="RecurrenceModeofPayment">
+                            <option value="Mode of Payment" title="Mode of Payment">Mode of Payment</option>
+                            <%
+        var modeOfPayment = (List<string>)ViewData["modeOfPayment"];%>
+                            <%
+        foreach (var payment in modeOfPayment)
+        {
+            if (payment.Trim().ToLower() == "goods")
+                continue;
+                            %>
+                            <%
+            if (recuData.ModeOfPayment.ToLower() == payment.ToLower())
+            {%>
+                            <option value="<%=payment%>" title="<%=payment%>" selected="selected">
+                                <%
+            }
+            else
+            {
+                                %>
+                                <option value="<%=payment%>" title="<%=payment%>">
+                                    <%
+            }%>
+                                    <%=payment%>
+                                </option>
+                                <%
+        }%>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="RecurrenceDates" id="Text2" class="text txtrecurrencedates smallbox"
+                            value="<%= recuData.Date %>" />
+                    </td>
+                    <td>
+                        <label class="star">
+                            *</label>
+                    </td>
+                    <td>
+                        <span class="btnaction">+</span>
+                        <% if (index++ > 1)
+                           {%>
+                        <span class="btnactionremove">-</span>
+                        <%
+                           }%>
+                    </td>
+                </tr>
+                <%
+    }
+}%>
+            </tbody>
+        </table>
     </li>
+    <li class="clear"></li>
     <li>
         <label class="label">
-            Donation Received By</label>
+            Donation Receiver</label>
         <select id="CmbDonationReceivedBy" class="CmbDonationReceivedBy" name="CmbDonationReceivedBy">
             <option value="Select receiver" title="Select receiver">--Select receiver--</option>
             <%
@@ -182,9 +273,16 @@
         <label class="star">
             *</label>
     </li>
+    <li>
+        <label class="label">
+            Signature Image
+        </label>
+        <input type="file" name="SignatureImage" />
+        <%=Html.ValidationMessageFor(m => m.SignatureImage)%>
+    </li>
     <li></li>
     <li>
-        <input type="submit" value="Submit my donation" />
+        <input type="submit" value="Submit" />
     </li>
 </ul>
 <%

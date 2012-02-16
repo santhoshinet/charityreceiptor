@@ -307,7 +307,7 @@ namespace saibabacharityreceiptor.Controllers
                                                issueddate = string.Empty,
                                                donationamount = string.Empty,
                                                donationAmountinwords = string.Empty,
-                                               recurringDates = string.Empty,
+                                               recurringDetails = string.Empty,
                                                merchandiseItem = string.Empty,
                                                quantity = string.Empty,
                                                value = string.Empty,
@@ -348,7 +348,7 @@ namespace saibabacharityreceiptor.Controllers
                                         if (dataRow[14] != null && !string.IsNullOrEmpty(dataRow[14].ToString()))
                                             donationAmountinwords = dataRow[14].ToString();
                                         if (dataRow[15] != null && !string.IsNullOrEmpty(dataRow[15].ToString()))
-                                            recurringDates = dataRow[15].ToString();
+                                            recurringDetails = dataRow[15].ToString();
                                         if (dataRow[16] != null && !string.IsNullOrEmpty(dataRow[16].ToString()))
                                             merchandiseItem = dataRow[16].ToString();
                                         if (dataRow[17] != null && !string.IsNullOrEmpty(dataRow[17].ToString()))
@@ -452,12 +452,49 @@ namespace saibabacharityreceiptor.Controllers
                                                     case "recurring receipt":
                                                         {
                                                             receipt.ReceiptType = ReceiptType.RecurringReceipt;
-                                                            string[] dates = recurringDates.Split(',');
-                                                            foreach (string date in dates)
+                                                            string[] recurrenceDetials = recurringDetails.Split(')');
+                                                            foreach (string recurrenceDetial in recurrenceDetials)
                                                             {
                                                                 try
                                                                 {
-                                                                    receipt.RecurringDates.Add(Convert.ToDateTime(date));
+                                                                    var values = recurrenceDetial.Replace("(", "").Split('#');
+                                                                    if (values.Count() > 2)
+                                                                    {
+                                                                        var recurring = new RecurringDetails
+                                                                             {
+                                                                                 DueDate = Convert.ToDateTime(values[0]),
+                                                                                 Amount = values[2]
+                                                                             };
+                                                                        switch (values[1].ToLower().Trim())
+                                                                        {
+                                                                            case "cash":
+                                                                                {
+                                                                                    recurring.ModeOfPayment = ModeOfPayment.Cash;
+                                                                                    break;
+                                                                                }
+                                                                            case "cheque":
+                                                                                {
+                                                                                    recurring.ModeOfPayment = ModeOfPayment.Cheque;
+                                                                                    break;
+                                                                                }
+                                                                            case "goods":
+                                                                                {
+                                                                                    recurring.ModeOfPayment = ModeOfPayment.Goods;
+                                                                                    break;
+                                                                                }
+                                                                            case "online":
+                                                                                {
+                                                                                    recurring.ModeOfPayment = ModeOfPayment.Online;
+                                                                                    break;
+                                                                                }
+                                                                            case "mobile":
+                                                                                {
+                                                                                    recurring.ModeOfPayment = ModeOfPayment.Mobile;
+                                                                                    break;
+                                                                                }
+                                                                        }
+                                                                        receipt.RecurringDetails.Add(recurring);
+                                                                    }
                                                                 }
                                                                 catch (Exception)
                                                                 {

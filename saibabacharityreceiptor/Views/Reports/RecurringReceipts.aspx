@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <%@ Import Namespace="saibabacharityreceiptor" %>
+<%@ Import Namespace="saibabacharityreceiptor.Controllers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Report of Recurring Receipts
 </asp:Content>
@@ -18,33 +19,33 @@
                 List of Recurring receipts.</p>
             <table id="Cart_Table">
                 <tr class="header">
-                    <td style="width: 40px">
+                    <td class="sno">
                         Sno
                     </td>
-                    <td style="width: 13%;">
-                        Name
+                    <td class="recid">
+                        Receipt ID
                     </td>
-                    <td style="width: 150px">
+                    <td class="fistname">
+                        First Name
+                    </td>
+                    <td class="lastname">
+                        Last Name
+                    </td>
+                    <td class="tdate">
                         Date
                     </td>
-                    <td style="width: 50px">
-                        Amount
+                    <td colspan="3">
+                        Recurring Details
                     </td>
-                    <td style="width: 50px">
-                        Mode of payment
-                    </td>
-                    <td style="width: 13%">
+                    <td>
                         Received By
-                    </td>
-                    <td style="width: 10%">
-                        Recurring Dates
                     </td>
                     <td colspan="4" class="lastcol">
                         Actions
                     </td>
                 </tr>
                 <%
-            int index = 1;
+            int index = Convert.ToInt32(ViewData["RecordIndex"]);
                 %>
                 <%
             foreach (LocalRecurrenceReceipt localRecurringReceipt in localReccuringReceipts)
@@ -55,29 +56,30 @@
                         <%=index%>
                     </td>
                     <td>
-                        <%=localRecurringReceipt.Name%>
+                        <%= localRecurringReceipt.ReceiptNumber %>
                     </td>
                     <td>
-                        <%=localRecurringReceipt.OnDateTime.ToString("dd MMM yyyy (HH:mm)")%>
-                    </td>
-                    <td style="text-align: right;">
-                        <%= localRecurringReceipt.DonationAmount%>
+                        <%=localRecurringReceipt.FirstName%>
                     </td>
                     <td>
-                        <%= localRecurringReceipt.ModeOfPayment.ToString()%>
+                        <%= localRecurringReceipt.LastName %>
+                    </td>
+                    <td>
+                        <%=localRecurringReceipt.OnDateTime.ToString("dd MMM yyyy")%>
+                    </td>
+                    <td style="text-align: right;" colspan="3">
+                        <% foreach (RecurrenceData recurringdata in localRecurringReceipt.RecurringDatas)
+                           {
+                        %>
+                        <%=  "($" + recurringdata.Amount + " , " + recurringdata.ModeOfPayment + " , " + recurringdata.Date + " )" + "<br />" %>
+                        <% } %>
                     </td>
                     <td>
                         <%= localRecurringReceipt.DonationReceiverName%>
                     </td>
-                    <td>
-                        <% foreach (DateTime recurringdate in localRecurringReceipt.RecurringDates)
-                           {
-                        %>
-                        <%= recurringdate.ToString("dd MMM yy") + "," %>
-                        <% } %>
-                    </td>
                     <td style="width: 60px">
-                        <span class="delete_button"><img src="/Images/ico-delete.gif" />delete</span>
+                        <span class="delete_button">
+                            <img src="/Images/ico-delete.gif" />delete</span>
                     </td>
                     <td style="width: 50px">
                         <span class="edit_button" href="<%="/EditReceipt/" + localRecurringReceipt.ReceiptNumber%>">
@@ -163,4 +165,5 @@
     <script src="/Scripts/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/Reports.js" type="text/javascript"></script>
+    <link href="/Content/reports.css" rel="stylesheet" type="text/css" />
 </asp:Content>

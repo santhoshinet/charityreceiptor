@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
@@ -72,13 +73,13 @@ namespace saibabacharityreceiptor.Controllers
                     /*var ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddDays(30), true, "");
                     var strEncryptedTicket = FormsAuthentication.Encrypt(ticket);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, strEncryptedTicket);
-                    Response.Cookies.Add(cookie);
+                    Response.Cookies.Add(cookie); */
 
                     HttpCookie myCookie = FormsAuthentication.GetAuthCookie(model.UserName, true);
                     myCookie.Domain = "shirdisaibabaaz.org";
                     myCookie.Path = "/";
                     myCookie.Expires = DateTime.Now.AddDays(1);
-                    Response.AppendCookie(myCookie); */
+                    Response.AppendCookie(myCookie);
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))

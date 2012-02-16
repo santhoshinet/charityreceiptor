@@ -18,13 +18,19 @@
                 List of merchandise receipts.</p>
             <table id="Cart_Table">
                 <tr class="header">
-                    <td style="width: 40px">
+                    <td class="sno">
                         Sno
                     </td>
-                    <td style="width: 11%;">
-                        Name
+                    <td class="recid">
+                        Receipt ID
                     </td>
-                    <td style="width: 150px">
+                    <td class="fistname">
+                        First Name
+                    </td>
+                    <td class="lastname">
+                        Last Name
+                    </td>
+                    <td class="tdate">
                         Date
                     </td>
                     <td style="width: 130px">
@@ -41,7 +47,7 @@
                     </td>
                 </tr>
                 <%
-            int index = 1;
+            int index = Convert.ToInt32(ViewData["RecordIndex"]);
                 %>
                 <%
             foreach (LocalMerchandiseReceipt localMerchandiseReceipt in localMerchandiseReceipts)
@@ -52,10 +58,16 @@
                         <%=index%>
                     </td>
                     <td>
-                        <%=localMerchandiseReceipt.Name%>
+                        <%= localMerchandiseReceipt.ReceiptNumber %>
                     </td>
                     <td>
-                        <%=localMerchandiseReceipt.OnDateTime.ToString("dd MMM yyyy (HH:mm)")%>
+                        <%=localMerchandiseReceipt.FirstName%>
+                    </td>
+                    <td>
+                        <%= localMerchandiseReceipt.LastName %>
+                    </td>
+                    <td>
+                        <%=localMerchandiseReceipt.OnDateTime.ToString("dd MMM yyyy")%>
                     </td>
                     <td>
                         <%= localMerchandiseReceipt.MerchandiseItem %>
@@ -154,4 +166,5 @@
     <script src="/Scripts/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/Reports.js" type="text/javascript"></script>
+    <link href="/Content/reports.css" rel="stylesheet" type="text/css" />
 </asp:Content>

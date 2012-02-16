@@ -18,22 +18,28 @@
                 List of regular receipts.</p>
             <table id="Cart_Table">
                 <tr class="header">
-                    <td style="width: 40px">
+                    <td class="sno">
                         Sno
                     </td>
-                    <td style="width: 18%;">
-                        Name
+                    <td class="recid">
+                        Receipt ID
                     </td>
-                    <td style="width: 140px">
+                    <td class="fistname">
+                        First Name
+                    </td>
+                    <td class="lastname">
+                        Last Name
+                    </td>
+                    <td class="tdate">
                         Date
                     </td>
-                    <td style="width: 50px">
+                    <td class="amount">
                         Amount
                     </td>
-                    <td style="width: 60px">
+                    <td class="mop">
                         Mode of payment
                     </td>
-                    <td style="width: 18%">
+                    <td class="recby">
                         Received By
                     </td>
                     <td colspan="4" class="lastcol">
@@ -41,21 +47,27 @@
                     </td>
                 </tr>
                 <%
-        int index = 1;
+            int index = Convert.ToInt32(ViewData["RecordIndex"]);
                 %>
                 <%
-        foreach (LocalRegularReceipt localRegularReceipt in localRegularReceipts)
-        {
+            foreach (LocalRegularReceipt localRegularReceipt in localRegularReceipts)
+            {
                 %>
                 <tr id="<%=localRegularReceipt.ReceiptNumber%>">
                     <td>
                         <%=index%>
                     </td>
                     <td>
-                        <%=localRegularReceipt.Name%>
+                        <%= localRegularReceipt.ReceiptNumber %>
                     </td>
                     <td>
-                        <%=localRegularReceipt.OnDateTime.ToString("dd MMM yyyy (HH:mm)")%>
+                        <%=localRegularReceipt.FirstName%>
+                    </td>
+                    <td>
+                        <%= localRegularReceipt.LastName %>
+                    </td>
+                    <td>
+                        <%=localRegularReceipt.OnDateTime.ToString("dd MMM yyyy")%>
                     </td>
                     <td style="text-align: right;">
                         <%= localRegularReceipt.DonationAmount%>
@@ -108,9 +120,9 @@
                         <a href="/Reports/RegularReceipts/<%= pageIndex - 1%>">Prev</a>
                     </td>
                     <%
-                }
-                else
-                {%>
+            }
+            else
+            {%>
                     <td>
                     </td>
                     <%
@@ -124,9 +136,9 @@
                         <a href="/Reports/RegularReceipts/<%= pageIndex + 1%>">Next</a>
                     </td>
                     <%
-                }
-                else
-                {%>
+            }
+            else
+            {%>
                     <td>
                     </td>
                     <%
@@ -138,9 +150,9 @@
         </li>
     </ul>
     <%
-    }
-    else
-    {%>
+        }
+        else
+        {%>
     <ul class="ul">
         <li>
             <p>
@@ -154,4 +166,5 @@
     <script src="/Scripts/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
     <script src="/Scripts/Reports.js" type="text/javascript"></script>
+    <link href="/Content/reports.css" rel="stylesheet" type="text/css" />
 </asp:Content>

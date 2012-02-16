@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace saibabacharityreceiptor.Models
 {
@@ -66,6 +68,10 @@ namespace saibabacharityreceiptor.Models
         [DataType(DataType.Date)]
         [Display(Name = "IssuedDate")]
         public DateTime IssuedDate { get; set; }
+
+        [Required]
+        [DisplayName("Signature Image")]
+        public HttpPostedFileBase SignatureImage { get; set; }
     }
 
     public class RegularReceiptModels : BasicInfo
@@ -85,18 +91,17 @@ namespace saibabacharityreceiptor.Models
     {
         [Required]
         [DataType(DataType.Currency)]
-        [Display(Name = "Donation_Amount")]
-        public string DonationAmount { get; set; }
+        [Display(Name = "Recurrence_Amount")]
+        public string[] RecurrenceAmount { get; set; }
 
         [Required]
-        [DataType(DataType.Currency)]
-        [Display(Name = "Donation_Amount_inWords")]
-        public string DonationAmountinWords { get; set; }
+        [Display(Name = "RecurrenceModeofPayment")]
+        public string[] RecurrenceModeofPayment { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "RecurrenceDates")]
-        public string[] RecurrenceDates { get; set; }
+        public DateTime[] RecurrenceDates { get; set; }
     }
 
     public class MerchandiseReceipt : BasicInfo

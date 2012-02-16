@@ -56,6 +56,23 @@ foreach (var payment in modeOfPayment)
                         </select>
                     </td>
                 </tr>
+            </table>
+        </li>
+        <li>
+            <table>
+                <tr>
+                    <td>
+                        <span>ReceiptID:</span><%= Html.TextBoxFor(m => m.ReceiptId, new { @id = "TxtReceiptID", @class = "text txtreceiptid", @maxlength = "25" })%>
+                    </td>
+                    <td>
+                        <span>Fist Name:</span><%= Html.TextBoxFor(m => m.FirstName, new { @id = "TxtFirstname", @class = "text txtfirstname", @maxlength = "255" })%>
+                    </td>
+                    <td>
+                        <span>Last Name:</span><%= Html.TextBoxFor(m => m.LastName, new { @id = "TxtLastname", @class = "text txtlastname", @maxlength = "255" })%>
+                    </td>
+                    <td style="width: 240px">
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="4">
                         <%= Html.HiddenFor(m => m.PageIndex, new { @id = "hdnPageindex"}) %>

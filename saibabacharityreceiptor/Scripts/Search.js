@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('.txtdate,.txtdonationamount,.txtcontact,.txtdate,.txtzipcode').bind('keypress', function (e) {
+    $('.txtdate,.txtdonationamount,.txtcontact,.txtzipcode').bind('keypress', function (e) {
         if ((e.which > 44 && e.which < 58) || e.which == 8 || e.which == 0)
             return true;
         return false;

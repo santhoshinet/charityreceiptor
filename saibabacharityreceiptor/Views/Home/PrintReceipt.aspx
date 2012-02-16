@@ -7,7 +7,7 @@
     <title>Receipt</title>
     <link href="/Content/receipt.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body onload="window.print();">
     <%
         var receipts = (List<ReceiptData>)ViewData["Receipt_Data"];
         if (receipts != null && receipts.Count > 0)
@@ -19,9 +19,13 @@
                     case "GeneralReceipt":
                         {
     %>
+    <div class="border">
+    <div class="data logo">
+        <img src="/Images/Report_Header.png" alt="logo" />
+    </div>
+    <div class="clear">
+    </div>
     <div class="container">
-        <div class="empty-header">
-        </div>
         <div class="header">
             <h3>
                 Donation Receipt</h3>
@@ -43,10 +47,27 @@
         <div class="clear">
         </div>
         <div class="data">
-            <ul>
-                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
-                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
-            </ul>
+            <table style="border-width: 0px; padding: 0px; margin: 0px;">
+                <tr>
+                    <td>
+                        <div class="field">
+                            Address1:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address%>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            Address2:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address2 %></div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="clear">
         </div>
@@ -76,8 +97,7 @@
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Donation amount received in USD:</span><span
-                    class="value"><%= receiptData.DonationAmount%></span></li>
+                <li class="one"><span class="field">Donation amount received in $:</span><span class="value"><%= receiptData.DonationAmount%></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -99,7 +119,12 @@
         <div class="box">
             <ul>
                 <li class="two"><span class="field">Donation received by:</span><span class="value"><%= receiptData.DonationReceiverName%></span></li>
-                <li class="two"><span class="field">Signature:</span><span class="value"></span></li>
+                <li class="two">
+                    <div class="signature">
+                        Signature:</div>
+                    <span class="value">
+                        <image src="/signature/<%= receiptData.SignatureId %>" alt=""></image>
+                    </span></li>
             </ul>
             <div class="clear">
             </div>
@@ -126,8 +151,9 @@
                 Thank You – Jai Sairam!</h3>
         </div>
         <div class="barcode">
-            <img src="/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
+            <img src="http://shirdisaibabaaz.org/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
         </div>
+    </div>
     </div>
     <%
 break;
@@ -135,9 +161,13 @@ break;
                     case "RecurringReceipt":
                         {
     %>
+    <div class="border">
+    <div class="data logo">
+        <img src="/Images/Report_Header.png" alt="logo" />
+    </div>
+    <div class="clear">
+    </div>
     <div class="container">
-        <div class="empty-header">
-        </div>
         <div class="header">
             <h3>
                 Donation Receipt</h3>
@@ -159,10 +189,27 @@ break;
         <div class="clear">
         </div>
         <div class="data">
-            <ul>
-                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
-                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
-            </ul>
+            <table style="border-width: 0px; padding: 0px; margin: 0px;">
+                <tr>
+                    <td>
+                        <div class="field">
+                            Address1:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address%>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            Address2:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address2 %></div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="clear">
         </div>
@@ -205,25 +252,25 @@ break;
                                 Mode of donation
                             </td>
                             <td>
-                                Amount in USD
+                                Amount in $
                             </td>
                         </tr>
                         <%
 int recurringId = 1;
-foreach (DateTime recurringDate in receiptData.RecurringDates)
+foreach (var recurringDetail in receiptData.RecurringDetails)
 { %>
                         <tr>
                             <td>
                                 <%= recurringId ++%>
                             </td>
                             <td>
-                                <%= recurringDate.ToString("MM dd yyyy") %>
+                                <%= recurringDetail.Date %>
                             </td>
                             <td>
-                                <%= receiptData.ModeOfPayment%>
+                                <%= recurringDetail.ModeOfPayment %>
                             </td>
                             <td>
-                                <%= receiptData.DonationAmount%>
+                                <%= recurringDetail.Amount %>
                             </td>
                         </tr>
                         <% } %>
@@ -233,32 +280,15 @@ foreach (DateTime recurringDate in receiptData.RecurringDates)
         </div>
         <div class="clear">
         </div>
-        <div class="data">
-            <ul>
-                <li class="one"><span class="field">Donation amount received in USD:</span><span
-                    class="value"><%= receiptData.DonationAmount%></span></li>
-            </ul>
-        </div>
-        <div class="clear">
-        </div>
-        <div class="data">
-            <ul>
-                <li class="one"><span class="field">Donation received in words:</span><span class="value"><%= receiptData.DonationAmountinWords%></span></li>
-            </ul>
-        </div>
-        <div class="clear">
-        </div>
-        <div class="data">
-            <ul>
-                <li class="one"><span class="field">Mode of donation:</span><span class="value"><%= receiptData.ModeOfPayment%></span></li>
-            </ul>
-        </div>
-        <div class="clear">
-        </div>
         <div class="box">
             <ul>
                 <li class="two"><span class="field">Donation received by:</span><span class="value"><%= receiptData.DonationReceiverName%></span></li>
-                <li class="two"><span class="field">Signature:</span><span class="value"></span></li>
+                <li class="two">
+                    <div class="signature">
+                        Signature:</div>
+                    <span class="value">
+                        <image src="/signature/<%= receiptData.SignatureId %>" alt=""></image>
+                    </span></li>
             </ul>
             <div class="clear">
             </div>
@@ -288,15 +318,20 @@ foreach (DateTime recurringDate in receiptData.RecurringDates)
             <img src="/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
         </div>
     </div>
+    </div>
     <%
 break;
                         }
                     case "MerchandiseReceipt":
                         {
     %>
+    <div class="border">
+    <div class="data logo">
+        <img src="/Images/Report_Header.png" alt="logo" />
+    </div>
+    <div class="clear">
+    </div>
     <div class="container">
-        <div class="empty-header">
-        </div>
         <div class="header">
             <h3>
                 Donation Receipt - Merchandise</h3>
@@ -318,10 +353,27 @@ break;
         <div class="clear">
         </div>
         <div class="data">
-            <ul>
-                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
-                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
-            </ul>
+            <table style="border-width: 0px; padding: 0px; margin: 0px;">
+                <tr>
+                    <td>
+                        <div class="field">
+                            Address1:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address%>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            Address2:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address2 %></div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="clear">
         </div>
@@ -358,7 +410,7 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">Goods FMV in USD:</span><span class="value"><%= receiptData.FmvValue%></span></li>
+                <li class="one"><span class="field">Goods FMV in $:</span><span class="value"><%= receiptData.FmvValue%></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -366,7 +418,12 @@ break;
         <div class="box">
             <ul>
                 <li class="two"><span class="field">Donation received by:</span><span class="value"><%= receiptData.DonationReceiverName%></span></li>
-                <li class="two"><span class="field">Signature:</span><span class="value"></span></li>
+                <li class="two">
+                    <div class="signature">
+                        Signature:</div>
+                    <span class="value">
+                        <image src="/signature/<%= receiptData.SignatureId %>" alt=""></image>
+                    </span></li>
             </ul>
             <div class="clear">
             </div>
@@ -396,15 +453,20 @@ break;
             <img src="/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
         </div>
     </div>
+    </div>
     <%
 break;
                         }
                     case "ServicesReceipt":
                         {
     %>
+    <div class="border">
+    <div class="data logo">
+        <img src="/Images/Report_Header.png" alt="logo" />
+    </div>
+    <div class="clear">
+    </div>
     <div class="container">
-        <div class="empty-header">
-        </div>
         <div class="header">
             <h3>
                 Donation Receipt - Service</h3>
@@ -426,10 +488,27 @@ break;
         <div class="clear">
         </div>
         <div class="data">
-            <ul>
-                <li class="two"><div class="field">Address1:</div><div class="value"><%= receiptData.Address%></div></li>
-                <li class="two"><div class="field">Address2:</div><div class="value"><%= receiptData.Address2 %></div></li>
-            </ul>
+            <table style="border-width: 0px; padding: 0px; margin: 0px;">
+                <tr>
+                    <td>
+                        <div class="field">
+                            Address1:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address%>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            Address2:</div>
+                    </td>
+                    <td>
+                        <div class="value">
+                            <%= receiptData.Address2 %></div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="clear">
         </div>
@@ -475,7 +554,7 @@ break;
         </div>
         <div class="data">
             <ul>
-                <li class="one"><span class="field">FMV in USD:</span><span class="value"><%= receiptData.FmvValue%></span></li>
+                <li class="one"><span class="field">FMV in $:</span><span class="value"><%= receiptData.FmvValue%></span></li>
             </ul>
         </div>
         <div class="clear">
@@ -483,7 +562,12 @@ break;
         <div class="box">
             <ul>
                 <li class="two"><span class="field">Donation received by:</span><span class="value"><%= receiptData.DonationReceiverName%></span></li>
-                <li class="two"><span class="field">Signature:</span><span class="value"></span></li>
+                <li class="two">
+                    <div class="signature">
+                        Signature:</div>
+                    <span class="value">
+                        <image src="/signature/<%= receiptData.SignatureId %>" alt=""></image>
+                    </span></li>
             </ul>
             <div class="clear">
             </div>
@@ -512,6 +596,7 @@ break;
         <div class="barcode">
             <img src="/barcode/<%= receiptData.ReceiptNumber  %>" alt="barcode" />
         </div>
+    </div>
     </div>
     <%
 break;

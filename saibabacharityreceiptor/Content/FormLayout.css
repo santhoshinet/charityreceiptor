@@ -355,6 +355,7 @@ INPUT[type="file"]
 	cursor: pointer;
 	padding: 0px 7px;
 	border: 1px solid #E5A467;
+	margin: 5px;
 }
 .SearchContainer TABLE
 {
@@ -373,4 +374,20 @@ INPUT[type="file"]
 {
 	color: #F03E3E;
 	margin-left: 10px;
+}
+.recurrenceTable
+{
+	margin-left: 10px;
+}
+.recurrenceTable INPUT
+{
+	width: 100px;
+}
+.recurrenceTable SELECT
+{
+	width: 135px;
+}
+.recurrenceTable TH
+{
+	text-align: left;
 }

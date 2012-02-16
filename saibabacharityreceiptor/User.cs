@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using saibabacharityreceiptor.Controllers;
 using saibabacharityreceiptorDL;
 
 namespace saibabacharityreceiptor
@@ -21,7 +22,9 @@ namespace saibabacharityreceiptor
     {
         public string ReceiptNumber { get; set; }
 
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         public string Address { get; set; }
 
@@ -47,16 +50,10 @@ namespace saibabacharityreceiptor
     {
         public LocalRecurrenceReceipt()
         {
-            RecurringDates = new List<DateTime>();
+            RecurringDatas = new List<RecurrenceData>();
         }
 
-        public IList<DateTime> RecurringDates { get; set; }
-
-        public string DonationAmount { get; set; }
-
-        public string DonationAmountinWords { get; set; }
-
-        public ModeOfPayment ModeOfPayment { get; set; }
+        public List<RecurrenceData> RecurringDatas { get; set; }
     }
 
     public class LocalMerchandiseReceipt : BaseReceipt

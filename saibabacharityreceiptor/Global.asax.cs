@@ -115,7 +115,11 @@ namespace saibabacharityreceiptor
                 "Reports/{action}/{pageIndex}", // URL with parameters
                 new { controller = "Reports", action = "home", pageIndex = 0 } // Parameter defaults
             );
-
+            routes.MapRoute(
+                                        "Signature", // Route name
+                                        "Signature/{id}", // URL with parameters
+                                        new { controller = "Signature", action = "Signature", id = UrlParameter.Optional } // Parameter defaults
+                                    );
             routes.MapRoute(
                             "Default", // Route name
                             "{controller}/{action}", // URL with parameters

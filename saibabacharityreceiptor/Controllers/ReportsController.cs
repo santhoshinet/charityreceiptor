@@ -21,6 +21,7 @@ namespace saibabacharityreceiptor.Controllers
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
+                    ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.GeneralReceipt)
                                     orderby c.DateReceived
@@ -34,7 +35,8 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
                                                                                   ModeOfPayment = receipt.ModeOfPayment,
-                                                                                  Name = receipt.FirstName,
+                                                                                  FirstName = receipt.FirstName,
+                                                                                  LastName = receipt.LastName,
                                                                                   OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber
                                                                               }).ToList();
@@ -71,6 +73,7 @@ namespace saibabacharityreceiptor.Controllers
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
+                    ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.RecurringReceipt)
                                     orderby c.DateReceived
@@ -79,16 +82,15 @@ namespace saibabacharityreceiptor.Controllers
                                                                               {
                                                                                   Address = receipt.Address,
                                                                                   Contact = receipt.Contact,
-                                                                                  DonationAmount = receipt.DonationAmount,
-                                                                                  DonationAmountinWords = receipt.DonationAmountinWords,
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
-                                                                                  ModeOfPayment = receipt.ModeOfPayment,
-                                                                                  Name = receipt.FirstName,
+                                                                                  FirstName = receipt.FirstName,
+                                                                                  LastName = receipt.LastName,
                                                                                   OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
-                                                                                  RecurringDates = receipt.RecurringDates
+                                                                                  RecurringDatas = receipt.RecurringDetails.Select(rd => new RecurrenceData { Amount = rd.Amount, Date = rd.DueDate.ToString("MM/dd/yyy"), ModeOfPayment = rd.ModeOfPayment.ToString() }).ToList()
                                                                               }).ToList();
+
                     ViewData["pageIndex"] = pageIndex;
                     if (pageIndex <= 0)
                         ViewData["HasPrevious"] = false;
@@ -122,6 +124,7 @@ namespace saibabacharityreceiptor.Controllers
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
+                    ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.MerchandiseReceipt)
                                     orderby c.DateReceived
@@ -132,7 +135,8 @@ namespace saibabacharityreceiptor.Controllers
                                                                                   Contact = receipt.Contact,
                                                                                   DonationReceiverName = receipt.DonationReceiver.Username,
                                                                                   Email = receipt.Email,
-                                                                                  Name = receipt.FirstName,
+                                                                                  FirstName = receipt.FirstName,
+                                                                                  LastName = receipt.LastName,
                                                                                   OnDateTime = receipt.DateReceived,
                                                                                   ReceiptNumber = receipt.ReceiptNumber,
                                                                                   MerchandiseItem = receipt.MerchandiseItem,
@@ -171,6 +175,7 @@ namespace saibabacharityreceiptor.Controllers
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (Checkauthorization(scope, User.Identity.Name))
                 {
+                    ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.ServicesReceipt)
                                     orderby c.DateReceived
@@ -181,7 +186,8 @@ namespace saibabacharityreceiptor.Controllers
                         Contact = receipt.Contact,
                         DonationReceiverName = receipt.DonationReceiver.Username,
                         Email = receipt.Email,
-                        Name = receipt.FirstName,
+                        FirstName = receipt.FirstName,
+                        LastName = receipt.LastName,
                         OnDateTime = receipt.DateReceived,
                         ReceiptNumber = receipt.ReceiptNumber,
                         HoursServed = receipt.HoursServed
@@ -427,12 +433,13 @@ namespace saibabacharityreceiptor.Controllers
                         Response.ContentEncoding = System.Text.Encoding.UTF8;
                         Response.ContentType = "application/text/csv";
                         String csvOutput =
-                            "Receipt Type,First Name,MI,Last Name,Address 1,Address 2,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Dates,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
+                            "Receipt ID, Receipt Type,First Name,MI,Last Name,Address 1,Address 2,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Payment Details,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
                         foreach (Receipt receipt in receipts)
                         {
                             // adding data
                             csvOutput += Environment.NewLine;
-                            csvOutput += receipt.ReceiptType.ToString();
+                            csvOutput += receipt.ReceiptNumber;
+                            csvOutput += "," + receipt.ReceiptType;
                             csvOutput += "," + receipt.FirstName;
                             csvOutput += "," + receipt.Mi;
                             csvOutput += "," + receipt.LastName;
@@ -448,8 +455,8 @@ namespace saibabacharityreceiptor.Controllers
                             csvOutput += "," + receipt.DonationAmount;
                             csvOutput += "," + receipt.DonationAmountinWords;
                             string recurringDates = " ";
-                            foreach (var date in receipt.RecurringDates)
-                                recurringDates = date.ToString("MM/dd/yyyy") + ",";
+                            foreach (var recurringDetail in receipt.RecurringDetails)
+                                recurringDates = "(" + recurringDetail.DueDate.ToString("MM/dd/yyyy") + "#" + recurringDetail.ModeOfPayment + "#" + recurringDetail.Amount + ")" + Environment.NewLine;
                             csvOutput += ",'" + recurringDates.Substring(0, recurringDates.Length - 1) + "'";
                             csvOutput += "," + receipt.MerchandiseItem;
                             csvOutput += "," + receipt.Quantity;

@@ -50,11 +50,13 @@
     <Compile Include="ObjectScopeProvider1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiptor.cs" />
+    <Compile Include="RecurringDetails.cs" />
+    <Compile Include="SignatureImage.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App.config1" />
     <EmbeddedResource Include="App.config" />
-    <None Include="App.config1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -66,7 +68,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="True" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
