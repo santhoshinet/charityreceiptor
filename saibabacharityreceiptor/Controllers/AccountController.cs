@@ -28,6 +28,8 @@ namespace saibabacharityreceiptor.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            //CreateUser("santhosh", "santhoshonet@gmail.com");
+            //Membership.CreateUser("Santhosh", "password@123");
             Response.Redirect("/Index.html");
             return null;
         }

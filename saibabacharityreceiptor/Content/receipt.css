@@ -3,10 +3,6 @@ BODY, DIV, UL, LI, SPAN, H3, TABLE, TR, TD
 	padding: 0px;
 	margin: 0px;
 }
-.body
-{
-	border: 1 solid #777;
-}
 .container
 {
 	margin: 0px 0px 0px 35px;
@@ -26,7 +22,7 @@ BODY, DIV, UL, LI, SPAN, H3, TABLE, TR, TD
 }
 .data
 {
-	margin-top: 15px;
+	margin-top: 6px;
 }
 UL
 {
@@ -162,7 +158,7 @@ DIV.field
 {
 	border: 1px solid #F57921;
 	width: 865px;
-	margin: 2px 5px 5px;
+	margin: 5px;
 }
 .logo
 {

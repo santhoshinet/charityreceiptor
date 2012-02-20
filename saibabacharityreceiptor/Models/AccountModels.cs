@@ -73,6 +73,37 @@ namespace saibabacharityreceiptor.Models
         public bool Admin { get; set; }
     }
 
+    public class EditUserModel
+    {
+        [Display(Name = "UserId")]
+        public string UserId { get; set; }
+
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email address")]
+        public string Email { get; set; }
+
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Donation Receiver?")]
+        public bool DonationReceiver { get; set; }
+
+        [Display(Name = "Admin?")]
+        public bool Admin { get; set; }
+    }
+
     #region Services
 
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to

@@ -33,6 +33,12 @@ namespace saibabacharityreceiptor
             );
 
             routes.MapRoute(
+                "changepassword", // Route name
+                "changepassword", // URL with parameters
+                new { controller = "Account", action = "changepassword" }
+            );
+
+            routes.MapRoute(
                 "LogOut", // Route name
                 "LogOut", // URL with parameters
                 new { controller = "Account", action = "LogOff" }

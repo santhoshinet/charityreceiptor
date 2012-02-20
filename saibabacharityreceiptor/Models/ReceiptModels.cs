@@ -61,11 +61,6 @@ namespace saibabacharityreceiptor.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "ReceiptReceived")]
-        public DateTime DateReceived { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "IssuedDate")]
         public DateTime IssuedDate { get; set; }
 
@@ -76,6 +71,11 @@ namespace saibabacharityreceiptor.Models
 
     public class RegularReceiptModels : BasicInfo
     {
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "ReceiptReceived")]
+        public DateTime DateReceived { get; set; }
+
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Donation_Amount")]
@@ -89,6 +89,11 @@ namespace saibabacharityreceiptor.Models
 
     public class RecurringReceipt : BasicInfo
     {
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Donation_Amount_inWords")]
+        public string DonationAmountinWords { get; set; }
+
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Recurrence_Amount")]
@@ -107,6 +112,11 @@ namespace saibabacharityreceiptor.Models
     public class MerchandiseReceipt : BasicInfo
     {
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "ReceiptReceived")]
+        public DateTime DateReceived { get; set; }
+
+        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Merchandise Item")]
         public string MerchandiseItem { get; set; }
@@ -124,6 +134,11 @@ namespace saibabacharityreceiptor.Models
 
     public class ServicesReceipt : BasicInfo
     {
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "ReceiptReceived")]
+        public DateTime DateReceived { get; set; }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Service Type")]

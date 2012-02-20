@@ -436,6 +436,13 @@ namespace saibabacharityreceiptor.Controllers
                             "Receipt ID, Receipt Type,First Name,MI,Last Name,Address 1,Address 2,City,State,Zip Code,Email,Contact,Date Received,Issued Date,Donation Amount,Donation Amount in words,Recurring Payment Details,Merchandise Item,Quantity,Value,Service Type,Hours Served,Rate per hour,FMV Value,Mode of Payment,Received By";
                         foreach (Receipt receipt in receipts)
                         {
+                            double totalAmount;
+                            if (receipt.ReceiptType == ReceiptType.RecurringReceipt)
+                            {
+                                totalAmount = receipt.RecurringDetails.Sum(recurringDetail => Convert.ToDouble(recurringDetail.Amount));
+                            }
+                            else
+                                totalAmount = Convert.ToDouble(receipt.DonationAmount);
                             // adding data
                             csvOutput += Environment.NewLine;
                             csvOutput += receipt.ReceiptNumber;
@@ -450,14 +457,15 @@ namespace saibabacharityreceiptor.Controllers
                             csvOutput += "," + receipt.ZipCode;
                             csvOutput += "," + receipt.Email;
                             csvOutput += "," + receipt.Contact;
-                            csvOutput += "," + receipt.DateReceived.ToString("MM/dd/yyyy");
+                            if (receipt.ReceiptType == ReceiptType.RecurringReceipt)
+                                csvOutput += ",";
+                            else
+                                csvOutput += "," + receipt.DateReceived.ToString("MM/dd/yyyy");
                             csvOutput += "," + receipt.IssuedDate.ToString("MM/dd/yyyy");
-                            csvOutput += "," + receipt.DonationAmount;
+                            csvOutput += "," + totalAmount;
                             csvOutput += "," + receipt.DonationAmountinWords;
-                            string recurringDates = " ";
-                            foreach (var recurringDetail in receipt.RecurringDetails)
-                                recurringDates = "(" + recurringDetail.DueDate.ToString("MM/dd/yyyy") + "#" + recurringDetail.ModeOfPayment + "#" + recurringDetail.Amount + ")" + Environment.NewLine;
-                            csvOutput += ",'" + recurringDates.Substring(0, recurringDates.Length - 1) + "'";
+                            string recurringDates = receipt.RecurringDetails.Aggregate(" ", (current, recurringDetail) => current + ("(" + recurringDetail.DueDate.ToString("MM/dd/yyyy") + "-" + recurringDetail.ModeOfPayment + "-" + recurringDetail.Amount + ")"));
+                            csvOutput += "," + recurringDates;
                             csvOutput += "," + receipt.MerchandiseItem;
                             csvOutput += "," + receipt.Quantity;
                             csvOutput += "," + receipt.FmvValue;

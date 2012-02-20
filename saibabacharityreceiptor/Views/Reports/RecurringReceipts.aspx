@@ -34,9 +34,10 @@
                     <td class="tdate">
                         Date
                     </td>
+                    <!--
                     <td colspan="3">
                         Recurring Details
-                    </td>
+                    </td> -->
                     <td>
                         Received By
                     </td>
@@ -67,13 +68,14 @@
                     <td>
                         <%=localRecurringReceipt.OnDateTime.ToString("dd MMM yyyy")%>
                     </td>
+                    <!--
                     <td style="text-align: right;" colspan="3">
                         <% foreach (RecurrenceData recurringdata in localRecurringReceipt.RecurringDatas)
                            {
                         %>
                         <%=  "($" + recurringdata.Amount + " , " + recurringdata.ModeOfPayment + " , " + recurringdata.Date + " )" + "<br />" %>
                         <% } %>
-                    </td>
+                    </td> -->
                     <td>
                         <%= localRecurringReceipt.DonationReceiverName%>
                     </td>

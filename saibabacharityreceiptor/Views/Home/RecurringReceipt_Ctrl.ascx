@@ -18,17 +18,6 @@
     </li>
     <li>
         <label class="label">
-            Date Received
-        </label>
-        <label class="label">
-            <span class="instruction">Your date should be in the format of [ MM / DD / YYYY ]</span>
-        </label>
-        <%: Html.TextBoxFor(m => m.DateReceived, new { @id = "TxtDateReceived", @class = "text txtdate", @maxlength = "10" })%>
-        <label class="star">
-            *</label>
-    </li>
-    <li>
-        <label class="label">
             First Name</label>
         <%: Html.TextBoxFor(m => m.FirstName, new { @id = "TxtName", @class = "text txtname", @maxlength = "16" })%>
         <label class="star">
@@ -99,7 +88,7 @@
                 <tr>
                     <th>
                         <label class="label">
-                            Amount</label>
+                            Amount in USD</label>
                     </th>
                     <th>
                         <label class="label">
@@ -235,6 +224,19 @@ else if (recurrenceData != null)
         </table>
     </li>
     <li class="clear"></li>
+    <li>
+        <label class="label">Total Amount</label>
+        <label class="label Lbltotalamount">0.0
+        </label>
+    </li>
+    <li class="clear"></li>
+    <li>
+        <label class="label">
+            Donation Amount in words</label>
+        <%= Html.TextBoxFor(m => m.DonationAmountinWords, new { @id = "TxtDonationAmountinWords", @class = "text txtdonationinwords", @maxlength = "42" })%>
+        <label class="star">
+            *</label>
+    </li>
     <li>
         <label class="label">
             Donation Receiver</label>

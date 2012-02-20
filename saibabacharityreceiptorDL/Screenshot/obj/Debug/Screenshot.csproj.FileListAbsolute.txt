@@ -1,0 +1,5 @@
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptorDL\Screenshot\bin\Debug\Screenshot.exe
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptorDL\Screenshot\bin\Debug\Screenshot.pdb
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptorDL\Screenshot\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptorDL\Screenshot\obj\Debug\Screenshot.exe
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptorDL\Screenshot\obj\Debug\Screenshot.pdb

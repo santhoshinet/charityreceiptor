@@ -263,7 +263,6 @@ namespace saibabacharityreceiptor.Controllers
                 var receiptModel = new RecurringReceipt
                 {
                     ReceiptNumber = Utilities.GenerateReceiptId(),
-                    DateReceived = DateTime.Now,
                     IssuedDate = DateTime.Now
                 };
                 return View(receiptModel);
@@ -291,7 +290,6 @@ namespace saibabacharityreceiptor.Controllers
                     if (donationReceiver.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = new Receipt
                                           {
                                               Address = model.Address,
@@ -299,8 +297,9 @@ namespace saibabacharityreceiptor.Controllers
                                               Contact = model.Contact,
                                               ReceiptNumber = model.ReceiptNumber,
                                               DonationReceiver = donationReceiver[0],
+                                              DonationAmountinWords = model.DonationAmountinWords,
                                               Email = model.Email,
-                                              DateReceived = receivedTime,
+                                              DateReceived = DateTime.Now,
                                               FirstName = model.FirstName,
                                               City = model.City,
                                               LastName = model.LastName,
@@ -408,7 +407,6 @@ namespace saibabacharityreceiptor.Controllers
                     if (receipts.Count > 0)
                     {
                         scope.Transaction.Begin();
-                        var receivedTime = Convert.ToDateTime(model.DateReceived);
                         var receipt = receipts[0];
                         receipt.Address = model.Address;
                         receipt.Address2 = model.Address2;
@@ -416,7 +414,6 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
-                        receipt.DateReceived = receivedTime;
                         receipt.FirstName = model.FirstName;
                         receipt.Mi = model.Mi;
                         receipt.LastName = model.LastName;
@@ -425,6 +422,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.ZipCode = model.ZipCode;
                         receipt.ReceiptType = ReceiptType.RecurringReceipt;
                         receipt.IssuedDate = model.IssuedDate;
+                        receipt.DonationAmountinWords = model.DonationAmountinWords;
                         receipt.RecurringDetails.Clear();
                         for (int i = 0; i < model.RecurrenceDates.Count(); i++)
                         {
@@ -893,12 +891,12 @@ namespace saibabacharityreceiptor.Controllers
                                                     Address = receipt.Address,
                                                     Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
-                                                    DateReceived = receipt.DateReceived,
                                                     Email = receipt.Email,
                                                     ReceiptNumber = receipt.ReceiptNumber,
                                                     City = receipt.City,
                                                     FirstName = receipt.FirstName,
                                                     LastName = receipt.LastName,
+                                                    DonationAmountinWords = receipt.DonationAmountinWords,
                                                     Mi = receipt.Mi,
                                                     State = receipt.State,
                                                     ZipCode = receipt.ZipCode,

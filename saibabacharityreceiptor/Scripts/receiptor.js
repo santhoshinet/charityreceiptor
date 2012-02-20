@@ -119,6 +119,7 @@
         var reccurence = $(this).parents('tr').eq(0);
         var clone = reccurence.clone();
         reccurence.after(clone);
+        clone.find('.txtrecurrenceamount').val('');
         clone.find('.btnactionremove').remove();
         clone.find('td:last').append("<span class='btnactionremove'>-</span>");
         Index++;
@@ -129,8 +130,23 @@
                 $('.' + recclass).datepicker("option", "dateFormat", "mm/dd/yy");
             }
         });
+        CalculateRecurrenceTotal();
     });
     $('.btnactionremove').live('click', function () {
         $(this).parents('tr').eq(0).remove();
+        CalculateRecurrenceTotal();
     });
+    $('.txtrecurrenceamount').live('keyup', function () {
+        CalculateRecurrenceTotal();
+    });
+    function CalculateRecurrenceTotal() {
+        var total = 0.0;
+        $('.txtrecurrenceamount').each(function () {
+            try {
+                if ($(this).val() != "")
+                    total += parseFloat($(this).val());
+            } catch (e) { }
+        });
+        $('.Lbltotalamount').html(total.toString());
+    }
 });

@@ -106,7 +106,7 @@
     </li>
     <li>
         <label class="label">
-            Goods FMV Value</label>
+            Goods FMV Value in USD</label>
         <%: Html.TextBoxFor(m => m.Value, new { @id = "TxtValue", @class = "text txtvalue", @maxlength = "15" })%>
         <label class="star">
             *</label>

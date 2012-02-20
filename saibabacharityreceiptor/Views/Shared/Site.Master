@@ -91,9 +91,14 @@
             <!-- start Header Top NavigationBottom Section -->
             <!-- start Page Layer -->
             <div class="Container">
+                <% if (Context.User.Identity.IsAuthenticated)
+                   {%>
                 <div class="menu">
-                    <a href="/controlpanel">Home</a> | <a href="/logout">Logout</a>
+                    <a href="/controlpanel">Home</a> | <a href="/changepassword">Change password</a>
+                    | <a href="/logout">Logout</a>
                 </div>
+                <%
+                   }%>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

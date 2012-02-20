@@ -92,7 +92,7 @@
     </li>
     <li>
         <label class="label">
-            Donation Amount</label>
+            Donation Amount in USD</label>
         <%: Html.TextBoxFor(m => m.DonationAmount, new { @id = "TxtDonationAmount", @class = "text txtdonationamount", @maxlength = "15" })%>
         <label class="star">
             *</label>

@@ -8,13 +8,25 @@ namespace saibabacharityreceiptorSeeds
     {
         private static void Main()
         {
-            CreateUser("santhoshonet", "santhoshonet@gmail.com");
+            //CreateUser("santhoshonet", "santhoshonet@gmail.com");
             CreateUser("santhosh", "santhoshonet@gmail.com");
-            var scope = ObjectScopeProvider1.GetNewObjectScope();
+
+            /*var scope = saibabacharityreceiptorDL.ObjectScopeProvider1.GetNewObjectScope();
+
+            List<Receipt> receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
+                                      select c).ToList();
+
+            foreach (Receipt receipt in receipts)
+            {
+                scope.Transaction.Begin();
+                scope.Remove(receipt);
+                scope.Transaction.Commit();
+            } */
+
+            /*
             List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
                                 select c).ToList();
 
-            /*
             List<SignatureImage> signatureImages = (from c in scope.GetOqlQuery<SignatureImage>().ExecuteEnumerable()
                                                     select c).ToList();
 

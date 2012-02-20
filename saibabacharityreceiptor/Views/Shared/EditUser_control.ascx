@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<saibabacharityreceiptor.Models.RegisterModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<saibabacharityreceiptor.Models.EditUserModel>" %>
 <div class="Container small low_height">
     <% using (Html.BeginForm())
        { %>
@@ -12,15 +12,29 @@
             <label class="label">
                 Username
             </label>
-            <%= Html.TextBoxFor(m => m.UserName, new { @id = "TxtUsername", @class = "text txtusername", @maxlength = "50", @readOnly = "readOnly" })%>
+            <%= Html.TextBoxFor(m => m.UserName, new { @id = "TxtUsername", @class = "text txtusername", @maxlength = "50", @readOnly = "readOnly" })%> <br />
             <%= Html.ValidationMessageFor(m => m.UserName) %>
         </li>
         <li>
             <label class="label">
                 Email
             </label>
-            <%= Html.TextBoxFor(m => m.Email, new { @id = "TxtEmail", @class = "text txtemail", @maxlength = "50" })%>
+            <%= Html.TextBoxFor(m => m.Email, new { @id = "TxtEmail", @class = "text txtemail", @maxlength = "50" })%><br />
             <%= Html.ValidationMessageFor(m => m.Email) %>
+        </li>
+        <li>
+            <label class="label">
+               Reset Password
+            </label>
+            <%= Html.PasswordFor(m => m.Password, new { @id = "Txtpassword", @class = "text txtpassword", @maxlength = "20" })%> <br />
+            <%= Html.ValidationMessageFor(m => m.Password) %>
+        </li>
+        <li>
+            <label class="label">
+                Confirm password
+            </label>
+            <%= Html.PasswordFor(m => m.ConfirmPassword, new { @id = "TxtConfirmpassword", @class = "text txtconfirmpassword", @maxlength = "20" })%> <br />
+            <%= Html.ValidationMessageFor(m => m.ConfirmPassword) %>
         </li>
         <li>
             <%= Html.CheckBoxFor(m => m.DonationReceiver) %>

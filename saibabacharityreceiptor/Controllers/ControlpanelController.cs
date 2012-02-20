@@ -41,30 +41,37 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        // Attempt to register the user
-                        MembershipCreateStatus createStatus;
-                        Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null,
-                                              out createStatus);
-                        if (createStatus == MembershipCreateStatus.Success)
+                        int count = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                     where c.Username.ToLower().Equals(model.UserName.ToLower())
+                                     select c).Count();
+                        if (count == 0)
                         {
-                            scope.Transaction.Begin();
-                            var user = new User
-                                           {
-                                               Failcount = 0,
-                                               IsheAdmin = model.Admin,
-                                               IsheDonationReceiver = model.DonationReceiver,
-                                               Lasttriedtime = DateTime.Now,
-                                               Username = model.UserName,
-                                               Email = model.Email
-                                           };
-                            scope.Add(user);
-                            scope.Transaction.Commit();
-                            //FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
-                            ViewData["Status"] = "User added successfully.";
-                            return View("Status");
-                            //return RedirectToAction("Index", "Home");
+                            // Attempt to register the user
+                            MembershipCreateStatus createStatus;
+                            Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null,
+                                                  out createStatus);
+                            if (createStatus == MembershipCreateStatus.Success)
+                            {
+                                scope.Transaction.Begin();
+                                var user = new User
+                                               {
+                                                   Failcount = 0,
+                                                   IsheAdmin = model.Admin,
+                                                   IsheDonationReceiver = model.DonationReceiver,
+                                                   Lasttriedtime = DateTime.Now,
+                                                   Username = model.UserName,
+                                                   Email = model.Email
+                                               };
+                                scope.Add(user);
+                                scope.Transaction.Commit();
+                                //FormsAuthentication.SetAuthCookie(model.UserName, true /* createPersistentCookie */);
+                                ViewData["Status"] = "User added successfully.";
+                                return View("Status");
+                                //return RedirectToAction("Index", "Home");
+                            }
+                            ModelState.AddModelError("", ErrorCodeToString(createStatus));
                         }
-                        ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                        ModelState.AddModelError("Username", "Username already exists, try another name.");
                     }
                     // If we got this far, something failed, redisplay form
                     return View(model);
@@ -130,13 +137,15 @@ namespace saibabacharityreceiptor.Controllers
                                         select c).ToList();
                     if (users.Count > 0)
                         return
-                            View(new RegisterModel
+                            View(new EditUserModel
                                      {
                                          Admin = users[0].IsheAdmin,
                                          DonationReceiver = users[0].IsheDonationReceiver,
                                          Email = users[0].Email,
                                          UserId = users[0].Id,
-                                         UserName = users[0].Username
+                                         UserName = users[0].Username,
+                                         Password = string.Empty,
+                                         ConfirmPassword = string.Empty
                                      });
                     return View();
                 }
@@ -149,34 +158,38 @@ namespace saibabacharityreceiptor.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edituser(RegisterModel model)
+        public ActionResult Edituser(EditUserModel model)
         {
             if (User.Identity.IsAuthenticated)
             {
                 var scope = ObjectScopeProvider1.GetNewObjectScope();
                 if (CheckAdminauthorization(scope, User.Identity.Name))
                 {
-                    if (!string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.UserId))
+                    if (model.Password == model.ConfirmPassword)
                     {
-                        List<User> users =
-                            (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                             where c.Id.Equals(model.UserId)
-                             select c).ToList();
-                        foreach (User user in users)
+                        if (!string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.UserName) &&
+                            !string.IsNullOrEmpty(model.UserId))
                         {
-                            scope.Transaction.Begin();
-                            //user.Username = model.UserName;
-                            user.Email = model.Email;
-                            user.IsheDonationReceiver = model.DonationReceiver;
-                            user.IsheAdmin = model.Admin;
-                            scope.Add(user);
-                            scope.Transaction.Commit();
+                            List<User> users =
+                                (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                 where c.Id.Equals(model.UserId)
+                                 select c).ToList();
+                            foreach (User user in users)
+                            {
+                                scope.Transaction.Begin();
+                                //user.Username = model.UserName;
+                                user.Email = model.Email;
+                                user.IsheDonationReceiver = model.DonationReceiver;
+                                user.IsheAdmin = model.Admin;
+                                scope.Add(user);
+                                scope.Transaction.Commit();
+                            }
+                            ViewData["Status"] = "User details update process completed successfully.";
+                            return View("Status");
                         }
-                        ViewData["Status"] = "User details update process completed successfully.";
-                        return View("Status");
+                        //ModelState.Remove("Password");
+                        //ModelState.Remove("Confirm password");
                     }
-                    ModelState.Remove("Password");
-                    ModelState.Remove("Confirm password");
                     return View();
                 }
                 ViewData["Status"] = "You are not authorized to do this operation";
@@ -620,9 +633,10 @@ namespace saibabacharityreceiptor.Controllers
                             foreach (var user in users)
                             {
                                 Membership.DeleteUser(user.Username);
+                                /*
                                 scope.Transaction.Begin();
                                 scope.Remove(user);
-                                scope.Transaction.Commit();
+                                scope.Transaction.Commit(); */
                             }
                         }
                         return "removed";

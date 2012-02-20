@@ -20,9 +20,9 @@
       <Item value="SignatureImage`0" priority="1" />
       <Item value="SignatureImage" priority="1" />
       <Item value="new" priority="1" />
-      <Item value="receipts" priority="0" />
+      <Item value="receipts" priority="1" />
       <Item value="recurringDetailses" priority="0" />
-      <Item value="foreach" priority="1" />
+      <Item value="foreach" priority="2" />
       <Item value="recurringDetailse" priority="0" />
       <Item value="signatureImages" priority="0" />
       <Item value="wb" priority="2" />
@@ -39,6 +39,16 @@
       <Item value="int" priority="1" />
       <Item value="width" priority="1" />
       <Item value="height" priority="1" />
+      <Item value="List" priority="0" />
+      <Item value="Receipt`0" priority="1" />
+      <Item value="from" priority="0" />
+      <Item value="where" priority="0" />
+      <Item value="c" priority="0" />
+      <Item value="null" priority="0" />
+      <Item value="select" priority="0" />
+      <Item value="scope" priority="3" />
+      <Item value="receipt" priority="0" />
+      <Item value="saibabacharityreceiptorSeeds" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.WebBrowser">
       <Item value="Url" priority="0" />
@@ -63,25 +73,40 @@
       <Item value="Width" priority="0" />
       <Item value="Height" priority="1" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.IObjectScope">
+      <Item value="GetOqlQuery`0" priority="0" />
+      <Item value="Transaction" priority="1" />
+      <Item value="Refresh`0" priority="0" />
+      <Item value="Remove`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.Query`1">
+      <Item value="ExecuteEnumerable`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptorDL.Receipt">
+      <Item value="DonationReceiver" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Telerik.OpenAccess.ITransaction">
+      <Item value="Begin`0" priority="0" />
+      <Item value="Commit`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:saibabacharityreceiptorDL.User">
+      <Item value="Equals`0" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="295" fromTop="12" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="133" fromTop="6" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config1" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:App.config2" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:App.config" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="0" fromTop="0" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1210" fromTop="33" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="893" fromTop="12" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2262" fromTop="1" />
     </RecentFiles>
     <RecentEdits>
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2457" fromTop="39" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="42" fromTop="1" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="274" fromTop="12" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1353" fromTop="21" />
@@ -89,21 +114,25 @@
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="113" fromTop="9" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="329" fromTop="15" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1750" fromTop="23" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="1129" fromTop="26" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1352" fromTop="25" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1005" fromTop="28" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1760" fromTop="25" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1413" fromTop="28" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1217" fromTop="15" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="98" fromTop="5" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="181" fromTop="10" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="571" fromTop="4" />
-      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1844" fromTop="33" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="981" fromTop="4" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1095" fromTop="26" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1040" fromTop="26" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="773" fromTop="25" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="602" fromTop="19" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="411" fromTop="14" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="893" fromTop="13" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="817" fromTop="23" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="297" fromTop="11" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2275" fromTop="15" />
+      <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="3523" fromTop="37" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

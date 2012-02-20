@@ -20,7 +20,7 @@
 }
 .low_height
 {
-	height: 300px;
+	height: auto;
 }
 .h1
 {
@@ -390,4 +390,8 @@ INPUT[type="file"]
 .recurrenceTable TH
 {
 	text-align: left;
+}
+.Lbltotalamount
+{
+	color: #ED9710;
 }
