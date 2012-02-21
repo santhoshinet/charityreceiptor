@@ -100,21 +100,21 @@
     <li>
         <label class="label">
             No Of hours served</label>
-        <%: Html.TextBoxFor(m => m.HoursServed, new { @id = "Txthoursserved", @class = "text txthoursserved", @maxlength = "15" })%>
+        <%: Html.TextBoxFor(m => m.HoursServed, new { @id = "Txthoursserved", @class = "text txthoursserved", @maxlength = "5" })%>
         <label class="star">
             *</label>
     </li>
     <li>
         <label class="label">
             Rate per hour</label>
-        <%: Html.TextBoxFor(m => m.RateperHour, new { @id = "TxtRateperHour", @class = "text txtrateperhour", @maxlength = "15" })%>
+        <%: Html.TextBoxFor(m => m.RateperHour, new { @id = "TxtRateperHour", @class = "text txtrateperhour", @maxlength = "10" })%>
         <label class="star">
             *</label>
     </li>
     <li>
         <label class="label">
             FMV Value</label>
-        <%: Html.TextBoxFor(m => m.FmvValue, new { @id = "TxtFrmValue", @class = "text txtfmvvalue", @maxlength = "15" })%>
+        <%: Html.TextBoxFor(m => m.FmvValue, new { @id = "TxtFrmValue", @class = "text txtfmvvalue", @maxlength = "10" })%>
         <label class="star">
             *</label>
     </li>

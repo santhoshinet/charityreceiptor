@@ -20,11 +20,17 @@
         <li>
             <label class="label">
                 Upload excel file</label>
-            <input type="file" name="ExcelFile" />
+            <input type="file" name="ExcelFile" class="ExcelFile" />
             <%=Html.ValidationMessageFor(m => m.ExcelFile)%>
         </li>
         <li>
-            <input type="submit" value="Upload" accept="*.xls|*.xlsx" accept="application/excel" />
+            <label class="label">
+                Upload signature file</label>
+            <input type="file" name="SignatureFile" />
+            <%=Html.ValidationMessageFor(m => m.SignatureFile )%>
+        </li>
+        <li>
+            <input type="submit" value="Upload" />
         </li>
         <li>
             <div class="clear">

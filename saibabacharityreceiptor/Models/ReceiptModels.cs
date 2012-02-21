@@ -152,11 +152,11 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Rate per Hr / Day")]
-        public int RateperHour { get; set; }
+        public Double RateperHour { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "FMv Value")]
-        public int FmvValue { get; set; }
+        public Double FmvValue { get; set; }
     }
 }

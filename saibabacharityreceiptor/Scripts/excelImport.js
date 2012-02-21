@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('input[type="file"]').change(function () {
+    $('.ExcelFile').change(function () {
         var filePath = $(this)[0].value;
         if (filePath.indexOf('.') == -1)
             return false;

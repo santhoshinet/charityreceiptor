@@ -260,7 +260,7 @@ namespace saibabacharityreceiptor.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ImportfromExcel(ExcelModels model, HttpPostedFileBase excelFile)
+        public ActionResult ImportfromExcel(ExcelModels model, HttpPostedFileBase excelFile, HttpPostedFileBase signatureFile)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -273,302 +273,344 @@ namespace saibabacharityreceiptor.Controllers
                         OleDbConnection connection = null;
                         try
                         {
-                            string directory = Server.MapPath("/App_Data");
-                            if (Directory.Exists(directory))
-                                Directory.CreateDirectory(directory);
-                            string filePath = Path.Combine(directory, excelFile.FileName);
-                            if (System.IO.File.Exists(filePath))
-                                System.IO.File.Delete(filePath);
-                            excelFile.SaveAs(filePath);
-                            string connectionString = string.Empty;
-                            if (Path.GetExtension(filePath) == ".xls")
-                                connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
-                            else if (Path.GetExtension(filePath) == ".xlsx")
-                                connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
-                            bool isReceptsGenerated = false;
-                            var groupId = DateTime.Now.ToString("%s%MM%mm%yy%dd%HH");
-                            if (!string.IsNullOrEmpty(connectionString))
+                            // saving image here
+                            SignatureImage signature;
+                            try
                             {
-                                connection = new OleDbConnection(connectionString);
-                                var cmd = new OleDbCommand { CommandType = CommandType.Text, Connection = connection };
-                                var dAdapter = new OleDbDataAdapter(cmd);
-                                var dtExcelRecords = new DataTable();
-                                connection.Open();
-                                DataTable dtExcelSheetName = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                                if (dtExcelSheetName != null && dtExcelSheetName.Rows.Count > 0)
+                                signature = new SignatureImage { Filename = model.SignatureFile.FileName };
+                                Stream fileStream = model.SignatureFile.InputStream;
+                                int fileLength = model.SignatureFile.ContentLength;
+                                signature.Filedata = new byte[fileLength];
+                                fileStream.Read(signature.Filedata, 0, fileLength);
+                                signature.MimeType = model.SignatureFile.ContentType;
+                                signature.ID = Guid.NewGuid();
+                            }
+                            catch
+                            {
+                                signature = null;
+                            }
+                            if (signature != null)
+                            {
+                                string directory = Server.MapPath("/App_Data");
+                                if (Directory.Exists(directory))
+                                    Directory.CreateDirectory(directory);
+                                string filePath = Path.Combine(directory, excelFile.FileName);
+                                if (System.IO.File.Exists(filePath))
+                                    System.IO.File.Delete(filePath);
+                                excelFile.SaveAs(filePath);
+                                string connectionString = string.Empty;
+                                if (Path.GetExtension(filePath) == ".xls")
+                                    connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath +
+                                                       ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+                                else if (Path.GetExtension(filePath) == ".xlsx")
+                                    connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath +
+                                                       ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
+                                bool isReceptsGenerated = false;
+                                var groupId = DateTime.Now.ToString("%s%MM%mm%yy%dd%HH");
+                                if (!string.IsNullOrEmpty(connectionString))
                                 {
-                                    string getExcelSheetName = dtExcelSheetName.Rows[0]["Table_Name"].ToString();
-                                    cmd.CommandText = "SELECT * FROM [" + getExcelSheetName + "]";
-                                    dAdapter.SelectCommand = cmd;
-                                    dAdapter.Fill(dtExcelRecords);
-
-                                    // Started to create recepts now)
-                                    foreach (DataRow dataRow in dtExcelRecords.Rows)
+                                    connection = new OleDbConnection(connectionString);
+                                    var cmd = new OleDbCommand { CommandType = CommandType.Text, Connection = connection };
+                                    var dAdapter = new OleDbDataAdapter(cmd);
+                                    var dtExcelRecords = new DataTable();
+                                    connection.Open();
+                                    DataTable dtExcelSheetName = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
+                                                                                                null);
+                                    if (dtExcelSheetName != null && dtExcelSheetName.Rows.Count > 0)
                                     {
-                                        string receiptType = string.Empty,
-                                               firstname = string.Empty,
-                                               mi = string.Empty,
-                                               lastname = string.Empty,
-                                               address = string.Empty,
-                                               address2 = string.Empty,
-                                               city = string.Empty,
-                                               state = string.Empty,
-                                               zipcode = string.Empty,
-                                               email = string.Empty,
-                                               contact = string.Empty,
-                                               datereceived = string.Empty,
-                                               issueddate = string.Empty,
-                                               donationamount = string.Empty,
-                                               donationAmountinwords = string.Empty,
-                                               recurringDetails = string.Empty,
-                                               merchandiseItem = string.Empty,
-                                               quantity = string.Empty,
-                                               value = string.Empty,
-                                               servicetype = string.Empty,
-                                               hoursServed = string.Empty,
-                                               rateperhour = string.Empty,
-                                               fmvvalue = string.Empty,
-                                               modeOfPayment = string.Empty,
-                                               receivedBy = string.Empty;
-                                        if (dataRow[0] != null && !string.IsNullOrEmpty(dataRow[0].ToString()))
-                                            receiptType = dataRow[0].ToString();
-                                        if (dataRow[1] != null && !string.IsNullOrEmpty(dataRow[1].ToString()))
-                                            firstname = dataRow[1].ToString();
-                                        if (dataRow[2] != null && !string.IsNullOrEmpty(dataRow[2].ToString()))
-                                            mi = dataRow[2].ToString();
-                                        if (dataRow[3] != null && !string.IsNullOrEmpty(dataRow[3].ToString()))
-                                            lastname = dataRow[3].ToString();
-                                        if (dataRow[4] != null && !string.IsNullOrEmpty(dataRow[4].ToString()))
-                                            address = dataRow[4].ToString();
-                                        if (dataRow[5] != null && !string.IsNullOrEmpty(dataRow[5].ToString()))
-                                            address2 = dataRow[5].ToString();
-                                        if (dataRow[6] != null && !string.IsNullOrEmpty(dataRow[6].ToString()))
-                                            city = dataRow[6].ToString();
-                                        if (dataRow[7] != null && !string.IsNullOrEmpty(dataRow[7].ToString()))
-                                            state = dataRow[7].ToString();
-                                        if (dataRow[8] != null && !string.IsNullOrEmpty(dataRow[8].ToString()))
-                                            zipcode = dataRow[8].ToString();
-                                        if (dataRow[9] != null && !string.IsNullOrEmpty(dataRow[9].ToString()))
-                                            email = dataRow[9].ToString();
-                                        if (dataRow[10] != null && !string.IsNullOrEmpty(dataRow[10].ToString()))
-                                            contact = dataRow[10].ToString();
-                                        if (dataRow[11] != null && !string.IsNullOrEmpty(dataRow[11].ToString()))
-                                            datereceived = dataRow[11].ToString();
-                                        if (dataRow[12] != null && !string.IsNullOrEmpty(dataRow[12].ToString()))
-                                            issueddate = dataRow[12].ToString();
-                                        if (dataRow[13] != null && !string.IsNullOrEmpty(dataRow[13].ToString()))
-                                            donationamount = dataRow[13].ToString();
-                                        if (dataRow[14] != null && !string.IsNullOrEmpty(dataRow[14].ToString()))
-                                            donationAmountinwords = dataRow[14].ToString();
-                                        if (dataRow[15] != null && !string.IsNullOrEmpty(dataRow[15].ToString()))
-                                            recurringDetails = dataRow[15].ToString();
-                                        if (dataRow[16] != null && !string.IsNullOrEmpty(dataRow[16].ToString()))
-                                            merchandiseItem = dataRow[16].ToString();
-                                        if (dataRow[17] != null && !string.IsNullOrEmpty(dataRow[17].ToString()))
-                                            quantity = dataRow[17].ToString();
-                                        if (dataRow[18] != null && !string.IsNullOrEmpty(dataRow[18].ToString()))
-                                            value = dataRow[18].ToString();
-                                        if (dataRow[19] != null && !string.IsNullOrEmpty(dataRow[19].ToString()))
-                                            servicetype = dataRow[19].ToString();
-                                        if (dataRow[20] != null && !string.IsNullOrEmpty(dataRow[20].ToString()))
-                                            hoursServed = dataRow[20].ToString();
-                                        if (dataRow[21] != null && !string.IsNullOrEmpty(dataRow[21].ToString()))
-                                            rateperhour = dataRow[21].ToString();
-                                        if (dataRow[22] != null && !string.IsNullOrEmpty(dataRow[22].ToString()))
-                                            fmvvalue = dataRow[22].ToString();
-                                        if (dataRow[23] != null && !string.IsNullOrEmpty(dataRow[23].ToString()))
-                                            modeOfPayment = dataRow[23].ToString();
-                                        if (dataRow[24] != null && !string.IsNullOrEmpty(dataRow[24].ToString()))
-                                            receivedBy = dataRow[24].ToString();
-                                        if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(firstname) && !string.IsNullOrEmpty(receivedBy))
+                                        string getExcelSheetName = dtExcelSheetName.Rows[0]["Table_Name"].ToString();
+                                        cmd.CommandText = "SELECT * FROM [" + getExcelSheetName + "]";
+                                        dAdapter.SelectCommand = cmd;
+                                        dAdapter.Fill(dtExcelRecords);
+
+                                        // Started to create recepts now)
+                                        foreach (DataRow dataRow in dtExcelRecords.Rows)
                                         {
-                                            List<User> receiver =
-                                                (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                                                 where c.Username.ToLower().Equals(receivedBy.ToLower().Trim())
-                                                 select c).ToList();
-                                            if (receiver.Count > 0)
+                                            string receiptType = string.Empty,
+                                                   firstname = string.Empty,
+                                                   mi = string.Empty,
+                                                   lastname = string.Empty,
+                                                   address = string.Empty,
+                                                   address2 = string.Empty,
+                                                   city = string.Empty,
+                                                   state = string.Empty,
+                                                   zipcode = string.Empty,
+                                                   email = string.Empty,
+                                                   contact = string.Empty,
+                                                   datereceived = string.Empty,
+                                                   issueddate = string.Empty,
+                                                   donationamount = string.Empty,
+                                                   donationAmountinwords = string.Empty,
+                                                   recurringDetails = string.Empty,
+                                                   merchandiseItem = string.Empty,
+                                                   quantity = string.Empty,
+                                                   value = string.Empty,
+                                                   servicetype = string.Empty,
+                                                   hoursServed = string.Empty,
+                                                   rateperhour = string.Empty,
+                                                   fmvvalue = string.Empty,
+                                                   modeOfPayment = string.Empty,
+                                                   receivedBy = string.Empty;
+                                            if (dataRow[0] != null && !string.IsNullOrEmpty(dataRow[0].ToString()))
+                                                receiptType = dataRow[0].ToString();
+                                            if (dataRow[1] != null && !string.IsNullOrEmpty(dataRow[1].ToString()))
+                                                firstname = dataRow[1].ToString();
+                                            if (dataRow[2] != null && !string.IsNullOrEmpty(dataRow[2].ToString()))
+                                                mi = dataRow[2].ToString();
+                                            if (dataRow[3] != null && !string.IsNullOrEmpty(dataRow[3].ToString()))
+                                                lastname = dataRow[3].ToString();
+                                            if (dataRow[4] != null && !string.IsNullOrEmpty(dataRow[4].ToString()))
+                                                address = dataRow[4].ToString();
+                                            if (dataRow[5] != null && !string.IsNullOrEmpty(dataRow[5].ToString()))
+                                                address2 = dataRow[5].ToString();
+                                            if (dataRow[6] != null && !string.IsNullOrEmpty(dataRow[6].ToString()))
+                                                city = dataRow[6].ToString();
+                                            if (dataRow[7] != null && !string.IsNullOrEmpty(dataRow[7].ToString()))
+                                                state = dataRow[7].ToString();
+                                            if (dataRow[8] != null && !string.IsNullOrEmpty(dataRow[8].ToString()))
+                                                zipcode = dataRow[8].ToString();
+                                            if (dataRow[9] != null && !string.IsNullOrEmpty(dataRow[9].ToString()))
+                                                email = dataRow[9].ToString();
+                                            if (dataRow[10] != null && !string.IsNullOrEmpty(dataRow[10].ToString()))
+                                                contact = dataRow[10].ToString();
+                                            if (dataRow[11] != null && !string.IsNullOrEmpty(dataRow[11].ToString()))
+                                                datereceived = dataRow[11].ToString();
+                                            if (dataRow[12] != null && !string.IsNullOrEmpty(dataRow[12].ToString()))
+                                                issueddate = dataRow[12].ToString();
+                                            if (dataRow[13] != null && !string.IsNullOrEmpty(dataRow[13].ToString()))
+                                                donationamount = dataRow[13].ToString();
+                                            if (dataRow[14] != null && !string.IsNullOrEmpty(dataRow[14].ToString()))
+                                                donationAmountinwords = dataRow[14].ToString();
+                                            if (dataRow[15] != null && !string.IsNullOrEmpty(dataRow[15].ToString()))
+                                                recurringDetails = dataRow[15].ToString();
+                                            if (dataRow[16] != null && !string.IsNullOrEmpty(dataRow[16].ToString()))
+                                                merchandiseItem = dataRow[16].ToString();
+                                            if (dataRow[17] != null && !string.IsNullOrEmpty(dataRow[17].ToString()))
+                                                quantity = dataRow[17].ToString();
+                                            if (dataRow[18] != null && !string.IsNullOrEmpty(dataRow[18].ToString()))
+                                                value = dataRow[18].ToString();
+                                            if (dataRow[19] != null && !string.IsNullOrEmpty(dataRow[19].ToString()))
+                                                servicetype = dataRow[19].ToString();
+                                            if (dataRow[20] != null && !string.IsNullOrEmpty(dataRow[20].ToString()))
+                                                hoursServed = dataRow[20].ToString();
+                                            if (dataRow[21] != null && !string.IsNullOrEmpty(dataRow[21].ToString()))
+                                                rateperhour = dataRow[21].ToString();
+                                            if (dataRow[22] != null && !string.IsNullOrEmpty(dataRow[22].ToString()))
+                                                fmvvalue = dataRow[22].ToString();
+                                            if (dataRow[23] != null && !string.IsNullOrEmpty(dataRow[23].ToString()))
+                                                modeOfPayment = dataRow[23].ToString();
+                                            if (dataRow[24] != null && !string.IsNullOrEmpty(dataRow[24].ToString()))
+                                                receivedBy = dataRow[24].ToString();
+                                            if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(firstname) &&
+                                                !string.IsNullOrEmpty(receivedBy))
                                             {
-                                                var receipt = new Receipt
-                                                                  {
-                                                                      ReceiptNumber = Utilities.GenerateReceiptId(),
-                                                                      FirstName = firstname,
-                                                                      Mi = mi,
-                                                                      LastName = lastname,
-                                                                      Address = address,
-                                                                      Address2 = address2,
-                                                                      City = city,
-                                                                      State = state,
-                                                                      ZipCode = zipcode,
-                                                                      Email = email,
-                                                                      Contact = contact,
-                                                                      DateReceived = Convert.ToDateTime(datereceived),
-                                                                      IssuedDate = Convert.ToDateTime(issueddate),
-                                                                      DonationReceiver = receiver[0],
-                                                                      GroupId = groupId
-                                                                  };
-                                                switch (receiptType.ToLower().Trim())
+                                                List<User> receiver =
+                                                    (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                                     where c.Username.ToLower().Equals(receivedBy.ToLower().Trim())
+                                                     select c).ToList();
+                                                if (receiver.Count > 0)
                                                 {
-                                                    case "regular receipt":
-                                                    case "recurring receipt":
-                                                        {
-                                                            if (string.IsNullOrEmpty(modeOfPayment) || string.IsNullOrEmpty(donationamount) || string.IsNullOrEmpty(donationAmountinwords))
-                                                                continue;
-                                                            receipt.DonationAmount = donationamount;
-                                                            receipt.DonationAmountinWords = donationAmountinwords;
-                                                            switch (modeOfPayment.ToLower().Trim())
+                                                    var receipt = new Receipt
+                                                                      {
+                                                                          ReceiptNumber = Utilities.GenerateReceiptId(),
+                                                                          FirstName = firstname,
+                                                                          Mi = mi,
+                                                                          LastName = lastname,
+                                                                          Address = address,
+                                                                          Address2 = address2,
+                                                                          City = city,
+                                                                          State = state,
+                                                                          ZipCode = zipcode,
+                                                                          Email = email,
+                                                                          Contact = contact,
+                                                                          IssuedDate = Convert.ToDateTime(issueddate),
+                                                                          DonationReceiver = receiver[0],
+                                                                          GroupId = groupId
+                                                                      };
+                                                    receipt.SignatureImage = signature;
+                                                    if (receiptType.ToLower().Trim() != "recurring receipt")
+                                                        receipt.DateReceived = Convert.ToDateTime(datereceived);
+                                                    switch (receiptType.ToLower().Trim())
+                                                    {
+                                                        case "regular receipt":
+                                                        case "recurring receipt":
                                                             {
-                                                                case "cash":
-                                                                    {
-                                                                        receipt.ModeOfPayment =
-                                                                            ModeOfPayment.Cash;
-                                                                        break;
-                                                                    }
-                                                                case "cheque":
-                                                                    {
-                                                                        receipt.ModeOfPayment =
-                                                                            ModeOfPayment.
-                                                                                Cheque;
-                                                                        break;
-                                                                    }
-                                                                case "goods":
-                                                                    {
-                                                                        receipt.ModeOfPayment =
-                                                                            ModeOfPayment.
-                                                                                Goods;
-                                                                        break;
-                                                                    }
-                                                                case "online":
-                                                                    {
-                                                                        receipt.ModeOfPayment =
-                                                                            ModeOfPayment.
-                                                                                Online;
-                                                                        break;
-                                                                    }
-                                                                case "mobile":
-                                                                    {
-                                                                        receipt.ModeOfPayment =
-                                                                            ModeOfPayment.
-                                                                                Mobile;
-                                                                        break;
-                                                                    }
+                                                                if (string.IsNullOrEmpty(modeOfPayment) ||
+                                                                    string.IsNullOrEmpty(donationamount) ||
+                                                                    string.IsNullOrEmpty(donationAmountinwords))
+                                                                    continue;
+                                                                receipt.DonationAmount = donationamount;
+                                                                receipt.DonationAmountinWords = donationAmountinwords;
+                                                                switch (modeOfPayment.ToLower().Trim())
+                                                                {
+                                                                    case "cash":
+                                                                        {
+                                                                            receipt.ModeOfPayment =
+                                                                                ModeOfPayment.Cash;
+                                                                            break;
+                                                                        }
+                                                                    case "cheque":
+                                                                        {
+                                                                            receipt.ModeOfPayment =
+                                                                                ModeOfPayment.
+                                                                                    Cheque;
+                                                                            break;
+                                                                        }
+                                                                    case "goods":
+                                                                        {
+                                                                            receipt.ModeOfPayment =
+                                                                                ModeOfPayment.
+                                                                                    Goods;
+                                                                            break;
+                                                                        }
+                                                                    case "online":
+                                                                        {
+                                                                            receipt.ModeOfPayment =
+                                                                                ModeOfPayment.
+                                                                                    Online;
+                                                                            break;
+                                                                        }
+                                                                    case "mobile":
+                                                                        {
+                                                                            receipt.ModeOfPayment =
+                                                                                ModeOfPayment.
+                                                                                    Mobile;
+                                                                            break;
+                                                                        }
+                                                                }
+                                                                break;
                                                             }
-                                                            break;
-                                                        }
-                                                }
-                                                switch (receiptType.ToLower().Trim())
-                                                {
-                                                    case "regular receipt":
-                                                        {
-                                                            receipt.ReceiptType = ReceiptType.GeneralReceipt;
-                                                            break;
-                                                        }
-                                                    case "recurring receipt":
-                                                        {
-                                                            receipt.ReceiptType = ReceiptType.RecurringReceipt;
-                                                            string[] recurrenceDetials = recurringDetails.Split(')');
-                                                            foreach (string recurrenceDetial in recurrenceDetials)
+                                                    }
+                                                    switch (receiptType.ToLower().Trim())
+                                                    {
+                                                        case "regular receipt":
                                                             {
+                                                                receipt.ReceiptType = ReceiptType.GeneralReceipt;
+                                                                break;
+                                                            }
+                                                        case "recurring receipt":
+                                                            {
+                                                                receipt.ReceiptType = ReceiptType.RecurringReceipt;
+                                                                string[] recurrenceDetials = recurringDetails.Split(')');
+                                                                foreach (string recurrenceDetial in recurrenceDetials)
+                                                                {
+                                                                    try
+                                                                    {
+                                                                        var values =
+                                                                            recurrenceDetial.Replace("(", "").Split('-');
+                                                                        if (values.Count() > 2)
+                                                                        {
+                                                                            var recurring = new RecurringDetails
+                                                                                                {
+                                                                                                    DueDate =
+                                                                                                        Convert.
+                                                                                                        ToDateTime(
+                                                                                                            values[0]),
+                                                                                                    Amount = values[2]
+                                                                                                };
+                                                                            switch (values[1].ToLower().Trim())
+                                                                            {
+                                                                                case "cash":
+                                                                                    {
+                                                                                        recurring.ModeOfPayment =
+                                                                                            ModeOfPayment.Cash;
+                                                                                        break;
+                                                                                    }
+                                                                                case "cheque":
+                                                                                    {
+                                                                                        recurring.ModeOfPayment =
+                                                                                            ModeOfPayment.Cheque;
+                                                                                        break;
+                                                                                    }
+                                                                                case "goods":
+                                                                                    {
+                                                                                        recurring.ModeOfPayment =
+                                                                                            ModeOfPayment.Goods;
+                                                                                        break;
+                                                                                    }
+                                                                                case "online":
+                                                                                    {
+                                                                                        recurring.ModeOfPayment =
+                                                                                            ModeOfPayment.Online;
+                                                                                        break;
+                                                                                    }
+                                                                                case "mobile":
+                                                                                    {
+                                                                                        recurring.ModeOfPayment =
+                                                                                            ModeOfPayment.Mobile;
+                                                                                        break;
+                                                                                    }
+                                                                            }
+                                                                            receipt.RecurringDetails.Add(recurring);
+                                                                        }
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        continue;
+                                                                    }
+                                                                }
+                                                                break;
+                                                            }
+                                                        case "merchandise receipt":
+                                                            {
+                                                                if (string.IsNullOrEmpty(merchandiseItem) ||
+                                                                    string.IsNullOrEmpty(value) ||
+                                                                    string.IsNullOrEmpty(quantity))
+                                                                    continue;
+                                                                receipt.ReceiptType = ReceiptType.MerchandiseReceipt;
+                                                                receipt.MerchandiseItem = merchandiseItem;
+                                                                receipt.Quantity = quantity;
+                                                                receipt.FmvValue = value;
+                                                                break;
+                                                            }
+                                                        case "services receipt":
+                                                            {
+                                                                if (string.IsNullOrEmpty(servicetype) ||
+                                                                    string.IsNullOrEmpty(hoursServed) ||
+                                                                    string.IsNullOrEmpty(rateperhour) ||
+                                                                    string.IsNullOrEmpty(fmvvalue))
+                                                                    continue;
+                                                                receipt.ReceiptType = ReceiptType.ServicesReceipt;
+                                                                receipt.ServiceType = servicetype;
                                                                 try
                                                                 {
-                                                                    var values = recurrenceDetial.Replace("(", "").Split('#');
-                                                                    if (values.Count() > 2)
-                                                                    {
-                                                                        var recurring = new RecurringDetails
-                                                                             {
-                                                                                 DueDate = Convert.ToDateTime(values[0]),
-                                                                                 Amount = values[2]
-                                                                             };
-                                                                        switch (values[1].ToLower().Trim())
-                                                                        {
-                                                                            case "cash":
-                                                                                {
-                                                                                    recurring.ModeOfPayment = ModeOfPayment.Cash;
-                                                                                    break;
-                                                                                }
-                                                                            case "cheque":
-                                                                                {
-                                                                                    recurring.ModeOfPayment = ModeOfPayment.Cheque;
-                                                                                    break;
-                                                                                }
-                                                                            case "goods":
-                                                                                {
-                                                                                    recurring.ModeOfPayment = ModeOfPayment.Goods;
-                                                                                    break;
-                                                                                }
-                                                                            case "online":
-                                                                                {
-                                                                                    recurring.ModeOfPayment = ModeOfPayment.Online;
-                                                                                    break;
-                                                                                }
-                                                                            case "mobile":
-                                                                                {
-                                                                                    recurring.ModeOfPayment = ModeOfPayment.Mobile;
-                                                                                    break;
-                                                                                }
-                                                                        }
-                                                                        receipt.RecurringDetails.Add(recurring);
-                                                                    }
+                                                                    receipt.HoursServed = Convert.ToInt32(hoursServed);
                                                                 }
                                                                 catch (Exception)
                                                                 {
                                                                     continue;
                                                                 }
+                                                                receipt.RatePerHrOrDay = rateperhour;
+                                                                receipt.FmvValue = fmvvalue;
+                                                                break;
                                                             }
-                                                            break;
-                                                        }
-                                                    case "merchandise receipt":
-                                                        {
-                                                            if (string.IsNullOrEmpty(merchandiseItem) || string.IsNullOrEmpty(value) || string.IsNullOrEmpty(quantity))
-                                                                continue;
-                                                            receipt.ReceiptType = ReceiptType.MerchandiseReceipt;
-                                                            receipt.MerchandiseItem = merchandiseItem;
-                                                            receipt.Quantity = quantity;
-                                                            receipt.FmvValue = value;
-                                                            break;
-                                                        }
-                                                    case "services receipt":
-                                                        {
-                                                            if (string.IsNullOrEmpty(servicetype) || string.IsNullOrEmpty(hoursServed) || string.IsNullOrEmpty(rateperhour) || string.IsNullOrEmpty(fmvvalue))
-                                                                continue;
-                                                            receipt.ReceiptType = ReceiptType.ServicesReceipt;
-                                                            receipt.ServiceType = servicetype;
-                                                            try
-                                                            {
-                                                                receipt.HoursServed = Convert.ToInt32(hoursServed);
-                                                            }
-                                                            catch (Exception)
+                                                        default:
                                                             {
                                                                 continue;
                                                             }
-                                                            receipt.RatePerHrOrDay = rateperhour;
-                                                            receipt.FmvValue = fmvvalue;
-                                                            break;
-                                                        }
-                                                    default:
-                                                        {
-                                                            continue;
-                                                        }
+                                                    }
+                                                    scope.Transaction.Begin();
+                                                    scope.Add(receipt);
+                                                    scope.Transaction.Commit();
+                                                    isReceptsGenerated = true;
+                                                    Thread.Sleep(100);
                                                 }
-                                                scope.Transaction.Begin();
-                                                scope.Add(receipt);
-                                                scope.Transaction.Commit();
-                                                isReceptsGenerated = true;
-                                                Thread.Sleep(500);
                                             }
                                         }
                                     }
+                                    connection.Close();
                                 }
-                                connection.Close();
-                            }
-                            if (isReceptsGenerated)
-                            {
-                                ViewData["ReceiptID"] = groupId;
-                                return View("Printoptions");
-                            }
-                            else
-                            {
-                                ViewData["Status"] = "Excel import process completed successfully. There is no valid entry found to create receipt.";
-                                return View();
+                                if (isReceptsGenerated)
+                                {
+                                    ViewData["ReceiptID"] = groupId;
+                                    return View("Printoptions");
+                                }
+                                else
+                                {
+                                    ViewData["Status"] =
+                                        "Excel import process completed successfully. There is some invalid entry found in your excel file.";
+                                    return View();
+                                }
                             }
                         }
                         catch (Exception ex)

@@ -420,12 +420,12 @@ namespace saibabacharityreceiptor.Controllers
                         if (exporttoExcelModel.TypeOfReceipt != "All")
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.ReceiptType.Equals(receiptType) && c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
-                                        orderby c.DateReceived
+                                        orderby c.DateReceived descending
                                         select c).ToList();
                         else
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
-                                        orderby c.DateReceived
+                                        orderby c.DateReceived descending
                                         select c).ToList();
 
                         Response.AppendHeader("Content-Disposition", "attachment;filename=ExporttoExcel.csv");
@@ -473,7 +473,10 @@ namespace saibabacharityreceiptor.Controllers
                             csvOutput += "," + receipt.HoursServed;
                             csvOutput += "," + receipt.RatePerHrOrDay;
                             csvOutput += "," + receipt.FmvValue;
-                            csvOutput += "," + receipt.ModeOfPayment;
+                            if (receipt.ReceiptType == ReceiptType.RecurringReceipt || receipt.ReceiptType == ReceiptType.MerchandiseReceipt || receipt.ReceiptType == ReceiptType.ServicesReceipt)
+                                csvOutput += ",";
+                            else
+                                csvOutput += "," + receipt.ModeOfPayment;
                             csvOutput += "," + receipt.DonationReceiver.Username;
                         }
 

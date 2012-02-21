@@ -557,9 +557,8 @@ break;
             </div>
             <div class="data">
                 <ul>
-                    <li class="two"><span class="field">Service Duration (No.of hrs/ day):</span><span
-                        class="value"><%= receiptData.HoursServed%></span></li>
-                    <li class="two"><span class="field">Rate per hr/day in $:</span><span class="value"><%= receiptData.RatePerHrOrDay%></span></li>
+                    <li class="two"><span class="field">Service Duration (No.of hrs):</span><span class="value"><%= receiptData.HoursServed%></span></li>
+                    <li class="two"><span class="field">Rate per hr in $:</span><span class="value"><%= receiptData.RatePerHrOrDay%></span></li>
                 </ul>
             </div>
             <div class="clear">
