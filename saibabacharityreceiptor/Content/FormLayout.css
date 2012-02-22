@@ -64,6 +64,7 @@ UL LI
 	color: #623D45;
 	font-family: Arial, "ms Sans serif";
 	text-align: justify;
+	overflow: visible;
 }
 .areacode, .telno
 {

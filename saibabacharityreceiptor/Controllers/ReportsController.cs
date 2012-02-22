@@ -24,7 +24,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.GeneralReceipt)
-                                    orderby c.DateReceived
+                                    orderby c.ReceiptNumber
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalRegularReceipt
                                                                               {
@@ -76,7 +76,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.RecurringReceipt)
-                                    orderby c.DateReceived
+                                    orderby c.ReceiptNumber
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalRecurrenceReceipt
                                                                               {
@@ -127,7 +127,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.MerchandiseReceipt)
-                                    orderby c.DateReceived
+                                    orderby c.ReceiptNumber
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localRegularReceipts = receipts.Select(receipt => new LocalMerchandiseReceipt
                                                                               {
@@ -178,7 +178,7 @@ namespace saibabacharityreceiptor.Controllers
                     ViewData["RecordIndex"] = (pageIndex * NoOfRecordsPerPage) + 1;
                     var receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                     where c.ReceiptType.Equals(ReceiptType.ServicesReceipt)
-                                    orderby c.DateReceived
+                                    orderby c.ReceiptNumber
                                     select c).Skip(pageIndex * NoOfRecordsPerPage).Take(NoOfRecordsPerPage).ToList();
                     var localServicesReceipts = receipts.Select(receipt => new LocalServicesReceipt
                     {
@@ -301,13 +301,13 @@ namespace saibabacharityreceiptor.Controllers
                         if (searchModel.TypeOfReceipt != "All")
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.ReceiptType.Equals(receiptType) && c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
-                                        orderby c.DateReceived
+                                        orderby c.ReceiptNumber
                                         select c).Skip(searchModel.PageIndex * maxrecordsperpage).Take(
                                             maxrecordsperpage).ToList();
                         else
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.DateReceived >= searchModel.StartDate && c.DateReceived <= searchModel.EndDate
-                                        orderby c.DateReceived
+                                        orderby c.ReceiptNumber
                                         select c).Skip(searchModel.PageIndex * maxrecordsperpage).Take(
                                             maxrecordsperpage).ToList();
                         var localRegularReceipts = receipts.Select(receipt => new ReceiptData
@@ -420,12 +420,12 @@ namespace saibabacharityreceiptor.Controllers
                         if (exporttoExcelModel.TypeOfReceipt != "All")
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.ReceiptType.Equals(receiptType) && c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
-                                        orderby c.DateReceived descending
+                                        orderby c.ReceiptNumber
                                         select c).ToList();
                         else
                             receipts = (from c in scope.GetOqlQuery<Receipt>().ExecuteEnumerable()
                                         where c.DateReceived >= exporttoExcelModel.StartDate && c.DateReceived <= exporttoExcelModel.EndDate
-                                        orderby c.DateReceived descending
+                                        orderby c.ReceiptNumber
                                         select c).ToList();
 
                         Response.AppendHeader("Content-Disposition", "attachment;filename=ExporttoExcel.csv");

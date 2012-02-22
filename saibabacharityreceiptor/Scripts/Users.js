@@ -18,7 +18,7 @@
             'transitionOut': 'elastic',
             'type': 'iframe',
             'autoScale': 'true',
-            'height': 450,
+            'height': 460,
             'width': 500,
             'autoDimensions': 'false',
             'onClosed': function () {

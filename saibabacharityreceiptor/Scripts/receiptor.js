@@ -116,21 +116,23 @@
     }
     var Index = 1;
     $('.btnaction').live('click', function () {
-        var reccurence = $(this).parents('tr').eq(0);
+        var reccurence = $('.txtrecurrenceamount:first').parents('tr').eq(0);
         var clone = reccurence.clone();
-        reccurence.after(clone);
+        $(this).parents('tr').eq(0).after(clone);
         clone.find('.txtrecurrenceamount').val('');
         clone.find('.btnactionremove').remove();
         clone.find('td:last').append("<span class='btnactionremove'>-</span>");
         Index++;
         var recclass = "reccurenceDates" + Index.toString();
         clone.find('.txtrecurrencedates').attr('class', recclass + " " + "text" + " " + "smallbox").attr('id', '');
+        clone.find('.txtrecurrencedates').addClass(recclass);
         $('.' + recclass).datepicker({
             onSelect: function (input, inst) {
                 $('.' + recclass).datepicker("option", "dateFormat", "mm/dd/yy");
             }
         });
         CalculateRecurrenceTotal();
+        clone.find('.txtrecurrenceamount').focus();
     });
     $('.btnactionremove').live('click', function () {
         $(this).parents('tr').eq(0).remove();
@@ -139,6 +141,7 @@
     $('.txtrecurrenceamount').live('keyup', function () {
         CalculateRecurrenceTotal();
     });
+    CalculateRecurrenceTotal();
     function CalculateRecurrenceTotal() {
         var total = 0.0;
         $('.txtrecurrenceamount').each(function () {
@@ -147,6 +150,6 @@
                     total += parseFloat($(this).val());
             } catch (e) { }
         });
-        $('.Lbltotalamount').html(total.toString());
+        $('.Lbltotalamount').html(total.toFixed(2).toString());
     }
 });

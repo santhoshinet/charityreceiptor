@@ -425,9 +425,9 @@ namespace saibabacharityreceiptor.Controllers
                                                                           Contact = contact,
                                                                           IssuedDate = Convert.ToDateTime(issueddate),
                                                                           DonationReceiver = receiver[0],
-                                                                          GroupId = groupId
+                                                                          GroupId = groupId,
+                                                                          SignatureImage = signature
                                                                       };
-                                                    receipt.SignatureImage = signature;
                                                     if (receiptType.ToLower().Trim() != "recurring receipt")
                                                         receipt.DateReceived = Convert.ToDateTime(datereceived);
                                                     switch (receiptType.ToLower().Trim())
@@ -580,8 +580,19 @@ namespace saibabacharityreceiptor.Controllers
                                                                 {
                                                                     continue;
                                                                 }
-                                                                receipt.RatePerHrOrDay = rateperhour;
-                                                                receipt.FmvValue = fmvvalue;
+                                                                double rateperHour;
+                                                                double fmvValue;
+                                                                try
+                                                                {
+                                                                    rateperHour = Convert.ToDouble(rateperhour);
+                                                                    fmvValue = Convert.ToDouble(fmvvalue);
+                                                                }
+                                                                catch (Exception)
+                                                                {
+                                                                    continue;
+                                                                }
+                                                                receipt.RatePerHrOrDay = rateperHour.ToString();
+                                                                receipt.FmvValue = fmvValue.ToString();
                                                                 break;
                                                             }
                                                         default:
