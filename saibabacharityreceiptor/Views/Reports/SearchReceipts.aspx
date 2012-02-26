@@ -101,7 +101,7 @@ foreach (var payment in modeOfPayment)
                     <td style="width: 11%">
                         Receipt type
                     </td>
-                    <td colspan="4" class="lastcol">
+                    <td colspan="3" class="lastcol">
                         Actions
                     </td>
                 </tr>
@@ -142,9 +142,6 @@ foreach (var payment in modeOfPayment)
                     </td>
                     <td style="width: 30px">
                         <a href="<%="/PrintReceipt/" + receiptData.ReceiptNumber%>" target="_blank">Print</a>
-                    </td>
-                    <td style="width: 20px">
-                        <a href="<%="/DownloadReceipt/" + receiptData.ReceiptNumber%>" target="_blank">Pdf</a>
                     </td>
                 </tr>
                 <%

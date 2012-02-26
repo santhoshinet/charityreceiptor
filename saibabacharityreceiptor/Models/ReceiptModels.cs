@@ -79,7 +79,7 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Donation_Amount")]
-        public string DonationAmount { get; set; }
+        public Double DonationAmount { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
@@ -129,7 +129,7 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Value")]
-        public string Value { get; set; }
+        public Double Value { get; set; }
     }
 
     public class ServicesReceipt : BasicInfo
@@ -147,7 +147,7 @@ namespace saibabacharityreceiptor.Models
         [Required]
         [DataType(DataType.Duration)]
         [Display(Name = "Hours Served")]
-        public int HoursServed { get; set; }
+        public Double HoursServed { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]

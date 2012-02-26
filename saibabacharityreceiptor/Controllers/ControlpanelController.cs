@@ -167,13 +167,33 @@ namespace saibabacharityreceiptor.Controllers
                 {
                     if (model.Password == model.ConfirmPassword)
                     {
-                        if (!string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.UserName) &&
-                            !string.IsNullOrEmpty(model.UserId))
+                        if (!string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.UserId))
                         {
-                            List<User> users =
-                                (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
-                                 where c.Id.Equals(model.UserId)
-                                 select c).ToList();
+                            if (!string.IsNullOrEmpty(model.Password))
+                            {
+                                //bool changePasswordSucceeded = false;
+                                try
+                                {
+                                    MembershipUser currentUser = Membership.GetUser(model.UserName, false/* userIsOnline */);
+                                    if (currentUser != null)
+                                    {
+                                        bool changePasswordSucceeded = currentUser.ChangePassword(currentUser.GetPassword(), model.Password);
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    //changePasswordSucceeded = false;
+                                }
+
+                                //if (!changePasswordSucceeded)
+                                //{
+                                //    ModelState.AddModelError("", "Please try again with new password.");
+                                //    return View();
+                                //}
+                            }
+                            List<User> users = (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                                where c.Id.Equals(model.UserId)
+                                                select c).ToList();
                             foreach (User user in users)
                             {
                                 scope.Transaction.Begin();
@@ -404,8 +424,8 @@ namespace saibabacharityreceiptor.Controllers
                                             if (!string.IsNullOrEmpty(receiptType) && !string.IsNullOrEmpty(firstname) &&
                                                 !string.IsNullOrEmpty(receivedBy))
                                             {
-                                                List<User> receiver =
-                                                    (from c in scope.GetOqlQuery<User>().ExecuteEnumerable()
+                                                List<saibabacharityreceiptorDL.User> receiver =
+                                                    (from c in scope.GetOqlQuery<saibabacharityreceiptorDL.User>().ExecuteEnumerable()
                                                      where c.Username.ToLower().Equals(receivedBy.ToLower().Trim())
                                                      select c).ToList();
                                                 if (receiver.Count > 0)
@@ -433,7 +453,6 @@ namespace saibabacharityreceiptor.Controllers
                                                     switch (receiptType.ToLower().Trim())
                                                     {
                                                         case "regular receipt":
-                                                        case "recurring receipt":
                                                             {
                                                                 if (string.IsNullOrEmpty(modeOfPayment) ||
                                                                     string.IsNullOrEmpty(donationamount) ||
@@ -478,6 +497,13 @@ namespace saibabacharityreceiptor.Controllers
                                                                             break;
                                                                         }
                                                                 }
+                                                                break;
+                                                            }
+                                                        case "recurring receipt":
+                                                            {
+                                                                if (string.IsNullOrEmpty(donationAmountinwords))
+                                                                    continue;
+                                                                receipt.DonationAmountinWords = donationAmountinwords;
                                                                 break;
                                                             }
                                                     }
@@ -574,7 +600,7 @@ namespace saibabacharityreceiptor.Controllers
                                                                 receipt.ServiceType = servicetype;
                                                                 try
                                                                 {
-                                                                    receipt.HoursServed = Convert.ToInt32(hoursServed);
+                                                                    receipt.HoursServed = Convert.ToDouble(hoursServed);
                                                                 }
                                                                 catch (Exception)
                                                                 {

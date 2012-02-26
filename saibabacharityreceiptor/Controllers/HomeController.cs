@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Web.Mvc;
-using System.Windows.Forms;
 using iTextSharp.text;
-using iTextSharp.text.pdf;
 using saibabacharityreceiptor.Models;
 using saibabacharityreceiptorDL;
 using Telerik.OpenAccess;
-using Font = iTextSharp.text.Font;
-using Image = iTextSharp.text.Image;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace saibabacharityreceiptor.Controllers
 {
@@ -71,7 +64,7 @@ namespace saibabacharityreceiptor.Controllers
                                               Address2 = model.Address2,
                                               Contact = model.Contact,
                                               ReceiptNumber = model.ReceiptNumber,
-                                              DonationAmount = model.DonationAmount,
+                                              DonationAmount = model.DonationAmount.ToString(),
                                               DonationAmountinWords = model.DonationAmountinWords,
                                               DonationReceiver = donationReceiver[0],
                                               Email = model.Email,
@@ -176,7 +169,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
-                        receipt.DonationAmount = model.DonationAmount;
+                        receipt.DonationAmount = model.DonationAmount.ToString();
                         receipt.DonationAmountinWords = model.DonationAmountinWords;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
@@ -549,7 +542,7 @@ namespace saibabacharityreceiptor.Controllers
                                               Contact = model.Contact,
                                               ReceiptNumber = model.ReceiptNumber,
                                               MerchandiseItem = model.MerchandiseItem,
-                                              FmvValue = model.Value,
+                                              FmvValue = model.Value.ToString(),
                                               DonationReceiver = donationReceiver[0],
                                               Email = model.Email,
                                               DateReceived = receivedTime,
@@ -623,7 +616,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
                         receipt.MerchandiseItem = model.MerchandiseItem;
-                        receipt.FmvValue = model.Value;
+                        receipt.FmvValue = model.Value.ToString();
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.DateReceived = receivedTime;
@@ -719,7 +712,7 @@ namespace saibabacharityreceiptor.Controllers
                                               Contact = model.Contact,
                                               ReceiptNumber = model.ReceiptNumber,
                                               ServiceType = model.ServiceType,
-                                              HoursServed = Convert.ToInt32(model.HoursServed),
+                                              HoursServed = model.HoursServed,
                                               DonationReceiver = donationReceiver[0],
                                               Email = model.Email,
                                               DateReceived = receivedTime,
@@ -793,7 +786,7 @@ namespace saibabacharityreceiptor.Controllers
                         receipt.Address2 = model.Address2;
                         receipt.Contact = model.Contact;
                         receipt.ReceiptNumber = model.ReceiptNumber;
-                        receipt.HoursServed = Convert.ToInt32(model.HoursServed);
+                        receipt.HoursServed = model.HoursServed;
                         receipt.DonationReceiver = donationReceiver[0];
                         receipt.Email = model.Email;
                         receipt.DateReceived = receivedTime;
@@ -867,7 +860,7 @@ namespace saibabacharityreceiptor.Controllers
                                                     Address2 = receipt.Address2,
                                                     Contact = receipt.Contact,
                                                     DateReceived = receipt.DateReceived,
-                                                    DonationAmount = receipt.DonationAmount,
+                                                    DonationAmount = Convert.ToDouble(receipt.DonationAmount),
                                                     DonationAmountinWords = receipt.DonationAmountinWords,
                                                     Email = receipt.Email,
                                                     City = receipt.City,
@@ -923,7 +916,7 @@ namespace saibabacharityreceiptor.Controllers
                                     Email = receipt.Email,
                                     ReceiptNumber = receipt.ReceiptNumber,
                                     MerchandiseItem = receipt.MerchandiseItem,
-                                    Value = receipt.FmvValue,
+                                    Value = Convert.ToDouble(receipt.FmvValue),
                                     City = receipt.City,
                                     FirstName = receipt.FirstName,
                                     LastName = receipt.LastName,
@@ -1187,6 +1180,7 @@ namespace saibabacharityreceiptor.Controllers
             return View("PartialViewStatus");
         }
 
+        /*
         [Authorize]
         [HttpGet]
         public FileStreamResult DownloadReceipt(string recpId)
@@ -1218,7 +1212,7 @@ namespace saibabacharityreceiptor.Controllers
             return (FileStreamResult)ViewData["content"];
         }
 
-        private void GeneratePdf()
+         private void GeneratePdf()
         {
             var wb = new WebBrowser { ScrollBarsEnabled = false, ScriptErrorsSuppressed = true };
             wb.Navigate("http://www.shirdisaibabaaz.org/PrintReceipt/" + ViewData["RecID"]);
@@ -1259,7 +1253,6 @@ namespace saibabacharityreceiptor.Controllers
             ViewData["status"] = "done";
         }
 
-        /*
         [Authorize]
         [HttpGet]
         public FileStreamResult DownloadReceipt(string recpId)
@@ -1369,28 +1362,17 @@ namespace saibabacharityreceiptor.Controllers
                     ReceiptId(document, receiptData.ReceiptNumber);
                     NewLine(document);
                     ThreeField(document, "First name:", receiptData.FirstName, "MI:", receiptData.Mi, "Last Name:", receiptData.LastName);
-                    NewLine(document);
-                    TwoField(document, "Address1:", "", "Address2:", "");
-                    NewLine(document);
-                    TwoField(document, "", receiptData.Address, "", receiptData.Address2);
-                    NewLine(document);
+                    TwoField(document, "Address1:", receiptData.Address, "Address2:", receiptData.Address2, new float[] { 5, 10, 4, 10 });
                     ThreeField(document, "City:", receiptData.City, "State:", receiptData.State, "Zip:", receiptData.ZipCode);
-                    NewLine(document);
-                    TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Contact);
-                    NewLine(document);
+                    TwoField(document, "Email", receiptData.Email, "Phone:", receiptData.Contact, new float[] { 5, 10, 4, 10 });
                     switch (receiptData.ReceiptType)
                     {
                         case "GeneralReceipt":
                             {
-                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
-                                NewLine(document);
-                                SingleField(document, "Donation amount received in $:", receiptData.DonationAmount);
-                                NewLine(document);
-                                SingleField(document, "Donation received in words:", receiptData.DonationAmountinWords);
-                                NewLine(document);
-                                SingleField(document, "Mode of donation:", receiptData.ModeOfPayment);
-                                NewLine(document);
-
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"), new float[] { 7, 3 });
+                                SingleField(document, "Donation amount received in $:", receiptData.DonationAmount, new float[] { 7, 3 });
+                                SingleField(document, "Donation received in words:", receiptData.DonationAmountinWords, new float[] { 7, 3 });
+                                SingleField(document, "Mode of donation:", receiptData.ModeOfPayment, new float[] { 7, 3 });
                                 try
                                 {
                                     var logo = iTextSharp.text.Image.GetInstance(SignatureController.SignatureImage(receiptData.SignatureId));
@@ -1402,20 +1384,20 @@ namespace saibabacharityreceiptor.Controllers
                                 catch (Exception)
                                 {
                                 }
-
                                 cb.SetLineWidth(0.1f);
                                 cb.Rectangle(40f, 370f, 500f, 90f);
                                 cb.Stroke();
-
+                                NewLine(document);
                                 break;
                             }
                         case "RecurringReceipt":
                             {
-                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"), new float[] { 7, 3 });
+                                double amount = receiptData.RecurringDetails.Sum(recurringDetail => Convert.ToDouble(recurringDetail.Amount));
+                                SingleField(document, "Donation amount received in $:", amount.ToString("0.00"), new float[] { 7, 3 });
+                                SingleField(document, "Donation received in words:", receiptData.DonationAmountinWords, new float[] { 7, 3 });
                                 NewLine(document);
-                                NewLine(document);
-                                TableHeaders(document, "Recurring ID", "Date received", "Mode of donation",
-                                             "Amount in $");
+                                TableHeaders(document, "Recurring ID", "Date received", "Mode of donation", "Amount in $");
                                 NewLine(document);
                                 int recurringId = 1;
                                 foreach (var recurringDetail in receiptData.RecurringDetails)
@@ -1423,17 +1405,14 @@ namespace saibabacharityreceiptor.Controllers
                                     TableValues(document, recurringId++.ToString(), recurringDetail.Date, recurringDetail.ModeOfPayment, recurringDetail.Amount);
                                     NewLine(document);
                                 }
+                                NewLine(document);
                                 break;
                             }
                         case "MerchandiseReceipt":
                             {
-                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
-                                NewLine(document);
-                                SingleField(document, "Goods received:", receiptData.MerchandiseItem);
-                                NewLine(document);
-                                SingleField(document, "Goods FMV in $:", receiptData.FmvValue);
-                                NewLine(document);
-
+                                SingleField(document, "Donation received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"), new float[] { 7, 3 });
+                                SingleField(document, "Goods received:", receiptData.MerchandiseItem, new float[] { 7, 3 });
+                                SingleField(document, "Goods FMV in $:", receiptData.FmvValue, new float[] { 7, 3 });
                                 try
                                 {
                                     var logo = iTextSharp.text.Image.GetInstance(SignatureController.SignatureImage(receiptData.SignatureId));
@@ -1445,23 +1424,18 @@ namespace saibabacharityreceiptor.Controllers
                                 catch (Exception)
                                 {
                                 }
-
                                 cb.SetLineWidth(0.1f);
                                 cb.Rectangle(40f, 380f, 500f, 90f);
                                 cb.Stroke();
-
+                                NewLine(document);
                                 break;
                             }
                         case "ServicesReceipt":
                             {
-                                SingleField(document, "Service received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"));
-                                NewLine(document);
-                                SingleField(document, "Service type:", receiptData.ServiceType);
-                                NewLine(document);
-                                TwoField(document, "Service Duration (No.of hrs/ day):", receiptData.HoursServed.ToString(), "Rate per hr/day", receiptData.RatePerHrOrDay);
-                                NewLine(document);
-                                SingleField(document, "FMV in $:", receiptData.FmvValue);
-
+                                SingleField(document, "Service received date:", receiptData.DateReceived.ToString("dd  MMM  yyyy"), new float[] { 5, 10 });
+                                SingleField(document, "Service type:", receiptData.ServiceType, new float[] { 5, 10 });
+                                TwoField(document, "Service Duration (No.of hrs/day):", receiptData.HoursServed.ToString(), "Rate per hr/day", receiptData.RatePerHrOrDay, new float[] { 7, 10, 5, 10 });
+                                SingleField(document, "FMV in $:", receiptData.FmvValue, new float[] { 5, 10 });
                                 try
                                 {
                                     var logo = iTextSharp.text.Image.GetInstance(SignatureController.SignatureImage(receiptData.SignatureId));
@@ -1473,21 +1447,16 @@ namespace saibabacharityreceiptor.Controllers
                                 catch (Exception)
                                 {
                                 }
-
                                 cb.SetLineWidth(0.1f);
                                 cb.Rectangle(40f, 375f, 500f, 90f);
                                 cb.Stroke();
-
+                                NewLine(document);
                                 break;
                             }
                     }
-                    for (int i = 0; i < 3; i++)
-                        NewLine(document);
-                    TwoField(document, "Donation received by:", receiptData.DonationReceiverName, "Signature:", "");
-
-                    NewLine(document);
-                    TwoField(document, "Shridi Saibaba Temple Arizona", "", "Issued Date:", receiptData.IssuedDate.ToString("dd MMM yyyy"));
-                    for (int i = 0; i < 3; i++)
+                    TwoField(document, "Donation received by:", receiptData.DonationReceiverName, "Signature:", "", new float[] { 8, 6, 5, 10 });
+                    TwoField(document, "Shridi Saibaba Temple Arizona", "", "Issued Date:", receiptData.IssuedDate.ToString("dd MMM yyyy"), new float[] { 10, 0, 6, 10 });
+                    for (int i = 0; i < 2; i++)
                         NewLine(document);
                     Notes(document, "* No goods or services were provided in exchange for these contributions.", "");
                     NewLine(document);
@@ -1505,15 +1474,15 @@ namespace saibabacharityreceiptor.Controllers
                         ChecksumText = true,
                         GenerateChecksum = true,
                         StartStopText = true,
-                        Code = receiptData.ReceiptNumber
+                        Code = Utilities.Encrypt(receiptData.ReceiptNumber)
                     };
                     iTextSharp.text.Image image = code128.CreateImageWithBarcode(cb,
                                                                                  new BaseColor(Color.Black),
                                                                                  new BaseColor(Color.White));
-                    image.IndentationLeft = 150f;
-                    image.SpacingBefore = 150f;
-                    image.Left = 150f;
-                    image.GetLeft(150f);
+                    image.IndentationLeft = 130f;
+                    image.SpacingBefore = 130f;
+                    image.Left = 130f;
+                    image.GetLeft(130f);
                     image.Alignment = 1;
 
                     document.Add(image);
@@ -1531,87 +1500,167 @@ namespace saibabacharityreceiptor.Controllers
             return null;
         }
 
-         */
+        private const string FontName = "COURIER";
 
-        private const string FontName = "Sanserif";
+        private const float FontSize = 8f;
 
-        private static void TwoField(Document document, string field1, string value1, string field2, string value2)
+        private static void TwoField(Document document, string field1, string value1, string field2, string value2, float[] widths)
         {
-            SingleField(document, field1, value1);
-            if (string.IsNullOrEmpty(value1))
-                value1 = string.Empty;
-            if (string.IsNullOrEmpty(field1))
-                field1 = string.Empty;
-            int count = value1.Length + field1.Length - 80;
-            if (count < 0)
-                count = count * -1;
-            for (int i = 0; i < count; i++)
-                document.Add(new Anchor(" ", new Font()));
-            SingleField(document, field2, value2);
-        }
-
-        private static void SingleField(Document document, string field1, string value1)
-        {
-            var baseColor = new BaseColor(Color.Gray);
-            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
-            document.Add(new Anchor(field1 + " ", arial));
-            baseColor = new BaseColor(Color.Black);
-            arial = FontFactory.GetFont(FontName, 9f, baseColor);
-            document.Add(new Anchor(value1, arial));
-        }
-
-        private static void Notes(Document document, string field1, string value1)
-        {
-            var baseColor = new BaseColor(Color.Gray);
-            Font arial = FontFactory.GetFont(FontName, 8f, baseColor);
-            document.Add(new Anchor(field1 + " ", arial));
-            baseColor = new BaseColor(Color.Black);
-            arial = FontFactory.GetFont(FontName, 8f, baseColor);
-            document.Add(new Anchor(value1, arial));
-        }
-
-        private static void ThreeField(Document document, string field1, string value1, string field2, string value2, string field3, string value3)
-        {
-            SingleField(document, field1, value1);
+            var pdfPTable = new PdfPTable(4) { HorizontalAlignment = 0, SpacingAfter = 0, SpacingBefore = 0 };
+            pdfPTable.DefaultCell.Border = 0;
+            pdfPTable.FooterRows = 0;
+            pdfPTable.HeaderRows = 0;
+            pdfPTable.WidthPercentage = 100;
+            pdfPTable.TotalWidth = 800;
+            pdfPTable.SkipFirstHeader = true;
+            pdfPTable.SkipLastFooter = true;
+            pdfPTable.KeepTogether = true;
+            pdfPTable.SetWidths(widths);
 
             if (string.IsNullOrEmpty(value1))
                 value1 = string.Empty;
             if (string.IsNullOrEmpty(field1))
                 field1 = string.Empty;
-            int count = value1.Length + field1.Length - 50;
-            if (count < 0)
-                count = count * -1;
-            for (int i = 0; i < count; i++)
-                document.Add(new Anchor(" ", new Font()));
 
-            SingleField(document, field2, value2);
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            var cell = new PdfPCell(new Anchor(field1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
 
             if (string.IsNullOrEmpty(value2))
                 value2 = string.Empty;
             if (string.IsNullOrEmpty(field2))
                 field2 = string.Empty;
-            count = value2.Length + field2.Length - 50;
-            if (count < 0)
-                count = count * -1;
-            for (int i = 0; i < count; i++)
-                document.Add(new Anchor(" ", new Font()));
 
-            SingleField(document, field3, value3);
+            baseColor = new BaseColor(Color.Gray);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(field2 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value2 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+
+            document.Add(pdfPTable);
+        }
+
+        private static void SingleField(Document document, string field1, string value1, float[] widths)
+        {
+            var pdfPTable = new PdfPTable(2) { HorizontalAlignment = 0, SpacingAfter = 0, SpacingBefore = 0 };
+            pdfPTable.DefaultCell.Border = 0;
+            pdfPTable.FooterRows = 0;
+            pdfPTable.HeaderRows = 0;
+            pdfPTable.WidthPercentage = 100;
+            pdfPTable.TotalWidth = 800;
+            pdfPTable.SkipFirstHeader = true;
+            pdfPTable.SkipLastFooter = true;
+            pdfPTable.KeepTogether = true;
+
+            pdfPTable.SetWidths(widths);
+
+            if (string.IsNullOrEmpty(value1))
+                value1 = string.Empty;
+            if (string.IsNullOrEmpty(field1))
+                field1 = string.Empty;
+
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            var cell = new PdfPCell(new Anchor(field1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+
+            document.Add(pdfPTable);
+        }
+
+        private static void Notes(Document document, string field1, string value1)
+        {
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont(FontName, 6f, baseColor);
+            document.Add(new Anchor(field1 + " ", arial));
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, 6f, baseColor);
+            document.Add(new Anchor(value1, arial));
+        }
+
+        private static void ThreeField(Document document, string field1, string value1, string field2, string value2, string field3, string value3)
+        {
+            var pdfPTable = new PdfPTable(6) { HorizontalAlignment = 0, SpacingAfter = 0, SpacingBefore = 0 };
+            pdfPTable.DefaultCell.Border = 0;
+            pdfPTable.FooterRows = 0;
+            pdfPTable.HeaderRows = 0;
+            pdfPTable.WidthPercentage = 100;
+            pdfPTable.TotalWidth = 800;
+            pdfPTable.SkipFirstHeader = true;
+            pdfPTable.SkipLastFooter = true;
+            pdfPTable.KeepTogether = true;
+
+            pdfPTable.SetWidths(new float[] { 8.75f, 10, 5, 10, 7, 10 });
+
+            if (string.IsNullOrEmpty(value1))
+                value1 = string.Empty;
+            if (string.IsNullOrEmpty(field1))
+                field1 = string.Empty;
+
+            var baseColor = new BaseColor(Color.Gray);
+            Font arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            var cell = new PdfPCell(new Anchor(field1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value1 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+
+            if (string.IsNullOrEmpty(value2))
+                value2 = string.Empty;
+            if (string.IsNullOrEmpty(field2))
+                field2 = string.Empty;
+
+            baseColor = new BaseColor(Color.Gray);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(field2 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value2 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+
+            if (string.IsNullOrEmpty(value3))
+                value3 = string.Empty;
+            if (string.IsNullOrEmpty(field3))
+                field3 = string.Empty;
+
+            baseColor = new BaseColor(Color.Gray);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(field3 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+            baseColor = new BaseColor(Color.Black);
+            arial = FontFactory.GetFont(FontName, FontSize, baseColor);
+            cell = new PdfPCell(new Anchor(value3 + " ", arial)) { PaddingLeft = 0, Left = 0, Border = 0 };
+            pdfPTable.AddCell(cell);
+
+            document.Add(pdfPTable);
         }
 
         private static void TableHeaders(Document document, string field1, string field2, string field3, string field4)
         {
             var baseColor = new BaseColor(Color.Black);
-            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, FontSize, baseColor);
 
             document.Add(new Anchor(field1, arial));
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 20; i++)
                 document.Add(new Anchor(" ", new Font()));
             document.Add(new Anchor(field2, arial));
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 20; i++)
                 document.Add(new Anchor(" ", new Font()));
             document.Add(new Anchor(field3, arial));
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 20; i++)
                 document.Add(new Anchor(" ", new Font()));
             document.Add(new Anchor(field4, arial));
         }
@@ -1619,7 +1668,7 @@ namespace saibabacharityreceiptor.Controllers
         private static void TableValues(Document document, string value1, string value2, string value3, string value4)
         {
             var baseColor = new BaseColor(Color.Gray);
-            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, FontSize, baseColor);
 
             document.Add(new Anchor(value1, arial));
 
@@ -1665,7 +1714,7 @@ namespace saibabacharityreceiptor.Controllers
 
         private static void ReceiptId(Document document, string receiptId)
         {
-            var arial = new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.BOLD, new BaseColor(163, 21, 21)); //FontFactory.GetFont("Arial", 10f, baseColor);
+            var arial = new Font(Font.FontFamily.COURIER, 9f, Font.BOLD, new BaseColor(163, 21, 21)); //FontFactory.GetFont("Arial", 10f, baseColor);
             document.Add(new Anchor("Receipt #:", arial));
             document.Add(new Anchor("  " + receiptId, arial));
         }
@@ -1673,14 +1722,14 @@ namespace saibabacharityreceiptor.Controllers
         private static void Thanks(Document document, string theme)
         {
             var baseColor = new BaseColor(Color.Black);
-            Font arial = FontFactory.GetFont(FontName, 10f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
             document.Add(new Paragraph(theme, arial) { IndentationLeft = 200 });
         }
 
         private static void Theme(Document document, string theme)
         {
             var baseColor = new BaseColor(Color.Red);
-            Font arial = FontFactory.GetFont(FontName, 10f, baseColor);
+            Font arial = FontFactory.GetFont(FontName, 9f, baseColor);
             document.Add(new Paragraph(theme, arial) { IndentationLeft = 180 });
         }
 
@@ -1720,7 +1769,7 @@ namespace saibabacharityreceiptor.Controllers
         //    {
         //        return null;
         //    }
-        //}
+        //} */
     }
 
     public struct ReceiptData
@@ -1759,7 +1808,7 @@ namespace saibabacharityreceiptor.Controllers
 
         public string FmvValue { get; set; }
 
-        public int HoursServed { get; set; }
+        public Double HoursServed { get; set; }
 
         public string RatePerHrOrDay { get; set; }
 

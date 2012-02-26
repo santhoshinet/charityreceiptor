@@ -457,22 +457,54 @@ namespace saibabacharityreceiptor.Controllers
                             csvOutput += "," + receipt.ZipCode;
                             csvOutput += "," + receipt.Email;
                             csvOutput += "," + receipt.Contact;
+
                             if (receipt.ReceiptType == ReceiptType.RecurringReceipt)
                                 csvOutput += ",";
                             else
                                 csvOutput += "," + receipt.DateReceived.ToString("MM/dd/yyyy");
+
                             csvOutput += "," + receipt.IssuedDate.ToString("MM/dd/yyyy");
-                            csvOutput += "," + totalAmount;
-                            csvOutput += "," + receipt.DonationAmountinWords;
+                            if (receipt.ReceiptType == ReceiptType.RecurringReceipt || receipt.ReceiptType == ReceiptType.GeneralReceipt)
+                            {
+                                csvOutput += "," + totalAmount.ToString("0.00");
+                                csvOutput += "," + receipt.DonationAmountinWords;
+                            }
+                            else
+                            {
+                                csvOutput += ",";
+                                csvOutput += ",";
+                            }
                             string recurringDates = receipt.RecurringDetails.Aggregate(" ", (current, recurringDetail) => current + ("(" + recurringDetail.DueDate.ToString("MM/dd/yyyy") + "-" + recurringDetail.ModeOfPayment + "-" + recurringDetail.Amount + ")"));
                             csvOutput += "," + recurringDates;
-                            csvOutput += "," + receipt.MerchandiseItem;
-                            csvOutput += "," + receipt.Quantity;
-                            csvOutput += "," + receipt.FmvValue;
-                            csvOutput += "," + receipt.ServiceType;
-                            csvOutput += "," + receipt.HoursServed;
-                            csvOutput += "," + receipt.RatePerHrOrDay;
-                            csvOutput += "," + receipt.FmvValue;
+
+                            if (receipt.ReceiptType == ReceiptType.MerchandiseReceipt)
+                            {
+                                csvOutput += "," + receipt.MerchandiseItem;
+                                csvOutput += "," + receipt.Quantity;
+                                csvOutput += "," + Convert.ToDouble(receipt.FmvValue).ToString("0.00");
+                            }
+                            else
+                            {
+                                csvOutput += ",";
+                                csvOutput += ",";
+                                csvOutput += ",";
+                            }
+
+                            if (receipt.ReceiptType == ReceiptType.ServicesReceipt)
+                            {
+                                csvOutput += "," + receipt.ServiceType;
+                                csvOutput += "," + receipt.HoursServed;
+                                csvOutput += "," + Convert.ToDouble(receipt.RatePerHrOrDay).ToString("0.00");
+                                csvOutput += "," + Convert.ToDouble(receipt.FmvValue).ToString("0.00");
+                            }
+                            else
+                            {
+                                csvOutput += ",";
+                                csvOutput += ",";
+                                csvOutput += ",";
+                                csvOutput += ",";
+                            }
+
                             if (receipt.ReceiptType == ReceiptType.RecurringReceipt || receipt.ReceiptType == ReceiptType.MerchandiseReceipt || receipt.ReceiptType == ReceiptType.ServicesReceipt)
                                 csvOutput += ",";
                             else

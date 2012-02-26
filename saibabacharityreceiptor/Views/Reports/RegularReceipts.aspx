@@ -42,7 +42,7 @@
                     <td class="recby">
                         Received By
                     </td>
-                    <td colspan="4" class="lastcol">
+                    <td colspan="3" class="lastcol">
                         Actions
                     </td>
                 </tr>
@@ -91,10 +91,6 @@
                         <a href="<%="/PrintReceipt/" + localRegularReceipt.ReceiptNumber%>" target="_blank">
                             Print</a>
                     </td>
-                    <td style="width: 20px">
-                        <a href="<%="/DownloadReceipt/" + localRegularReceipt.ReceiptNumber%>" target="_blank">
-                            Pdf</a>
-                    </td>
                 </tr>
                 <%
                 index = index + 1;%>
@@ -120,9 +116,9 @@
                         <a href="/Reports/RegularReceipts/<%= pageIndex - 1%>">Prev</a>
                     </td>
                     <%
-            }
-            else
-            {%>
+                }
+                else
+                {%>
                     <td>
                     </td>
                     <%
@@ -136,9 +132,9 @@
                         <a href="/Reports/RegularReceipts/<%= pageIndex + 1%>">Next</a>
                     </td>
                     <%
-            }
-            else
-            {%>
+                }
+                else
+                {%>
                     <td>
                     </td>
                     <%

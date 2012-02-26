@@ -16,8 +16,6 @@
                 <div class="right">
                     <a href="/PrintReceipt/<%= receiptId %>" target="_blank">Print receipt</a>
                 </div>
-                <div class="right">
-                    <a href="/DownloadReceipt/<%= receiptId %>" target="_blank">Download Receipt [PDF format]</a></div>
             </div>
             <div class="clear">
             </div>

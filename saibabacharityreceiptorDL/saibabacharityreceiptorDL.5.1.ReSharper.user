@@ -13,7 +13,7 @@
       <Item value="public" priority="1" />
       <Item value="ModeOfPayment`0" priority="0" />
       <Item value="ModeOfPayment" priority="0" />
-      <Item value="Double`0" priority="0" />
+      <Item value="Double`0" priority="1" />
       <Item value="RecurringDetails`0" priority="1" />
       <Item value="RecurringDetails" priority="0" />
       <Item value="List&lt;RecurringDetails&gt;" priority="0" />
@@ -100,20 +100,21 @@
     <RecentFiles>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="295" fromTop="12" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="133" fromTop="6" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
       <File id="C70F94CE-3827-4CC1-BEC5-952BA122D9E8/f:Program.cs" caret="1210" fromTop="33" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:ObjectScopeProvider1.cs" caret="0" fromTop="0" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:ObjectScopeProvider1.cs" caret="893" fromTop="12" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2262" fromTop="1" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:App.config" caret="0" fromTop="0" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1297" fromTop="34" />
     </RecentFiles>
     <RecentEdits>
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="42" fromTop="1" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:RecurringDetails.cs" caret="274" fromTop="12" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1353" fromTop="21" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1356" fromTop="21" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="150" fromTop="9" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="113" fromTop="9" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:SignatureImage.cs" caret="329" fromTop="15" />
-      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1750" fromTop="23" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1753" fromTop="23" />
       <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="351" fromTop="14" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1760" fromTop="25" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="1413" fromTop="28" />
@@ -133,6 +134,7 @@
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="297" fromTop="11" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="2275" fromTop="15" />
       <File id="A925B4AA-25A8-4552-B6E6-360509EDD3AD/f:Program.cs" caret="3523" fromTop="37" />
+      <File id="26ADC2CA-1ACA-4FAA-A558-7C60D6046E39/f:Receiptor.cs" caret="1217" fromTop="17" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

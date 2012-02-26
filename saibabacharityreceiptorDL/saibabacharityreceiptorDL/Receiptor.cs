@@ -48,7 +48,7 @@ namespace saibabacharityreceiptorDL
 
         public string FmvValue { get; set; }
 
-        public int HoursServed { get; set; }
+        public double HoursServed { get; set; }
 
         public string RatePerHrOrDay { get; set; }
 

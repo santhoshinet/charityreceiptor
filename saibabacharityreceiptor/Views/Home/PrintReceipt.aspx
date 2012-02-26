@@ -97,7 +97,7 @@
             </div>
             <div class="data">
                 <ul>
-                    <li class="one"><span class="field">Donation amount received in $:</span><span class="value"><%= receiptData.DonationAmount%></span></li>
+                    <li class="one"><span class="field">Donation amount received in $:</span><span class="value"><%= Convert.ToDouble(receiptData.DonationAmount).ToString("0.00") %></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -130,7 +130,7 @@
                 </div>
                 <ul>
                     <li class="two"><span class="field">Shridi Saibaba Temple Arizona</span><span class="value"></span></li>
-                    <li class="two"><span class="field">Issues date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
+                    <li class="two"><span class="field">Issued date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -237,7 +237,7 @@ break;
             %>
             <div class="data">
                 <ul>
-                    <li class="one"><span class="field">Donation amount received in $:</span><span class="value"><%= totalAmount %></span></li>
+                    <li class="one"><span class="field">Donation amount received in $:</span><span class="value"><%= totalAmount.ToString("0.00") %></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -282,7 +282,7 @@ foreach (var recurringDetail in receiptData.RecurringDetails)
                                     <%= recurringDetail.ModeOfPayment %>
                                 </td>
                                 <td>
-                                    <%= recurringDetail.Amount %>
+                                    <%= Convert.ToDouble(recurringDetail.Amount).ToString("0.00") %>
                                 </td>
                             </tr>
                             <% } %>
@@ -306,7 +306,7 @@ foreach (var recurringDetail in receiptData.RecurringDetails)
                 </div>
                 <ul>
                     <li class="two"><span class="field">Shridi Saibaba Temple Arizona</span><span class="value"></span></li>
-                    <li class="two"><span class="field">Issues date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
+                    <li class="two"><span class="field">Issued date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -422,7 +422,7 @@ break;
             </div>
             <div class="data">
                 <ul>
-                    <li class="one"><span class="field">Goods FMV in $:</span><span class="value"><%= receiptData.FmvValue%></span></li>
+                    <li class="one"><span class="field">Goods FMV in $:</span><span class="value"><%= Convert.ToDouble(receiptData.FmvValue).ToString("0.00") %></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -441,7 +441,7 @@ break;
                 </div>
                 <ul>
                     <li class="two"><span class="field">Shridi Saibaba Temple Arizona</span><span class="value"></span></li>
-                    <li class="two"><span class="field">Issues date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
+                    <li class="two"><span class="field">Issued date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -558,14 +558,14 @@ break;
             <div class="data">
                 <ul>
                     <li class="two"><span class="field">Service Duration (No.of hrs):</span><span class="value"><%= receiptData.HoursServed%></span></li>
-                    <li class="two"><span class="field">Rate per hr in $:</span><span class="value"><%= receiptData.RatePerHrOrDay%></span></li>
+                    <li class="two"><span class="field">Rate per hr in $:</span><span class="value"><%= Convert.ToDouble(receiptData.RatePerHrOrDay).ToString("0.00") %></span></li>
                 </ul>
             </div>
             <div class="clear">
             </div>
             <div class="data">
                 <ul>
-                    <li class="one"><span class="field">FMV in $:</span><span class="value"><%= receiptData.FmvValue%></span></li>
+                    <li class="one"><span class="field">FMV in $:</span><span class="value"><%= Convert.ToDouble(receiptData.FmvValue).ToString("0.00") %></span></li>
                 </ul>
             </div>
             <div class="clear">
@@ -584,7 +584,7 @@ break;
                 </div>
                 <ul>
                     <li class="two"><span class="field">Shridi Saibaba Temple Arizona</span><span class="value"></span></li>
-                    <li class="two"><span class="field">Issues date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
+                    <li class="two"><span class="field">Issued date:</span><span class="value"><%= receiptData.IssuedDate.ToString("dd MMM yyyy")%></span></li>
                 </ul>
             </div>
             <div class="clear">

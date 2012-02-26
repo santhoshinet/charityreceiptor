@@ -42,7 +42,7 @@
                     <td style="width: 11%">
                         Received By
                     </td>
-                    <td colspan="4" class="lastcol">
+                    <td colspan="3" class="lastcol">
                         Actions
                     </td>
                 </tr>
@@ -90,10 +90,6 @@
                     <td style="width: 30px">
                         <a href="<%="/PrintReceipt/" + localMerchandiseReceipt.ReceiptNumber%>" target="_blank">
                             Print</a>
-                    </td>
-                    <td style="width: 20px">
-                        <a href="<%="/DownloadReceipt/" + localMerchandiseReceipt.ReceiptNumber%>" target="_blank">
-                            Pdf</a>
                     </td>
                 </tr>
                 <%

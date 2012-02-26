@@ -65,6 +65,6 @@ namespace saibabacharityreceiptor
 
     public class LocalServicesReceipt : BaseReceipt
     {
-        public int HoursServed { get; set; }
+        public double HoursServed { get; set; }
     }
 }
