@@ -45,13 +45,13 @@
       <Item value="Count`1" priority="1" />
       <Item value="Amount" priority="5" />
       <Item value="ModeOfPayment" priority="4" />
-      <Item value="model" priority="10" />
+      <Item value="model" priority="11" />
       <Item value="Enum`0" priority="2" />
       <Item value="ModeOfPayment`0" priority="1" />
       <Item value="typeof" priority="0" />
       <Item value="case" priority="2" />
       <Item value="break" priority="2" />
-      <Item value="var" priority="6" />
+      <Item value="var" priority="7" />
       <Item value="recurringDetails" priority="2" />
       <Item value="Cash" priority="0" />
       <Item value="RecurrenceAmount" priority="0" />
@@ -75,7 +75,7 @@
       <Item value="recurrenceData" priority="3" />
       <Item value="rd" priority="2" />
       <Item value="null" priority="11" />
-      <Item value="else" priority="5" />
+      <Item value="else" priority="6" />
       <Item value="recuData" priority="1" />
       <Item value="RecurringDatas" priority="0" />
       <Item value="recurringdata" priority="1" />
@@ -159,6 +159,7 @@
       <Item value="value3" priority="0" />
       <Item value="document" priority="0" />
       <Item value="Border" priority="0" />
+      <Item value="Membership`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:saibabacharityreceiptorDL.RecurringDetails">
       <Item value="DueDate" priority="6" />
@@ -306,6 +307,7 @@
       <Item value="Password" priority="1" />
       <Item value="ConfirmPassword" priority="0" />
       <Item value="UserName" priority="0" />
+      <Item value="Email" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@saibabacharityreceiptorDL.ReceiptType">
       <Item value="MerchandiseReceipt" priority="1" />
@@ -349,10 +351,12 @@
     <ItemStatistics item="Qualified:iTextSharp.text.Document">
       <Item value="Add`0" priority="0" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Security.Membership">
+      <Item value="CreateUser`0" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:receiptor.js" caret="5795" fromTop="13" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:ServicesReceipt_Ctrl.ascx" caret="4602" fromTop="26" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:SearchModel.cs" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:RecurringReceipt_Ctrl.ascx" caret="10187" fromTop="24" />
@@ -364,32 +368,27 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:EditUser_control.ascx" caret="225" fromTop="4" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Controlpanel/f:EditUser.aspx" caret="287" fromTop="9" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:Users.js" caret="627" fromTop="20" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="4991" fromTop="15" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:AccountModels.cs" caret="4446" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2551" fromTop="24" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Models/f:ReceiptModels.cs" caret="4390" fromTop="19" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:User.cs" caret="1647" fromTop="17" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Home/f:PrintReceipt.aspx" caret="24996" fromTop="28" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Utilities.cs" caret="12275" fromTop="27" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Scripts/f:MicrosoftAjax.debug.js" caret="110644" fromTop="23" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ReportsController.cs" caret="0" fromTop="0" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="0" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Global.asax.cs" caret="4339" fromTop="29" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="68207" fromTop="21" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:MerchandiseReceipts.aspx" caret="1710" fromTop="0" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:RegularReceipts.aspx" caret="1710" fromTop="23" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:ServicesReceipts.aspx" caret="2111" fromTop="28" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:RecurringReceipts.aspx" caret="2292" fromTop="28" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:SearchReceipts.aspx" caret="4265" fromTop="19" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Printoptions.aspx" caret="841" fromTop="20" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="902" fromTop="10" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:SignatureController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ReportsController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="784" fromTop="10" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="9872" fromTop="53" />
     </RecentFiles>
     <RecentEdits>
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="84224" fromTop="30" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="94247" fromTop="22" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="90601" fromTop="26" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="90875" fromTop="30" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="91325" fromTop="40" />
-      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="91598" fromTop="41" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="92736" fromTop="41" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="93009" fromTop="41" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:HomeController.cs" caret="94693" fromTop="41" />
@@ -414,6 +413,12 @@
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:ServicesReceipts.aspx" caret="3563" fromTop="19" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Reports/f:ServicesReceipts.aspx" caret="1576" fromTop="13" />
       <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Views/d:Shared/f:Printoptions.aspx" caret="768" fromTop="17" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2993" fromTop="26" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2444" fromTop="35" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="2426" fromTop="28" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:AccountController.cs" caret="929" fromTop="21" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/f:Web.config" caret="996" fromTop="11" />
+      <File id="DD7BB239-9AC2-4526-8275-0CB61D97247C/d:Controllers/f:ControlpanelController.cs" caret="8893" fromTop="19" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

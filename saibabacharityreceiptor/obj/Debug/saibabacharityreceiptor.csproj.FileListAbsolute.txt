@@ -17,7 +17,6 @@ C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\b
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\EntityFramework.xml
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\saibabacharityreceiptorDL.pdb
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\Telerik.OpenAccess.Query.xml
-C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.dll
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.pdb
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\BarcodeGenerator.1D.dll
@@ -26,3 +25,4 @@ C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceipt
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\BarcodeGenerator.Common.dll
 C:\Users\Santhosh\Desktop\My Works\saibabacharityreceiptor\saibabacharityreceiptor\bin\itextsharp.dll
 C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\bin\itextsharp.dll
+C:\Users\Santhosh\Desktop\MyWorks\D2H\charityreceiptor\saibabacharityreceiptor\obj\Debug\saibabacharityreceiptor.csprojResolveAssemblyReference.cache

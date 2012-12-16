@@ -179,6 +179,10 @@ namespace saibabacharityreceiptor.Controllers
                                     {
                                         bool changePasswordSucceeded = currentUser.ChangePassword(currentUser.GetPassword(), model.Password);
                                     }
+                                    else
+                                    {
+                                        var user = Membership.CreateUser(model.UserName, model.Password, model.Email);
+                                    }
                                 }
                                 catch (Exception)
                                 {
